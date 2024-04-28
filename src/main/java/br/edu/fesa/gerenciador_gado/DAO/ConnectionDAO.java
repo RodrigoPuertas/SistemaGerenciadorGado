@@ -15,7 +15,11 @@ import java.util.logging.Logger;
 
 /**
  *
+
  * @author paulo
+ * @author lohan
+ * @author Rodrigo Puertas
+
  */
 public class ConnectionDAO {
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("br.edu.fesa.gerenciador_gado.dbconfig.connection", new Locale("pt", "BR"));

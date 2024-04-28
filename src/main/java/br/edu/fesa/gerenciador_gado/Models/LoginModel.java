@@ -7,6 +7,8 @@ package br.edu.fesa.gerenciador_gado.Models;
 /**
  *
  * @author Lohan
+ * @author Rodrigo Puertas
+
  */
 public class LoginModel {
     private String email;

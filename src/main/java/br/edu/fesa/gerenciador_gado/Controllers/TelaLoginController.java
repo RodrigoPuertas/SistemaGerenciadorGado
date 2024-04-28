@@ -6,7 +6,9 @@ package br.edu.fesa.gerenciador_gado.Controllers;
 
 import br.edu.fesa.gerenciador_gado.exception.PersistenceException;
 import br.edu.fesa.gerenciador_gado.DAO.ConnectionDAO;
+import br.edu.fesa.gerenciador_gado.DAO.PasswordHasher;
 import br.edu.fesa.gerenciador_gado.Models.LoginModel;
+import static br.edu.fesa.gerenciador_gado.Validations.ValidatorEmail.validateEmail;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +29,8 @@ import javafx.scene.control.TextField;
  * FXML Controller class
  *
  * @author Lohan
+ * @author Rodrigo Puertas
+
  */
 public class TelaLoginController implements Initializable {
 
@@ -50,7 +54,7 @@ public class TelaLoginController implements Initializable {
         }
     }
     
-        
+
     @FXML
     private Button btnEntrar;
 
@@ -68,36 +72,43 @@ public class TelaLoginController implements Initializable {
 
     @FXML
     void actionEntrar(ActionEvent event) {
-        try{
-            if(txtEmail.getText().isEmpty())
-            {
-                lblAlertaEmail.setText("Campo vazio!");
-            }
-            else{
+        try {
+            // Validar o e-mail
+            if (validateEmail(txtEmail.getText())) {
                 lblAlertaEmail.setText("");
+            } else {
+                lblAlertaEmail.setText("O endereço de e-mail é inválido.");
+                return; // Sair do método se o e-mail for inválido
             }
             
-            if(txtSenha.getText().isEmpty())
-            {
+            // Validar a senha
+            if (txtSenha.getText().isEmpty()) {
                 lblAlertaSenha.setText("Campo vazio!");
-            }
-            else{
+                return; // Sair do método se a senha estiver vazia
+            } else {
                 lblAlertaSenha.setText("");
             }
+
             EfetuaLogin();
             LoginModel login = new LoginModel(txtEmail.getText(),txtSenha.getText());
         }catch(Exception error){
+
+            
+            // Criptografar a senha antes de criar o objeto LoginModel
+            String senhaCriptografada = PasswordHasher.hashPassword(txtSenha.getText());
+            
+            // Criar o objeto LoginModel com o e-mail e a senha criptografada
+            LoginModel login = new LoginModel(txtEmail.getText(), senhaCriptografada);
+            
+            // Aqui você pode prosseguir com a lógica de login usando o objeto LoginModel
+            
+        } catch (Exception error) {
             System.out.println(error.getMessage());
-        }
-        
+        } 
     }
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-    
 }
