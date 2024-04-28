@@ -57,13 +57,13 @@ public class TelaLoginController implements Initializable {
                 lblAlertaEmail.setText("");
             } else {
                 lblAlertaEmail.setText("O endereço de e-mail é inválido.");
-                return; // Sair do método se o e-mail for inválido
+                //return; // Sair do método se o e-mail for inválido
             }
             
             // Validar a senha
             if (txtSenha.getText().isEmpty()) {
                 lblAlertaSenha.setText("Campo vazio!");
-                return; // Sair do método se a senha estiver vazia
+                //return; // Sair do método se a senha estiver vazia
             } else {
                 lblAlertaSenha.setText("");
             }

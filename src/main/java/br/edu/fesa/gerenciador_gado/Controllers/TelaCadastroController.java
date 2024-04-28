@@ -9,6 +9,7 @@ import br.edu.fesa.gerenciador_gado.DAO.PasswordHasher;
 import br.edu.fesa.gerenciador_gado.Models.LoginModel;
 import br.edu.fesa.gerenciador_gado.Models.PerfilUsuarioModel;
 import static br.edu.fesa.gerenciador_gado.Validations.ValidatorEmail.validateEmail;
+import static br.edu.fesa.gerenciador_gado.Validations.ValidatorPassword.validatePassword;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -50,7 +51,7 @@ public class TelaCadastroController implements Initializable {
     private Label lblAlertaSenha;
 
     @FXML
-    private TextField txtConfirmaSenha;
+    private TextField txtConfirmPassword;
 
     @FXML
     private TextField txtEmail;
@@ -62,38 +63,70 @@ public class TelaCadastroController implements Initializable {
     private TextField txtRegistro;
 
     @FXML
-    private TextField txtSenha;
-
+    private TextField txtPassword;
+    
+    @FXML
+    private TextField txtConfirmaEmail;
+    
     @FXML
     void actionCadastrar(ActionEvent event) {
         try {
             
-            if(txtNome.getText().isBlank())
-            
-            
-            
-            // Validar o e-mail
-            if (validateEmail(txtEmail.getText())) {
-                lblAlertaEmail.setText("");
-            } else {
-                lblAlertaEmail.setText("O endereço de e-mail é inválido.");
-                return; // Sair do método se o e-mail for inválido
-            }
-            
-            // Validar a senha
-            if(txtSenha.getText().isBlank())
+           if(txtNome.getText().isBlank())
             {
-                lblAlertaSenha.setText("Campo vazio!");
-                return; // Sair do método se a senha estiver vazia
-            } 
-            else {
-                lblAlertaSenha.setText("");
+                lblAlertaNome.setText("Campo vazio!");
+                //return;
+            }
+            else{
+                lblAlertaNome.setText("");
+            }
+
+            if(txtRegistro.getText().isBlank()){
+                lblAlertaRegistro.setText("Campo vazio!");
+                //return;
+            }
+            else{
+                lblAlertaRegistro.setText("");
+            }
+
+            if(cboPerfil.getValue() == null) //não sei se funciona
+            {
+                lblAlertaPerfil.setText("Nenhum perfil selecionado");
+                //return;
+            }
+            else{
+                lblAlertaPerfil.setText("");
+            }
+
+            // Validar o e-mail
+            if(txtEmail.getText().equals(txtConfirmaEmail.getText()))
+            {
+                if (validateEmail(txtEmail.getText())) {
+                    lblAlertaEmail.setText("");
+                } else {
+                    lblAlertaEmail.setText("O endereço de e-mail é inválido.");
+                    //return; // Sair do método se o e-mail for inválido
+                }
+            }
+            else
+            {
+                lblAlertaEmail.setText("Os emails não são iguais");
+                //return;
+            }
+
+            if (validatePassword(txtPassword.getText())) {
+                if (txtPassword.getText().equals(txtConfirmPassword.getText())) {
+                    lblAlertaSenha.setText("");
+                } else {
+                    lblAlertaSenha.setText("As senhas são diferentes!");
+                }   
+            } else {
+                lblAlertaSenha.setText("A senha é inválido.");
             }
             
-            // Criptografar a senha antes de criar o objeto LoginModel
-            String senhaCriptografada = PasswordHasher.hashPassword(txtSenha.getText());
+           
             
-            // Criar o objeto LoginModel com o e-mail e a senha criptografada
+            String senhaCriptografada = PasswordHasher.hashPassword(txtPassword.getText());
             LoginModel login = new LoginModel(txtEmail.getText(), senhaCriptografada);
             
             // Aqui você pode prosseguir com a lógica de login usando o objeto LoginModel
