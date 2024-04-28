@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
  * FXML Controller class
  *
  * @author Lohan
+ * @author Rodrigo Puertas
  */
 public class TelaCadastroController implements Initializable {
 

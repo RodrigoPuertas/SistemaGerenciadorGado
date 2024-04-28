@@ -21,6 +21,8 @@ import javafx.scene.control.TextField;
  * FXML Controller class
  *
  * @author Lohan
+ * @author Rodrigo Puertas
+
  */
 public class TelaLoginController implements Initializable { 
     @FXML

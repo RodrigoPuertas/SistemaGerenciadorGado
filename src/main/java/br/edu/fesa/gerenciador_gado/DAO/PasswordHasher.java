@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
+ * @author lohan
  * @author Rodrigo Puertas
  */
 public class PasswordHasher {

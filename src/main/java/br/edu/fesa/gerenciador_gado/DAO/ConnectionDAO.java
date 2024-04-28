@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 /**
  *
+ * @author lohan
  * @author Rodrigo Puertas
  */
 public class ConnectionDAO {
