@@ -12,10 +12,10 @@ import java.util.regex.Pattern;
  * @author Rodrigo Puertas
  */
 public class ValidatorPassword {
-    public static boolean validateEmail(String email){
-        String emailRegex = "";//criar a regra de validação da senha.
-        Pattern pattern = Pattern.compile(emailRegex);
-        Matcher matcher = pattern.matcher(email);
+    public static boolean validatePassword(String senha){
+        String senhaRegex = "^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[@$!%?&])[A-Za-z\\d@$!%?&]{8,}$";
+        Pattern pattern = Pattern.compile(senhaRegex);
+        Matcher matcher = pattern.matcher(senha);
         return matcher.matches();
     }
 }
