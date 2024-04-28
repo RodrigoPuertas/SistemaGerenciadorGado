@@ -1,0 +1,65 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    
+}
+
+
+.pane_login{
+    -fx-background-color: #99d288;
+}
+
+.label_login{
+    -fx-text-fill: #202020;
+    -fx-font-family: "Arial";
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.label_texto{
+    -fx-text-fill: #202020;
+    -fx-font-family: "Arial";
+    -fx-font-size: 16px;
+}
+
+.button_entrar{
+    -fx-background-color: #99d288;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
+
+.textfield {
+    -fx-font-family: 'Arial';
+    -fx-font-size: 12pt;
+    -fx-border-radius: 5px; /* Define o raio de arredondamento das bordas */
+    -fx-border-color: #999999; /* Define a cor da borda */
+    -fx-border-width: 1px; /* Define a largura da borda */
+}
+
+.label_apresentacaoLogin{
+    -fx-text-fill: whitesmoke;
+    -fx-font-family: "Arial";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.label_AlertaEmail{
+    -fx-text-fill: red;
+}
+
+.label_AlertaSenha{
+    -fx-text-fill: red;
+}
