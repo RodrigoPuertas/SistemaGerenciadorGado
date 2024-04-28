@@ -4,9 +4,14 @@
  */
 package br.edu.fesa.gerenciador_gado.Controllers;
 
+import br.edu.fesa.gerenciador_gado.exception.PersistenceException;
+import br.edu.fesa.gerenciador_gado.DAO.ConnectionDAO;
 import br.edu.fesa.gerenciador_gado.Models.LoginModel;
 import java.net.URL;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -25,26 +30,25 @@ import javafx.scene.control.TextField;
  */
 public class TelaLoginController implements Initializable {
 
-        List<LoginModel> teste = new LinkedList<>();
+    public void EfetuaLogin() throws PersistenceException{  
 
-        // Crie os objetos LoginModel
-        LoginModel login1 = new LoginModel("@teste1", "111");
-        LoginModel login2 = new LoginModel("@teste2", "222");
-        LoginModel login3 = new LoginModel("@teste3", "333");
-        LoginModel login4 = new LoginModel("@teste4", "444");
-        LoginModel login5 = new LoginModel("@teste5", "555");
+        List<String> teste = new LinkedList<String>();
 
-        
-/*
-// Adicione os objetos à lista
-        
-        teste.add(login1);
-        teste.add(login2);
-        teste.add(login3);
-        teste.add(login4);
-        teste.add(login5); 
+        try (Connection connection = ConnectionDAO.getConexao().getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM USER");
+             ResultSet resultSet = statement.executeQuery()) {
 
-//não sei porque não adiciona*/
+            while (resultSet.next()) {
+                teste.add(resultSet.getString("ID_USER"));
+                teste.add(resultSet.getString("LOGIN_USER"));
+                teste.add(resultSet.getString("PASSWORD"));
+            }
+
+
+        } catch (SQLException ex) {
+            throw new PersistenceException("Erro ao listar os cargos", ex);
+        }
+    }
     
         
     @FXML
@@ -80,7 +84,7 @@ public class TelaLoginController implements Initializable {
             else{
                 lblAlertaSenha.setText("");
             }
-            
+            EfetuaLogin();
             LoginModel login = new LoginModel(txtEmail.getText(),txtSenha.getText());
         }catch(Exception error){
             System.out.println(error.getMessage());
