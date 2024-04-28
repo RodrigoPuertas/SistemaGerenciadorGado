@@ -98,6 +98,7 @@ public class TelaCadastroController implements Initializable {
             
             // Aqui você pode prosseguir com a lógica de login usando o objeto LoginModel
             
+            
         } catch (Exception error) {
             System.out.println(error.getMessage());
         }

@@ -24,12 +24,13 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.28</version>
-
-            <groupId>org.junit.jupiter</groupId>
+        </dependency> 
+        <dependency>
+        <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.6.0</version>
             <scope>test</scope>
-        </dependency>
+        </dependency> 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
@@ -48,7 +49,6 @@
             <version>4.13</version>
             <scope>test</scope>
             <type>jar</type>
-
         </dependency>
     </dependencies>
     <build>

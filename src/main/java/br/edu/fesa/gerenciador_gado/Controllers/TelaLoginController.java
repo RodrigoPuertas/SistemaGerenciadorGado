@@ -34,27 +34,6 @@ import javafx.scene.control.TextField;
  */
 public class TelaLoginController implements Initializable {
 
-    public void EfetuaLogin() throws PersistenceException{  
-
-        List<String> teste = new LinkedList<String>();
-
-        try (Connection connection = ConnectionDAO.getConexao().getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM USER");
-             ResultSet resultSet = statement.executeQuery()) {
-
-            while (resultSet.next()) {
-                teste.add(resultSet.getString("ID_USER"));
-                teste.add(resultSet.getString("LOGIN_USER"));
-                teste.add(resultSet.getString("PASSWORD"));
-            }
-
-
-        } catch (SQLException ex) {
-            throw new PersistenceException("Erro ao listar os cargos", ex);
-        }
-    }
-    
-
     @FXML
     private Button btnEntrar;
 
@@ -88,11 +67,6 @@ public class TelaLoginController implements Initializable {
             } else {
                 lblAlertaSenha.setText("");
             }
-
-            EfetuaLogin();
-            LoginModel login = new LoginModel(txtEmail.getText(),txtSenha.getText());
-        }catch(Exception error){
-
             
             // Criptografar a senha antes de criar o objeto LoginModel
             String senhaCriptografada = PasswordHasher.hashPassword(txtSenha.getText());
@@ -101,6 +75,7 @@ public class TelaLoginController implements Initializable {
             LoginModel login = new LoginModel(txtEmail.getText(), senhaCriptografada);
             
             // Aqui você pode prosseguir com a lógica de login usando o objeto LoginModel
+            EfetuaLogin();
             
         } catch (Exception error) {
             System.out.println(error.getMessage());
@@ -111,4 +86,24 @@ public class TelaLoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+     public void EfetuaLogin() throws PersistenceException{  
+
+        List<String> teste = new LinkedList<String>();
+
+        try (Connection connection = ConnectionDAO.getConexao().getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM USER");
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                teste.add(resultSet.getString("ID_USER"));
+                teste.add(resultSet.getString("LOGIN_USER"));
+                teste.add(resultSet.getString("PASSWORD"));
+            }
+
+
+        } catch (SQLException ex) {
+            throw new PersistenceException("Erro ao listar os cargos", ex);
+        }
+    }
 }
