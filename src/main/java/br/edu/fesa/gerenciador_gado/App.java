@@ -19,7 +19,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        
+    
         scene = new Scene(loadFXML("telaLogin"), 1000, 600);
         
         //Adiciona um icone no canto superior esquerdo da tela e na sua inicialização
