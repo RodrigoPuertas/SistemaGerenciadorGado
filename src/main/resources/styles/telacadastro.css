@@ -39,6 +39,8 @@
     -fx-border-radius: 5px; /* Define o raio de arredondamento das bordas */
     -fx-border-color: #999999; /* Define a cor da borda */
     -fx-border-width: 1px; /* Define a largura da borda */
+    -fx-min-width: 300px; /* Define a largura mínima */
+    -fx-min-height: 35px; /* Define a altura mínima */
 }
 
 .label_AlertaEmail{
