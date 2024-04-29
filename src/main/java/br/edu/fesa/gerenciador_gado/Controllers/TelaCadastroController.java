@@ -6,7 +6,7 @@ package br.edu.fesa.gerenciador_gado.Controllers;
 
 import br.edu.fesa.gerenciador_gado.DAO.PasswordHasher;
 import br.edu.fesa.gerenciador_gado.Models.LoginModel;
-import br.edu.fesa.gerenciador_gado.Models.PerfilUsuarioModel;
+import br.edu.fesa.gerenciador_gado.Models.UserProfileModel;
 import static br.edu.fesa.gerenciador_gado.Validations.ValidatorEmail.validateEmailFields;
 import static br.edu.fesa.gerenciador_gado.Validations.ValidatorPassword.validatePasswordFields;
 import static br.edu.fesa.gerenciador_gado.Validations.ValidatorFields.ValidateIsEmpty;
@@ -32,7 +32,7 @@ public class TelaCadastroController implements Initializable {
     private Button btnEntrar;
 
     @FXML
-    private ComboBox<PerfilUsuarioModel> cboPerfil;
+    private ComboBox<UserProfileModel> cboPerfil;
 
     @FXML
     private Label lblAlertaEmail;

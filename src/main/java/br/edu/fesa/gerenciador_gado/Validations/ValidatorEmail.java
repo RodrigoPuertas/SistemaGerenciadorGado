@@ -19,15 +19,13 @@ public class ValidatorEmail {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-    
-        public static String validateEmailFields(String email, String confirmEmail) {    
-        
-        if (!validateEmail(email))
-        {
+
+    public static String validateEmailFields(String email, String confirmEmail) {
+
+        if (!validateEmail(email)) {
             return "Email inválido";
         }
-        if (!email.equals(confirmEmail)) 
-        {
+        if (!email.equals(confirmEmail)) {
             return "Emails não são iguais";
         }
 

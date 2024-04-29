@@ -1,7 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+ 
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+*/
 package br.edu.fesa.gerenciador_gado.DAO;
 
 import br.edu.fesa.gerenciador_gado.exception.PersistenceException;
@@ -10,18 +11,17 @@ import java.util.List;
 
 /**
  *
- * @author paulo
- */
+ 
+@author paulo*/
 public interface GenericDAO<E> extends Serializable{
-    
-    public List<E> listar() throws PersistenceException;
-    
-    public void inserir(E e) throws PersistenceException;
 
-    public void alterar(E e) throws PersistenceException;
+    public List<E> list() throws PersistenceException;
 
-    public void remover(E e) throws PersistenceException;
+    public void insert(E e) throws PersistenceException;
 
-    public E listarPorID(E e) throws PersistenceException;
+    public void update(E e) throws PersistenceException;
+
+    public void remove(E e) throws PersistenceException;
+
+    public E listById(E e) throws PersistenceException;
 }
-

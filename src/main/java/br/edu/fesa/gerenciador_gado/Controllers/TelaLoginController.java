@@ -7,7 +7,9 @@ package br.edu.fesa.gerenciador_gado.Controllers;
 import br.edu.fesa.gerenciador_gado.exception.PersistenceException;
 import br.edu.fesa.gerenciador_gado.DAO.ConnectionDAO;
 import br.edu.fesa.gerenciador_gado.DAO.PasswordHasher;
+import br.edu.fesa.gerenciador_gado.DAO.UserDAO;
 import br.edu.fesa.gerenciador_gado.Models.LoginModel;
+import br.edu.fesa.gerenciador_gado.Models.UserModel;
 import static br.edu.fesa.gerenciador_gado.Validations.ValidatorEmail.validateEmail;
 import java.net.URL;
 import java.sql.Connection;
@@ -89,21 +91,9 @@ public class TelaLoginController implements Initializable {
     
      public void EfetuaLogin() throws PersistenceException{  
 
-        List<String> teste = new LinkedList<String>();
+        List<UserModel> teste = new LinkedList<UserModel>();
 
-        try (Connection connection = ConnectionDAO.getConexao().getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM USER");
-             ResultSet resultSet = statement.executeQuery()) {
-
-            while (resultSet.next()) {
-                teste.add(resultSet.getString("ID_USER"));
-                teste.add(resultSet.getString("LOGIN_USER"));
-                teste.add(resultSet.getString("PASSWORD"));
-            }
-
-
-        } catch (SQLException ex) {
-            throw new PersistenceException("Erro ao listar os cargos", ex);
-        }
+        UserDAO user = new UserDAO();
+        teste = user.list();
     }
 }
