@@ -3,7 +3,9 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
 */
-package br.edu.fesa.gerenciador_gado.Models;
+package br.edu.fesa.gerenciador_gado.Models.Entities;
+
+import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
 
 /**
  *
@@ -11,18 +13,19 @@ package br.edu.fesa.gerenciador_gado.Models;
 @author Lohan
 @author Rodrigo Puertas
 */
-public class UserModel {
+public class User {
     private Integer id;
     private String email;
     private String name;
+    private ProfileEnum profileCode;
 
-    public UserModel(){};
+    public User(){};
 
-    public UserModel(Integer id, String name, String email, UserProfileModel userProfile) {
+    public User(Integer id, String name, String email, ProfileEnum profileCode) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.userProfile = userProfile;
+        this.profileCode = profileCode;
     }
 
     public String getName() {
@@ -32,7 +35,6 @@ public class UserModel {
     public void setName(String name) {
         this.name = name;
     }
-    private UserProfileModel userProfile;
 
     public Integer getId() {
         return id;
@@ -49,14 +51,13 @@ public class UserModel {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public UserProfileModel getUserProfile() {
-        return userProfile;
+    
+    public ProfileEnum getProfileCode() {
+        return profileCode;
     }
 
-    public void setUserProfile(UserProfileModel userProfile) {
-        this.userProfile = userProfile;
+    public void setProfileCode(ProfileEnum profileCode) {
+        this.profileCode = profileCode;
     }
-
 
 }

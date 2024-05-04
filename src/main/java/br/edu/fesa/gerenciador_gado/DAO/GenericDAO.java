@@ -5,7 +5,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit th
 */
 package br.edu.fesa.gerenciador_gado.DAO;
 
-import br.edu.fesa.gerenciador_gado.exception.PersistenceException;
+import br.edu.fesa.gerenciador_gado.Util.Exceptions.PersistenceException;
 import java.io.Serializable;
 import java.util.List;
 

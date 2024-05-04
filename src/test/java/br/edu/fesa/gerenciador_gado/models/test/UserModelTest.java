@@ -1,6 +1,6 @@
 package br.edu.fesa.gerenciador_gado.models.test;
 
-import br.edu.fesa.gerenciador_gado.Models.UserModel;
+import br.edu.fesa.gerenciador_gado.Models.Entities.User;
 import org.junit.Test;
 import static org.junit.Assert.*;
 /**
@@ -13,7 +13,7 @@ public class UserModelTest {
 
     @Test
     public void testGetterSetter() {
-        UserModel user = new UserModel();
+        User user = new User();
 
         // Teste para o método setId
         user.setId(1);

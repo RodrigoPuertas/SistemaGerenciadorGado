@@ -4,35 +4,26 @@
  */
 package br.edu.fesa.gerenciador_gado.Controllers;
 
-import br.edu.fesa.gerenciador_gado.exception.PersistenceException;
-import br.edu.fesa.gerenciador_gado.DAO.ConnectionDAO;
-import br.edu.fesa.gerenciador_gado.DAO.PasswordHasher;
-import br.edu.fesa.gerenciador_gado.DAO.UserDAO;
-import br.edu.fesa.gerenciador_gado.Models.LoginModel;
-import br.edu.fesa.gerenciador_gado.Models.UserModel;
-import static br.edu.fesa.gerenciador_gado.Validations.ValidatorEmail.validateEmail;
+import br.edu.fesa.gerenciador_gado.Util.PasswordHasher;
+import br.edu.fesa.gerenciador_gado.Models.BLL.LoginBll;
+import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmail;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
 
 /**
  * FXML Controller class
  *
  * @author Lohan
  * @author Rodrigo Puertas
-
+ *
  */
 public class TelaLoginController implements Initializable {
 
@@ -44,7 +35,7 @@ public class TelaLoginController implements Initializable {
 
     @FXML
     private TextField txtSenha;
-    
+
     @FXML
     private Label lblAlertaEmail;
 
@@ -54,46 +45,42 @@ public class TelaLoginController implements Initializable {
     @FXML
     void actionEntrar(ActionEvent event) {
         try {
-            // Validar o e-mail
-            if (validateEmail(txtEmail.getText())) {
+            Boolean validEmail = validateEmail(txtEmail.getText());
+            if (validEmail) {
                 lblAlertaEmail.setText("");
             } else {
                 lblAlertaEmail.setText("O endereço de e-mail é inválido.");
-                //return; // Sair do método se o e-mail for inválido
             }
-            
-            // Validar a senha
+
             if (txtSenha.getText().isEmpty()) {
                 lblAlertaSenha.setText("Campo vazio!");
-                //return; // Sair do método se a senha estiver vazia
             } else {
                 lblAlertaSenha.setText("");
             }
-            
-            // Criptografar a senha antes de criar o objeto LoginModel
-            String senhaCriptografada = PasswordHasher.hashPassword(txtSenha.getText());
-            
-            // Criar o objeto LoginModel com o e-mail e a senha criptografada
-            LoginModel login = new LoginModel(txtEmail.getText(), senhaCriptografada);
-            
-            // Aqui você pode prosseguir com a lógica de login usando o objeto LoginModel
-            EfetuaLogin();
-            
+
+            if (validEmail && !txtSenha.getText().isEmpty()) {
+                String encryptedViewPassword = PasswordHasher.hashPassword(txtSenha.getText());
+                LoginBll loginBll = new LoginBll();
+                String returnMesage = loginBll.performLogin(txtEmail.getText(), encryptedViewPassword);
+
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Aviso");
+                alert.setContentText(returnMesage);
+                alert.setHeaderText(null);
+                alert.showAndWait();
+            }
+
         } catch (Exception error) {
-            System.out.println(error.getMessage());
-        } 
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setContentText(error.getMessage());
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
-     public void EfetuaLogin() throws PersistenceException{  
-
-        List<UserModel> teste = new LinkedList<UserModel>();
-
-        UserDAO user = new UserDAO();
-        teste = user.list();
     }
 }

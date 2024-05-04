@@ -4,9 +4,9 @@
  */
 package br.edu.fesa.gerenciador_gado.DAO;
 
-import br.edu.fesa.gerenciador_gado.Models.UserModel;
-import br.edu.fesa.gerenciador_gado.Models.UserProfileModel;
-import br.edu.fesa.gerenciador_gado.exception.PersistenceException;
+import br.edu.fesa.gerenciador_gado.Models.Entities.User;
+import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
+import br.edu.fesa.gerenciador_gado.Util.Exceptions.PersistenceException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,44 +20,73 @@ import java.util.logging.Logger;
  *
  * @author paulo
  */
-public class UserDAO implements GenericDAO<UserModel>{
+public class UserDAO implements GenericDAO<User> {
 
     @Override
-    public List<UserModel> list() throws PersistenceException {
-        List<UserModel> users = new ArrayList<>();
-        try (Connection connection = ConnectionDAO.getConnectionDAO().getConnection();
-             PreparedStatement statement = connection.prepareStatement("select id_user, name, email, u.id_profile, description from users u\n" +
-                "left join profiles p on u.id_profile = p.id_profile ");
-             ResultSet resultSet = statement.executeQuery()) {
+    public List<User> list() throws PersistenceException {
+        List<User> users = new ArrayList<>();
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("SELECT * FROM USERS");  ResultSet resultSet = statement.executeQuery()) {
 
-            while (resultSet.next()) {                
-                users.add(new UserModel(resultSet.getInt("id_user"), resultSet.getString("name"), resultSet.getString("email"), new UserProfileModel(resultSet.getInt("id_profile"), resultSet.getString("description"))));
+            while (resultSet.next()) {
+                users.add(new User(resultSet.getInt("ID_USER"), resultSet.getString("NAME"), resultSet.getString("EMAIL"), ProfileEnum.valueOf(resultSet.getString("PROFILE_CODE"))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            throw new PersistenceException("Erro ao listar os cargos", ex);
+            throw new PersistenceException("Erro ao listar os usuários", ex);
         }
         return users;
     }
 
+    public String getPasswordByEmail(String email) throws PersistenceException {
+        String password = "";
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("SELECT PASSWORD FROM USERS WHERE EMAIL = '" + email + "'LIMIT 1");  ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                password = resultSet.getString("PASSWORD");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new PersistenceException("Erro carregar usuário", ex);
+        }
+        return password;
+    }
+
+    public User getUserByEmail(String email) throws PersistenceException {
+        User user = new User();
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("SELECT * FROM USERS WHERE EMAIL = '" + email + "'LIMIT 1");  ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                user.setId(resultSet.getInt("ID_USER"));
+                user.setName(resultSet.getString("NAME"));
+                user.setEmail(resultSet.getString("EMAIL"));
+                user.setProfileCode(ProfileEnum.fromValue(resultSet.getInt("PROFILE_CODE")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new PersistenceException("Erro carregar o usuário", ex);
+        }
+        return user;
+    }
+
     @Override
-    public void insert(UserModel e) throws PersistenceException {
+    public void insert(User e) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(UserModel e) throws PersistenceException {
+    public void update(User e) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void remove(UserModel e) throws PersistenceException {
+    public void remove(User e) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public UserModel listById(UserModel e) throws PersistenceException {
+    public User listById(User e) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

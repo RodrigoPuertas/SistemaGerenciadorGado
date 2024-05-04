@@ -1,4 +1,4 @@
-package br.edu.fesa.gerenciador_gado.DAO;
+package br.edu.fesa.gerenciador_gado.Util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -12,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author lohan
  * @author Rodrigo Puertas
+ * @author Paulo Tristao
  */
 public class PasswordHasher {
      private static final String SALT = "90b55b4160ff56779ded3b772b314efb"; // Sal padrão (altere para um valor aleatório)
@@ -25,5 +26,9 @@ public class PasswordHasher {
             sb.append(String.format("%02x", b));
         }
         return sb.toString();
+    }
+    
+    public static Boolean passwordEquals(String dataBasepassword, String viewPassword) {
+        return dataBasepassword.equals(viewPassword);
     }
 }
