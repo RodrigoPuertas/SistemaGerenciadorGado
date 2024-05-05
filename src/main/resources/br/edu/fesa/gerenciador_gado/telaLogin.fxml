@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/telalogin.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.TelaLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/telalogin.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.TelaLoginController">
    <children>
       <Pane prefHeight="600.0" prefWidth="500.0" styleClass="pane_login">
          <children>
@@ -35,15 +30,15 @@
                </font>
             </Label>
             <Label layoutX="101.0" layoutY="208.0" styleClass="label_texto" text="Email" />
-            <TextField fx:id="txtEmail" layoutX="101.0" layoutY="232.0" prefHeight="36.0" prefWidth="297.0" promptText="\@mail.com" styleClass="textfield" />
+            <TextField fx:id="txtEmail" layoutX="101.0" layoutY="232.0" prefHeight="35.0" prefWidth="300.0" promptText="\@mail.com" styleClass="textfield" />
             <Button fx:id="btnEntrar" layoutX="102.0" layoutY="406.0" mnemonicParsing="false" onAction="#actionEntrar" prefHeight="36.0" prefWidth="297.0" styleClass="button_entrar" text="Entrar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
             <Label layoutX="98.0" layoutY="290.0" styleClass="label_texto" text="Senha" />
-            <Label fx:id="lblAlertaEmail" layoutX="102.0" layoutY="221.0" styleClass="label_AlertaEmail" />
-            <Label fx:id="lblAlertaSenha" layoutX="102.0" layoutY="333.0" styleClass="label_AlertaSenha" />
-            <PasswordField fx:id="txtSenha" layoutX="101.0" layoutY="315.0" prefHeight="36.0" prefWidth="297.0" promptText="password" styleClass="textfield" />
+            <Label fx:id="lblAlertaEmail" layoutX="102.0" layoutY="268.0" prefHeight="17.0" prefWidth="297.0" styleClass="label_AlertaEmail" />
+            <Label fx:id="lblAlertaSenha" layoutX="102.0" layoutY="345.0" prefHeight="17.0" prefWidth="297.0" styleClass="label_AlertaSenha" />
+            <PasswordField fx:id="txtSenha" layoutX="100.0" layoutY="310.0" prefHeight="35.0" prefWidth="300.0" styleClass="textfield" />
          </children>
       </Pane>
    </children>

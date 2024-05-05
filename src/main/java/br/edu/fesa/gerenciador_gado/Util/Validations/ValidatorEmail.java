@@ -21,7 +21,7 @@ public class ValidatorEmail {
     }
 
     public static String validateEmailFields(String email, String confirmEmail) {
-
+        
         if (!validateEmail(email)) {
             return "Email inválido";
         }
@@ -31,4 +31,13 @@ public class ValidatorEmail {
 
         return "";
     }
+    
+        public static String validateEmailFields(String emailLogin) {
+        
+        if (!validateEmail(emailLogin)) {
+            return "O endereço de e-mail é inválido.";
+        }
+        return "";
+    }
+    
 }

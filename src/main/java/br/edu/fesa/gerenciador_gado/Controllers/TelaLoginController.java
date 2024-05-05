@@ -8,6 +8,8 @@ import br.edu.fesa.gerenciador_gado.Util.PasswordHasher;
 import br.edu.fesa.gerenciador_gado.Models.BLL.LoginBll;
 import br.edu.fesa.gerenciador_gado.Util.UserSession;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmail;
+import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmailFields;
+import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorPassword.validatePasswordFields;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,8 +23,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 
 /**
  * FXML Controller class
@@ -40,7 +44,7 @@ public class TelaLoginController implements Initializable {
     private TextField txtEmail;
 
     @FXML
-    private TextField txtSenha;
+    private PasswordField txtSenha;
 
     @FXML
     private Label lblAlertaEmail;
@@ -57,20 +61,25 @@ public class TelaLoginController implements Initializable {
     @FXML
     void actionEntrar(ActionEvent event) {
         try {
-            Boolean validEmail = validateEmail(txtEmail.getText());
-            if (validEmail) {
-                lblAlertaEmail.setText("");
-            } else {
-                lblAlertaEmail.setText("O endereço de e-mail é inválido.");
-            }
+            
+//            Boolean validEmail = validateEmail(txtEmail.getText());
+//            if (validEmail) {
+//                lblAlertaEmail.setText("");
+//            } else {
+//                lblAlertaEmail.setText("O endereço de e-mail é inválido.");
+//            }
+            lblAlertaEmail.setText(validateEmailFields(txtEmail.getText()));
 
-            if (txtSenha.getText().isEmpty()) {
-                lblAlertaSenha.setText("Campo vazio!");
-            } else {
-                lblAlertaSenha.setText("");
-            }
+            
+//            if (txtSenha.getText().isEmpty()) {
+//                lblAlertaSenha.setText("Campo vazio!");
+//            } else {
+//                lblAlertaSenha.setText("");
+//            }
+            
+            lblAlertaSenha.setText(validatePasswordFields(txtSenha.getText()));            
 
-            if (validEmail && !txtSenha.getText().isEmpty()) {
+            if (validateEmail(txtEmail.getText()) && !txtSenha.getText().isEmpty()) {
                 String encryptedViewPassword = PasswordHasher.hashPassword(txtSenha.getText());
                 LoginBll loginBll = new LoginBll();
                 String returnMesage = loginBll.performLogin(txtEmail.getText(), encryptedViewPassword);

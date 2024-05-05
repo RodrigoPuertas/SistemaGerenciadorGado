@@ -30,4 +30,13 @@ public class ValidatorPassword {
         return "";
     }
 
+    public static String validatePasswordFields(String senhaLogin) {
+        if(senhaLogin.isBlank())
+        {
+            return "Campo vazio!";
+        }
+        
+        return "";
+    }
+
 }
