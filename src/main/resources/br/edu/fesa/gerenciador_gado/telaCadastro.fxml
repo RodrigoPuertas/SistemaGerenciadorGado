@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -11,7 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/telacadastro.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.TelaCadastroController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/telacadastro.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.TelaCadastroController">
    <children>
       <Pane prefHeight="600.0" prefWidth="350.0" styleClass="pane_left">
          <children>
@@ -24,31 +29,31 @@
       </Pane>
       <Pane layoutX="350.0" prefHeight="600.0" prefWidth="650.0">
          <children>
-            <Label layoutX="30.0" layoutY="271.0" styleClass="label_texto" text="Email" />
-            <TextField fx:id="txtEmail" layoutX="30.0" layoutY="297.0" prefHeight="35.0" prefWidth="300.0" promptText="\@mail.com" styleClass="textfield" />
-            <Button fx:id="btnEntrar" layoutX="177.0" layoutY="514.0" mnemonicParsing="false" onAction="#actionCadastrar" prefHeight="36.0" prefWidth="297.0" styleClass="button_cadastrar" text="Cadastrar">
+            <Label layoutX="30.0" layoutY="241.0" styleClass="label_texto" text="Email" />
+            <TextField fx:id="txtEmail" layoutX="27.0" layoutY="262.0" prefHeight="35.0" prefWidth="300.0" promptText="\@mail.com" styleClass="textfield" />
+            <Button fx:id="btnEntrar" layoutX="177.0" layoutY="467.0" mnemonicParsing="false" onAction="#actionCadastrar" prefHeight="36.0" prefWidth="297.0" styleClass="button_cadastrar" text="Cadastrar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="30.0" layoutY="357.0" styleClass="label_texto" text="Senha" />
+            <Label layoutX="27.0" layoutY="323.0" styleClass="label_texto" text="Senha" />
             <Label fx:id="lblAlertaEmail" layoutX="102.0" layoutY="221.0" styleClass="label_AlertaEmail" />
             <Label fx:id="lblAlertaSenha" layoutX="102.0" layoutY="333.0" styleClass="label_AlertaSenha" />
-            <Label layoutX="30.0" layoutY="95.0" styleClass="label_texto" text="Nome" />
-            <TextField fx:id="txtNome" layoutX="30.0" layoutY="120.0" prefHeight="35.0" prefWidth="300.0" styleClass="textfield" />
-            <ComboBox fx:id="cboPerfil" layoutX="30.0" layoutY="207.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
-            <Label layoutX="30.0" layoutY="180.0" styleClass="label_texto" text="Perfil" />
-            <Label layoutX="339.0" layoutY="357.0" styleClass="label_texto" text="Senha" />
+            <Label layoutX="29.0" layoutY="152.0" styleClass="label_texto" text="Nome" />
+            <TextField fx:id="txtNome" layoutX="27.0" layoutY="178.0" prefHeight="35.0" prefWidth="300.0" styleClass="textfield" />
+            <ComboBox fx:id="cboPerfil" layoutX="339.0" layoutY="178.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
+            <Label layoutX="339.0" layoutY="152.0" styleClass="label_texto" text="Perfil" />
+            <Label layoutX="342.0" layoutY="323.0" styleClass="label_texto" text="Senha" />
             <Label fx:id="lblAlertaNome" layoutX="30.0" layoutY="153.0" styleClass="label_AlertaNome" />
             <Label fx:id="lblAlertaRegistro" layoutX="30.0" layoutY="242.0" styleClass="label_AlertaRegistro" />
             <Label fx:id="lblAlertaPerfil" layoutX="30.0" layoutY="242.0" styleClass="label_AlertaPerfil" />
             <Label fx:id="lblAlertaEmail" layoutX="30.0" layoutY="333.0" styleClass="label_AlertaEmail" />
             <Label fx:id="lblAlertaSenha" layoutX="31.0" layoutY="417.0" styleClass="label_AlertaSenha" />
-            <Label layoutX="339.0" layoutY="269.0" styleClass="label_texto" text="Email" />
-            <TextField fx:id="txtConfirmaEmail" layoutX="339.0" layoutY="297.0" prefHeight="35.0" prefWidth="300.0" promptText="\@mail.com" styleClass="textfield" />
-            <Label alignment="CENTER" layoutX="261.0" layoutY="30.0" prefHeight="36.0" prefWidth="165.0" styleClass="label_cadastro" text="Cadastro" textAlignment="CENTER" />
-            <PasswordField fx:id="txtPassword" layoutX="30.0" layoutY="383.0" prefHeight="35.0" prefWidth="300.0" styleClass="textfield" />
-            <PasswordField fx:id="txtConfirmPassword" layoutX="340.0" layoutY="383.0" prefHeight="35.0" prefWidth="300.0" styleClass="textfield" />
+            <Label layoutX="342.0" layoutY="241.0" styleClass="label_texto" text="Confirmação de email" />
+            <TextField fx:id="txtConfirmaEmail" layoutX="339.0" layoutY="262.0" prefHeight="35.0" prefWidth="300.0" promptText="\@mail.com" styleClass="textfield" />
+            <Label alignment="CENTER" layoutX="245.0" layoutY="66.0" prefHeight="36.0" prefWidth="165.0" styleClass="label_cadastro" text="Cadastro" textAlignment="CENTER" />
+            <PasswordField fx:id="txtPassword" layoutX="27.0" layoutY="350.0" prefHeight="35.0" prefWidth="300.0" styleClass="textfield" />
+            <PasswordField fx:id="txtConfirmPassword" layoutX="339.0" layoutY="350.0" prefHeight="35.0" prefWidth="300.0" styleClass="textfield" />
          </children>
       </Pane>
    </children>

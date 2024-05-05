@@ -31,8 +31,10 @@ public class LoginBll {
                 throw new Exception("Email ou senha incorretos!");
             } else {
                 User user = userDao.getUserByEmail(email);
-                UserSession.getInstace(user);
-                return "Logado com sucesso";
+                UserSession userSession = UserSession.getInstance();
+                userSession.setUser(user);
+
+                return "Logged in successfully!";
             }
 
         } catch (Exception e) {

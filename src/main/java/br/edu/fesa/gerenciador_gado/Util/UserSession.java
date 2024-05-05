@@ -20,11 +20,17 @@ public final class UserSession {
         this.user = user;
     }
 
-    public static UserSession getInstace(User user) {
-        if(instance == null) {
-            instance = new UserSession(user);
+     public static UserSession getInstance() {
+        // Se a instância ainda não foi criada, crie uma nova com um usuário padrão ou null
+        if (instance == null) {
+            instance = new UserSession(null); // Você pode definir um usuário padrão ou passar null aqui
         }
         return instance;
+    }
+
+    // Método para definir o usuário na sessão do usuário
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public User getUser() {
