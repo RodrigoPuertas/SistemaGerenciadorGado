@@ -6,6 +6,7 @@ package br.edu.fesa.gerenciador_gado.Models.BLL;
 
 import br.edu.fesa.gerenciador_gado.DAO.UserDAO;
 import br.edu.fesa.gerenciador_gado.Models.Entities.User;
+import br.edu.fesa.gerenciador_gado.Util.DTO.ActionReturnDTO;
 import br.edu.fesa.gerenciador_gado.Util.PasswordHasher;
 import br.edu.fesa.gerenciador_gado.Util.UserSession;
 
@@ -14,19 +15,19 @@ import br.edu.fesa.gerenciador_gado.Util.UserSession;
  * @author paulo
  */
 public class LoginBll {
+//Business Logic Layer
 
     private UserDAO userDao;
 
-    public String performLogin(String email, String viewPassword) {
+    public ActionReturnDTO performLogin(String email, String viewPassword) {
+        ActionReturnDTO actionReturnDTO = new ActionReturnDTO();
         try {
             userDao = new UserDAO();
             String databasePassword;
 
             databasePassword = userDao.getPasswordByEmail(email);
-            if (databasePassword.equals("")) //usuário não existe ou senha incorreta
-            {
-                throw new Exception("Email ou senha incorretos!");
-            } else if (!PasswordHasher.passwordEquals(databasePassword, viewPassword)) //usuário existe e a senha está incorreta
+            Boolean dataBaseAndViewPasswordIsEquals = PasswordHasher.passwordEquals(databasePassword, viewPassword);
+            if (databasePassword.isEmpty() || !dataBaseAndViewPasswordIsEquals) //usuário não existe ou senha incorreta
             {
                 throw new Exception("Email ou senha incorretos!");
             } else {
@@ -34,11 +35,14 @@ public class LoginBll {
                 UserSession userSession = UserSession.getInstance();
                 userSession.setUser(user);
 
-                return "Logged in successfully!";
+                actionReturnDTO.setReturnAction(true);
+                
+                return actionReturnDTO;
             }
 
         } catch (Exception e) {
-            return e.getMessage();
+            actionReturnDTO.setMessage(e.getMessage());
+            return actionReturnDTO;
         }
     }
 }

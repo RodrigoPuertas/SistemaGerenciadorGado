@@ -6,10 +6,12 @@ package br.edu.fesa.gerenciador_gado.Controllers;
 
 import br.edu.fesa.gerenciador_gado.Util.PasswordHasher;
 import br.edu.fesa.gerenciador_gado.Models.BLL.LoginBll;
+import br.edu.fesa.gerenciador_gado.Util.DTO.ActionReturnDTO;
 import br.edu.fesa.gerenciador_gado.Util.UserSession;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmail;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmailFields;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorPassword.validatePasswordFields;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -27,13 +29,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 /**
  * FXML Controller class
  *
  * @author Lohan
  * @author Rodrigo Puertas
- *
+ * @author Paulo Tristão
  */
 public class TelaLoginController implements Initializable {
 
@@ -54,56 +55,33 @@ public class TelaLoginController implements Initializable {
 
     @FXML
     private Button btnLogOut;
-    
+
     @FXML
     private Button btnUser;
 
     @FXML
     void actionEntrar(ActionEvent event) {
         try {
-            
-//            Boolean validEmail = validateEmail(txtEmail.getText());
-//            if (validEmail) {
-//                lblAlertaEmail.setText("");
-//            } else {
-//                lblAlertaEmail.setText("O endereço de e-mail é inválido.");
-//            }
             lblAlertaEmail.setText(validateEmailFields(txtEmail.getText()));
 
-            
-//            if (txtSenha.getText().isEmpty()) {
-//                lblAlertaSenha.setText("Campo vazio!");
-//            } else {
-//                lblAlertaSenha.setText("");
-//            }
-            
-            lblAlertaSenha.setText(validatePasswordFields(txtSenha.getText()));            
+            lblAlertaSenha.setText(validatePasswordFields(txtSenha.getText()));
 
             if (validateEmail(txtEmail.getText()) && !txtSenha.getText().isEmpty()) {
                 String encryptedViewPassword = PasswordHasher.hashPassword(txtSenha.getText());
                 LoginBll loginBll = new LoginBll();
-                String returnMesage = loginBll.performLogin(txtEmail.getText(), encryptedViewPassword);
 
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Aviso");
-                alert.setContentText(returnMesage);
-                alert.setHeaderText(null);
-                alert.showAndWait();
+                ActionReturnDTO returnDTO = loginBll.performLogin(txtEmail.getText(), encryptedViewPassword);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/home.fxml"));
-                Parent newViewParent = loader.load();
-                Scene newViewScene = new Scene(newViewParent);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(newViewScene);
-                window.show();
+                if (returnDTO.getReturnAction()) {
+                    redirectToView("home.fxml", event);
+
+                } else {
+                    alertGeneric(returnDTO.getMessage());
+                }
             }
 
         } catch (Exception error) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Aviso");
-            alert.setContentText(error.getMessage());
-            alert.setHeaderText(null);
-            alert.showAndWait();
+            alertGeneric(error.getMessage());
         }
     }
 
@@ -113,48 +91,43 @@ public class TelaLoginController implements Initializable {
             UserSession userSession = UserSession.getInstance();
             userSession.cleanUserSession();
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Aviso");
-            alert.setContentText("Logged out successfully!");
-            alert.setHeaderText(null);
-            alert.showAndWait();
+            alertGeneric("Logged out successfully!");
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/telaLogin.fxml"));
-            Parent newViewParent = loader.load();
-            Scene newViewScene = new Scene(newViewParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(newViewScene);
-            window.show();
+            redirectToView("telaLogin.fxml", event);
+
         } catch (Exception error) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Aviso");
-            alert.setContentText(error.getMessage());
-            alert.setHeaderText(null);
-            alert.showAndWait();
+            alertGeneric(error.getMessage());
         }
     }
 
     @FXML
     void actionUserList(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/userList.fxml"));
-            Parent newViewParent = loader.load();
-            Scene newViewScene = new Scene(newViewParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(newViewScene);
-            window.show();
-
+            redirectToView("userList.fxml", event);
         } catch (Exception error) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Aviso");
-            alert.setContentText(error.getMessage());
-            alert.setHeaderText(null);
-            alert.showAndWait();
+            alertGeneric(error.getMessage());
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    public void alertGeneric(String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Aviso");
+        alert.setContentText(message);
+        alert.setHeaderText(null);
+        alert.showAndWait();
+    }
+
+    public void redirectToView(String screenName, ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/" + screenName));
+        Parent newViewParent = loader.load();
+        Scene newViewScene = new Scene(newViewParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(newViewScene);
+        window.show();
     }
 }
