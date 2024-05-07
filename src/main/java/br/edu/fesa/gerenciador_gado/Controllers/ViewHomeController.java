@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -52,6 +51,8 @@ public class ViewHomeController implements Initializable {
 
     @FXML
     private Button btnUser;
+    
+    
 
     @FXML
     void actionLogOut(ActionEvent event) {
@@ -59,12 +60,12 @@ public class ViewHomeController implements Initializable {
             UserSession userSession = UserSession.getInstance();
             userSession.cleanUserSession();
 
-            ControllerHelper.alertGeneric("Logged out successfully!");
+            ControllerHelper.alertWarningGeneric("Logged out successfully!");
 
             App.setRoot("viewLogin");
 
         } catch (Exception error) {
-            ControllerHelper.alertGeneric(error.getMessage());
+            ControllerHelper.alertErrorGeneric(error.getMessage());
         }
     }
 
@@ -73,7 +74,7 @@ public class ViewHomeController implements Initializable {
         try {
             App.setRoot("viewSingUp");
         } catch (Exception error) {
-            ControllerHelper.alertGeneric(error.getMessage());
+            ControllerHelper.alertErrorGeneric(error.getMessage());
         }
     }
     

@@ -9,27 +9,18 @@ import br.edu.fesa.gerenciador_gado.Util.PasswordHasher;
 import br.edu.fesa.gerenciador_gado.Models.BLL.LoginBll;
 import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
 import br.edu.fesa.gerenciador_gado.Util.DTO.ActionReturnDTO;
-import br.edu.fesa.gerenciador_gado.Util.UserSession;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmail;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmailFields;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorPassword.validatePasswordFields;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -77,12 +68,12 @@ public class TelaLoginController implements Initializable {
                 if (returnDTO.getReturnAction()) {
                     App.setRoot("/br/edu/fesa/gerenciador_gado/viewHome");
                 } else {
-                    ControllerHelper.alertGeneric(returnDTO.getMessage());
+                    ControllerHelper.alertWarningGeneric(returnDTO.getMessage());
                 }
             }
 
         } catch (Exception error) {
-            ControllerHelper.alertGeneric(error.getMessage());
+            ControllerHelper.alertErrorGeneric(error.getMessage());
         }
     }
 

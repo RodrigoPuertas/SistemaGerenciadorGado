@@ -18,6 +18,9 @@ public class User {
     private Integer id;
     private String email;
     private String name;
+    private String password;
+
+   
     private ProfileEnum profileCode;
 
     public User() {
@@ -30,9 +33,10 @@ public class User {
         this.profileCode = profileCode;
     }
 
-    public User(String name, String email, ProfileEnum profileCode) {
+    public User(String name, String email, String password ,ProfileEnum profileCode) {
         this.name = name;
         this.email = email;
+        this.password = password;
         this.profileCode = profileCode;
     }
 
@@ -66,6 +70,14 @@ public class User {
 
     public void setProfileCode(ProfileEnum profileCode) {
         this.profileCode = profileCode;
+    }
+    
+     public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

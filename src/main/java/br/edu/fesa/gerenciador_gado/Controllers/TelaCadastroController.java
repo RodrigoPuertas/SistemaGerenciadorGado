@@ -4,9 +4,11 @@
  */
 package br.edu.fesa.gerenciador_gado.Controllers;
 
+import br.edu.fesa.gerenciador_gado.App;
+import br.edu.fesa.gerenciador_gado.DAO.UserDAO;
 import br.edu.fesa.gerenciador_gado.Util.PasswordHasher;
-import br.edu.fesa.gerenciador_gado.Models.Entities.Login;
 import br.edu.fesa.gerenciador_gado.Models.Entities.User;
+import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
 import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmailFields;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorPassword.validatePasswordFields;
@@ -17,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -65,29 +68,71 @@ public class TelaCadastroController implements Initializable {
 
     @FXML
     private TextField txtConfirmaEmail;
+    
+    @FXML
+    private Button btnBack;
+    
+     @FXML
+    void actionBack(ActionEvent event){
+        try {
+            App.setRoot("viewHome");
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.getMessage());
+        }
+    }
 
     @FXML
     void actionSingUp(ActionEvent event) {
         try {
+            // Validando os campos e exibindo mensagens de alerta, se necessário
+            String nomeAlerta = ValidateIsEmpty(txtNome);
+            String perfilAlerta = ValidateIsEmpty(cboPerfil);
+            String emailAlerta = validateEmailFields(txtEmail.getText(), txtConfirmaEmail.getText());
+            String senhaAlerta = validatePasswordFields(txtPassword.getText(), txtConfirmPassword.getText());
 
-            lblAlertaNome.setText(ValidateIsEmpty(txtNome));
+            lblAlertaNome.setText(nomeAlerta);
+            lblAlertaPerfil.setText(perfilAlerta);
+            lblAlertaEmail.setText(emailAlerta);
+            lblAlertaSenha.setText(senhaAlerta);
 
-            lblAlertaPerfil.setText(ValidateIsEmpty(cboPerfil));
+            // Verificando se houve algum alerta
+            if (nomeAlerta.isEmpty() && perfilAlerta.isEmpty() && emailAlerta.isEmpty() && senhaAlerta.isEmpty()) {
+                // Criptografando a senha antes de salvar no banco de dados
+                String senhaCriptografada = PasswordHasher.hashPassword(txtPassword.getText());
 
-            lblAlertaEmail.setText(validateEmailFields(txtEmail.getText(), txtConfirmaEmail.getText()));
+                // Criando um objeto de usuário com os dados fornecidos pelo usuário
+                User newUser = new User(txtNome.getText(), txtEmail.getText(), senhaCriptografada, cboPerfil.getValue());
 
-            lblAlertaSenha.setText(validatePasswordFields(txtPassword.getText(), txtConfirmPassword.getText()));
+                // Inserindo o novo usuário no banco de dados
+                UserDAO userDAO = new UserDAO();
+                userDAO.insert(newUser);
 
-            String senhaCriptografada = PasswordHasher.hashPassword(txtPassword.getText());
-            Login login = new Login(txtEmail.getText(), senhaCriptografada);
+                // Limpando os campos após o cadastro
+                clearFields();
 
-            // Aqui você pode prosseguir com a lógica de login usando o objeto LoginModel
-            
-            
-        } catch (Exception error) {
-            System.out.println(error.getMessage());
-        }
+                // Exibindo uma mensagem de sucesso
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("User registered successfully!");
+                alert.showAndWait();
+            }
+
+    } catch (Exception error) {
+        ControllerHelper.alertWarningGeneric(error.getMessage());
     }
+}
+
+    // Método para limpar os campos após o cadastro
+    private void clearFields() {
+        txtNome.clear();
+        txtEmail.clear();
+        txtConfirmaEmail.clear();
+        txtPassword.clear();
+        txtConfirmPassword.clear();
+        cboPerfil.setValue(null);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
