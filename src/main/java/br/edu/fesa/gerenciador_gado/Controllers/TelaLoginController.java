@@ -4,6 +4,7 @@
  */
 package br.edu.fesa.gerenciador_gado.Controllers;
 
+import br.edu.fesa.gerenciador_gado.App;
 import br.edu.fesa.gerenciador_gado.Util.PasswordHasher;
 import br.edu.fesa.gerenciador_gado.Models.BLL.LoginBll;
 import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
@@ -61,7 +62,7 @@ public class TelaLoginController implements Initializable {
     private Button btnUser;
 
     @FXML
-    void actionEntrar(ActionEvent event) {
+    private void actionEntrar(ActionEvent event) {
         try {
             lblAlertaEmail.setText(validateEmailFields(txtEmail.getText()));
 
@@ -74,9 +75,7 @@ public class TelaLoginController implements Initializable {
                 ActionReturnDTO returnDTO = loginBll.performLogin(txtEmail.getText(), encryptedViewPassword);
 
                 if (returnDTO.getReturnAction()) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/viewHome.fxml"));
-                    ControllerHelper.redirectToView(event, loader);
-
+                    App.setRoot("/br/edu/fesa/gerenciador_gado/viewHome");
                 } else {
                     ControllerHelper.alertGeneric(returnDTO.getMessage());
                 }
@@ -87,31 +86,31 @@ public class TelaLoginController implements Initializable {
         }
     }
 
-    @FXML
-    void actionLogOut(ActionEvent event) {
-        try {
-            UserSession userSession = UserSession.getInstance();
-            userSession.cleanUserSession();
-
-            ControllerHelper.alertGeneric("Logged out successfully!");
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/telaLogin.fxml"));
-            ControllerHelper.redirectToView(event, loader);
-
-        } catch (Exception error) {
-            ControllerHelper.alertGeneric(error.getMessage());
-        }
-    }
-
-    @FXML
-    void actionUserList(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/userList.fxml"));
-            ControllerHelper.redirectToView(event, loader);
-        } catch (Exception error) {
-            ControllerHelper.alertGeneric(error.getMessage());
-        }
-    }
+//    @FXML
+//    void actionLogOut(ActionEvent event) {
+//        try {
+//            UserSession userSession = UserSession.getInstance();
+//            userSession.cleanUserSession();
+//
+//            ControllerHelper.alertGeneric("Logged out successfully!");
+//
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/telaLogin.fxml"));
+//            ControllerHelper.redirectToView(event, loader);
+//
+//        } catch (Exception error) {
+//            ControllerHelper.alertGeneric(error.getMessage());
+//        }
+//    }
+//
+//    @FXML
+//    void actionUserList(ActionEvent event) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/userList.fxml"));
+//            ControllerHelper.redirectToView(event, loader);
+//        } catch (Exception error) {
+//            ControllerHelper.alertGeneric(error.getMessage());
+//        }
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
