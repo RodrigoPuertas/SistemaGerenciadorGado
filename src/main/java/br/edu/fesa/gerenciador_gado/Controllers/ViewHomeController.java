@@ -61,7 +61,7 @@ public class ViewHomeController implements Initializable {
 
             ControllerHelper.alertGeneric("Logged out successfully!");
 
-            App.setRoot("/br/edu/fesa/gerenciador_gado/telaLogin");
+            App.setRoot("viewLogin");
 
         } catch (Exception error) {
             ControllerHelper.alertGeneric(error.getMessage());
@@ -69,9 +69,9 @@ public class ViewHomeController implements Initializable {
     }
 
     @FXML
-    void actionSignUp(ActionEvent event) {
+    void actionMoveToViewSignUp(ActionEvent event) {
         try {
-            App.setRoot("/br/edu/fesa/gerenciador_gado/telaCadastro");
+            App.setRoot("viewSingUp");
         } catch (Exception error) {
             ControllerHelper.alertGeneric(error.getMessage());
         }

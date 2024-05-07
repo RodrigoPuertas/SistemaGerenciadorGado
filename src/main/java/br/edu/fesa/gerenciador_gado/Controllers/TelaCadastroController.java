@@ -6,15 +6,19 @@ package br.edu.fesa.gerenciador_gado.Controllers;
 
 import br.edu.fesa.gerenciador_gado.Util.PasswordHasher;
 import br.edu.fesa.gerenciador_gado.Models.Entities.Login;
+import br.edu.fesa.gerenciador_gado.Models.Entities.User;
+import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmailFields;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorPassword.validatePasswordFields;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorFields.ValidateIsEmpty;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -29,8 +33,8 @@ public class TelaCadastroController implements Initializable {
     @FXML
     private Button btnEntrar;
 
-//    @FXML
-//    private ComboBox<UserProfileModel> cboPerfil;
+    @FXML
+    private ComboBox<ProfileEnum> cboPerfil;
 
     @FXML
     private Label lblAlertaEmail;
@@ -63,12 +67,12 @@ public class TelaCadastroController implements Initializable {
     private TextField txtConfirmaEmail;
 
     @FXML
-    void actionCadastrar(ActionEvent event) {
+    void actionSingUp(ActionEvent event) {
         try {
 
             lblAlertaNome.setText(ValidateIsEmpty(txtNome));
 
-//            lblAlertaPerfil.setText(ValidateIsEmpty(cboPerfil));
+            lblAlertaPerfil.setText(ValidateIsEmpty(cboPerfil));
 
             lblAlertaEmail.setText(validateEmailFields(txtEmail.getText(), txtConfirmaEmail.getText()));
 
@@ -78,6 +82,8 @@ public class TelaCadastroController implements Initializable {
             Login login = new Login(txtEmail.getText(), senhaCriptografada);
 
             // Aqui você pode prosseguir com a lógica de login usando o objeto LoginModel
+            
+            
         } catch (Exception error) {
             System.out.println(error.getMessage());
         }
@@ -86,6 +92,8 @@ public class TelaCadastroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        cboPerfil.setItems(FXCollections.observableArrayList(ProfileEnum.values()));
+        
     }
 
 }

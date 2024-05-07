@@ -86,32 +86,6 @@ public class TelaLoginController implements Initializable {
         }
     }
 
-//    @FXML
-//    void actionLogOut(ActionEvent event) {
-//        try {
-//            UserSession userSession = UserSession.getInstance();
-//            userSession.cleanUserSession();
-//
-//            ControllerHelper.alertGeneric("Logged out successfully!");
-//
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/telaLogin.fxml"));
-//            ControllerHelper.redirectToView(event, loader);
-//
-//        } catch (Exception error) {
-//            ControllerHelper.alertGeneric(error.getMessage());
-//        }
-//    }
-//
-//    @FXML
-//    void actionUserList(ActionEvent event) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/edu/fesa/gerenciador_gado/userList.fxml"));
-//            ControllerHelper.redirectToView(event, loader);
-//        } catch (Exception error) {
-//            ControllerHelper.alertGeneric(error.getMessage());
-//        }
-//    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
