@@ -42,12 +42,4 @@ public class ControllerHelper {
         alert.setHeaderText(null);
         alert.showAndWait();
     }
-
-    public static void redirectToView(ActionEvent event, FXMLLoader loader ) throws IOException {
-        Parent newViewParent = loader.load();
-        Scene newViewScene = new Scene(newViewParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(newViewScene);
-        window.show();
-    }
 }
