@@ -22,6 +22,10 @@ public class ValidatorEmail {
 
     public static String validateEmailFields(String email, String confirmEmail) {
         
+        if(email.isBlank() || confirmEmail.isBlank())
+        {
+            return "Campo vazio";
+        }
         if (!validateEmail(email)) {
             return "Email inválido";
         }

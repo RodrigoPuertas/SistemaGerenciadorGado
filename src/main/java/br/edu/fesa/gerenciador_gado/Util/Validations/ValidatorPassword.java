@@ -14,13 +14,18 @@ import java.util.regex.Pattern;
 public class ValidatorPassword {
 
     public static boolean validatePassword(String senha) {
-        String senhaRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$";
+        String senhaRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[\\s\\S]{8,}$";
         Pattern pattern = Pattern.compile(senhaRegex);
         Matcher matcher = pattern.matcher(senha);
         return matcher.matches();
     }
 
     public static String validatePasswordFields(String senha, String confirmaSenha) {
+        if(senha.isBlank() || confirmaSenha.isBlank())
+        {
+            return "Campo vazio";
+        }
+        
         if (!validatePassword(senha)) {
             return "Senha fraca";
         }
