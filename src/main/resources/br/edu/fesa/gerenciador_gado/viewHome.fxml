@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewHomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewHomeController">
    <children>
       <Pane layoutX="248.0" prefHeight="600.0" prefWidth="752.0">
          <children>
@@ -38,7 +32,7 @@
       </Pane>
       <Pane prefHeight="600.0" prefWidth="248.0" styleClass="pane_left">
          <children>
-            <Button fx:id="btnUser" layoutY="120.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="248.0" text="User">
+            <Button fx:id="btnUser" layoutX="9.0" layoutY="120.0" mnemonicParsing="false" onAction="#actionMoveToViewUser" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="User">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -46,7 +40,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnCattle" layoutY="178.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="248.0" text="Cattle">
+            <Button fx:id="btnCattle" layoutX="9.0" layoutY="200.0" mnemonicParsing="false" onAction="#actionMoveToViewCattle" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Cattle">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -54,7 +48,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnPatrimony" layoutY="240.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="248.0" text="Patrimony">
+            <Button fx:id="btnPatrimony" layoutX="9.0" layoutY="280.0" mnemonicParsing="false" onAction="#actionMoveToViewPatrimony" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Patrimony">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -62,7 +56,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnLogOut" layoutX="149.0" layoutY="555.0" mnemonicParsing="false" onAction="#actionLogOut" prefHeight="39.0" prefWidth="91.0" text="Log Out">
+            <Button fx:id="btnLogOut" layoutX="149.0" layoutY="555.0" mnemonicParsing="false" onAction="#actionLogOut" prefHeight="39.0" prefWidth="91.0" styleClass="button_orange" text="Log Out">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -80,7 +74,7 @@
                   <Image url="@images/cow.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnCadastrar" layoutY="300.0" mnemonicParsing="false" onAction="#actionMoveToViewSignUp" prefHeight="25.0" prefWidth="248.0" text="User Management">
+            <Button fx:id="btnCadastrar" layoutX="9.0" layoutY="360.0" mnemonicParsing="false" onAction="#actionMoveToViewSignUp" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="User Management">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -51,8 +51,6 @@ public class ViewHomeController implements Initializable {
 
     @FXML
     private Button btnUser;
-    
-    
 
     @FXML
     void actionLogOut(ActionEvent event) {
@@ -60,7 +58,7 @@ public class ViewHomeController implements Initializable {
             UserSession userSession = UserSession.getInstance();
             userSession.cleanUserSession();
 
-            ControllerHelper.alertWarningGeneric("Logged out successfully!");
+            ControllerHelper.alertSucessGeneric("Logged out successfully!");
 
             App.setRoot("viewLogin");
 
@@ -77,7 +75,34 @@ public class ViewHomeController implements Initializable {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
     }
-    
+
+    @FXML
+    void actionMoveToViewCattle(ActionEvent event) {
+        try {
+            ControllerHelper.alertNoFuctionsEvents();
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.getMessage());
+        }
+    }
+
+    @FXML
+    void actionMoveToViewPatrimony(ActionEvent event) {
+        try {
+            ControllerHelper.alertNoFuctionsEvents();
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.getMessage());
+        }
+    }
+
+    @FXML
+    void actionMoveToViewUser(ActionEvent event) {
+        try {
+            ControllerHelper.alertNoFuctionsEvents();
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.getMessage());
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //TODO

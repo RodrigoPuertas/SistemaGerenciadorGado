@@ -14,16 +14,16 @@ import java.util.regex.Pattern;
 public class ValidatorEmail {
 
     public static boolean validateEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+
+        final String emailRegex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@(?=[A-Za-z0-9-]+\\.[A-Za-z]{2,})(?!-)[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.[A-Za-z]{2,}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
 
     public static String validateEmailFields(String email, String confirmEmail) {
-        
-        if(email.isBlank() || confirmEmail.isBlank())
-        {
+
+        if (email.isBlank() || confirmEmail.isBlank()) {
             return "Campo vazio";
         }
         if (!validateEmail(email)) {
@@ -35,13 +35,15 @@ public class ValidatorEmail {
 
         return "";
     }
-    
-        public static String validateEmailFields(String emailLogin) {
-        
+
+    public static String validateEmailFields(String emailLogin) {
+        if (emailLogin.isBlank() || emailLogin.isBlank()) {
+            return "Campo vazio";
+        }
         if (!validateEmail(emailLogin)) {
             return "O endereço de e-mail é inválido.";
         }
         return "";
     }
-    
+
 }

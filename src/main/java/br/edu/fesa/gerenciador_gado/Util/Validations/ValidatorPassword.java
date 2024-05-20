@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public class ValidatorPassword {
 
     public static boolean validatePassword(String senha) {
-        String senhaRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[\\s\\S]{8,}$";
+        final String senhaRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[\\s\\S]{8,}$";
         Pattern pattern = Pattern.compile(senhaRegex);
         Matcher matcher = pattern.matcher(senha);
         return matcher.matches();

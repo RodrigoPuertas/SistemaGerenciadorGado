@@ -10,10 +10,12 @@ import br.edu.fesa.gerenciador_gado.Util.PasswordHasher;
 import br.edu.fesa.gerenciador_gado.Models.Entities.User;
 import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
 import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
+import br.edu.fesa.gerenciador_gado.Util.Exceptions.PersistenceException;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmailFields;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorPassword.validatePasswordFields;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorFields.ValidateIsEmpty;
 import java.net.URL;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -68,12 +70,12 @@ public class TelaCadastroController implements Initializable {
 
     @FXML
     private TextField txtConfirmaEmail;
-    
+
     @FXML
     private Button btnBack;
-    
-     @FXML
-    void actionBack(ActionEvent event){
+
+    @FXML
+    void actionBack(ActionEvent event) {
         try {
             App.setRoot("viewHome");
         } catch (Exception error) {
@@ -118,10 +120,12 @@ public class TelaCadastroController implements Initializable {
                 alert.showAndWait();
             }
 
-    } catch (Exception error) {
-        ControllerHelper.alertWarningGeneric(error.getMessage());
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+            ControllerHelper.alertWarningGeneric(error.getMessage());
+
+        }
     }
-}
 
     // Método para limpar os campos após o cadastro
     private void clearFields() {
@@ -133,12 +137,11 @@ public class TelaCadastroController implements Initializable {
         cboPerfil.setValue(null);
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         cboPerfil.setItems(FXCollections.observableArrayList(ProfileEnum.values()));
-        
+
     }
 
 }
