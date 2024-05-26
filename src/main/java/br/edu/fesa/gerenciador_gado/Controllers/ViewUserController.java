@@ -25,26 +25,35 @@ public class ViewUserController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
+    private TableColumn<User, String> colunaEmail;
+
+    @FXML
+    private TableColumn<User, String> colunaNome;
+
+    @FXML
+    private TableColumn<User, String> colunaProfileCode;
+
+    @FXML
     private TableView<User> tblUsers;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        TableColumn<User, String> colunaNome = new TableColumn<>("Nome");
-        TableColumn<User, String> colunaEmail = new TableColumn<>("E-mail");
-        TableColumn<User, String> colunaProfileCode = new TableColumn<>("Profile code");
-
-        colunaNome.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colunaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colunaProfileCode.setCellValueFactory(new PropertyValueFactory<>("profileCode"));
-
-        tblUsers.getColumns().addAll(colunaNome, colunaEmail, colunaProfileCode);
-
         try {
+            colunaNome = new TableColumn<>("Nome");
+            colunaEmail = new TableColumn<>("E-mail");
+            colunaProfileCode = new TableColumn<>("Profile code");
+
+            colunaNome.setCellValueFactory(new PropertyValueFactory<>("name"));
+            colunaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+            colunaProfileCode.setCellValueFactory(new PropertyValueFactory<>("profileCode"));
+
+            tblUsers.getColumns().addAll(colunaNome, colunaEmail, colunaProfileCode);
+
             UserDAO userDAO = new UserDAO();
             ObservableList<User> users = FXCollections.observableArrayList(userDAO.list());
 
             tblUsers.setItems(users);
-        } catch (PersistenceException error) {
+        } catch (Exception error) {
             System.out.println(error.toString());
         }
     }

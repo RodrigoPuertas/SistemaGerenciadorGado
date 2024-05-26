@@ -112,7 +112,7 @@ public class ViewHomeController implements Initializable {
     @FXML
     void actionMoveToViewUser(ActionEvent event) {
         try {
-            App.setRoot("/br/edu/fesa/gerenciador_gado/viewUser");
+            App.setRoot("viewUser");
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }

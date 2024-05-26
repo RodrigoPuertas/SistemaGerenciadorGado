@@ -25,7 +25,7 @@ public class UserDAO implements GenericDAO<User> {
         try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("SELECT * FROM USERS");  ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                users.add(new User(resultSet.getInt("ID_USER"), resultSet.getString("NAME"), resultSet.getString("EMAIL"), ProfileEnum.valueOf(resultSet.getString("PROFILE_CODE"))));
+                users.add(new User(resultSet.getInt("ID_USER"), resultSet.getString("NAME"), resultSet.getString("EMAIL"), ProfileEnum.fromValue(resultSet.getInt("PROFILE_CODE"))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
