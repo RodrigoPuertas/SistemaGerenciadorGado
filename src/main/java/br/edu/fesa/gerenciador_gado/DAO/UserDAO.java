@@ -79,7 +79,7 @@ public class UserDAO implements GenericDAO<User> {
             statement.setInt(4, user.getProfileCode().getValue());
             statement.executeUpdate();
         } catch (SQLException ex) {
-            
+
             //Exception para ver se há duas pks iguais
             if (ex instanceof SQLIntegrityConstraintViolationException) {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

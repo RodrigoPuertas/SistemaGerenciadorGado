@@ -13,7 +13,6 @@ import br.edu.fesa.gerenciador_gado.Models.Entities.User;
 public final class UserSession {
 
     private static UserSession instance;
-
     private User user;
 
     private UserSession(User user) {

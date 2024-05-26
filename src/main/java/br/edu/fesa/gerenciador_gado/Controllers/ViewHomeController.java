@@ -5,7 +5,9 @@
 package br.edu.fesa.gerenciador_gado.Controllers;
 
 import br.edu.fesa.gerenciador_gado.App;
+import br.edu.fesa.gerenciador_gado.Models.Entities.User;
 import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
+import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
 import br.edu.fesa.gerenciador_gado.Util.UserSession;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -51,6 +54,18 @@ public class ViewHomeController implements Initializable {
 
     @FXML
     private Button btnUser;
+
+    @FXML
+    private Button btnTeste;
+
+    @FXML
+    private Pane paneADM;
+
+    @FXML
+    private Pane paneFARMER;
+
+    @FXML
+    private Pane paneRANCHER;
 
     @FXML
     void actionLogOut(ActionEvent event) {
@@ -97,7 +112,7 @@ public class ViewHomeController implements Initializable {
     @FXML
     void actionMoveToViewUser(ActionEvent event) {
         try {
-            ControllerHelper.alertNoFuctionsEvents();
+            App.setRoot("/br/edu/fesa/gerenciador_gado/viewUser");
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
@@ -105,7 +120,27 @@ public class ViewHomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        UserSession userSession = UserSession.getInstance();
+        User user = userSession.getUser();
+
+        ProfileEnum profile = user.getProfileCode();
+
+        if (profile.getValue() == 1) {
+            paneADM.setVisible(true);
+            paneFARMER.setVisible(false);
+            paneRANCHER.setVisible(false);
+        }
+        if (profile.getValue() == 2) {
+            paneADM.setVisible(false);
+            paneFARMER.setVisible(true);
+            paneRANCHER.setVisible(false);
+        }
+        if (profile.getValue() == 3) {
+            paneADM.setVisible(false);
+            paneFARMER.setVisible(false);
+            paneRANCHER.setVisible(true);
+        }
+
     }
 
 }

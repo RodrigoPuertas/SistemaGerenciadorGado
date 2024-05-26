@@ -18,9 +18,7 @@ public class User {
     private Integer id;
     private String email;
     private String name;
-    private String password;
-
-   
+    private String password; 
     private ProfileEnum profileCode;
 
     public User() {

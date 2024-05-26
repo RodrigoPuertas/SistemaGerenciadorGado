@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  *
 
  
-@author paulo
-@author lohan
+@author Paulo
+@author Lohan
 @author Rodrigo Puertas
 
  */

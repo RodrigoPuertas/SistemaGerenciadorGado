@@ -4,6 +4,8 @@
  */
 package br.edu.fesa.gerenciador_gado.Util;
 
+import br.edu.fesa.gerenciador_gado.Models.Entities.User;
+import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -56,10 +58,11 @@ public class ControllerHelper {
         alert.setContentText("Desculpe, essa funcionalidade ainda não foi adicionada!"
                 + "\n\nEspere por novidades!!");
         alert.setHeaderText(null);
-        
+
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image("/br/edu/fesa/gerenciador_gado/images/cow.png")); // Substitua "icone.png" pelo caminho para o seu ícone
-        
+
         alert.showAndWait();
     }
+
 }
