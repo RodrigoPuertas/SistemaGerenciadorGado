@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 public class ValidatorEmail {
 
     public static boolean validateEmail(String email) {
-
         final String emailRegex = "^[a-zA-Z0-9]+([._-]?[a-zA-Z0-9]+)*@([a-zA-Z0-9.]{2,})+([.])([a-zA-Z0-9]{2,})+$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);

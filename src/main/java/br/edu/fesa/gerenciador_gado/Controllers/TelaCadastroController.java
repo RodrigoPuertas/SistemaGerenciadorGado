@@ -141,7 +141,6 @@ public class TelaCadastroController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         cboPerfil.setItems(FXCollections.observableArrayList(ProfileEnum.values()));
-        
     }
 
 }
