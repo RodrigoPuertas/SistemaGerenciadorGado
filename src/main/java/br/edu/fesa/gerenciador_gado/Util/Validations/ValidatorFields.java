@@ -4,7 +4,10 @@
  */
 package br.edu.fesa.gerenciador_gado.Util.Validations;
 
+import java.time.LocalDate;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
@@ -13,18 +16,45 @@ import javafx.scene.control.TextField;
  */
 public class ValidatorFields {
 
-    public static String ValidateIsEmpty(TextField txt) {
+    public static ValidatorResults ValidateIsEmpty(TextField txt) {
         if (txt.getText().isBlank()) {
-            return "Campo vazio";
+            ValidatorResults results = new ValidatorResults(false, "Campo vazio");
+            return results;
         }
-        return "";
+        ValidatorResults results = new ValidatorResults(true, "");
+        return results;
     }
 
-    public static String ValidateIsEmpty(ComboBox cbo) {
+    public static ValidatorResults ValidateIsEmpty(ComboBox cbo) {
         if (cbo.getValue() == null) {
-            return "Nenhum campo selecionado";
+            ValidatorResults results = new ValidatorResults(false, "Nenhum campo selecionado");
+            return results;
         }
-        return "";
+        ValidatorResults results = new ValidatorResults(true, "");
+        return results;
     }
-    
+
+    public static ValidatorResults ValidateIsEmpty(TextArea txtArea) {
+        if (txtArea.getText().isBlank()) {
+            ValidatorResults results = new ValidatorResults(false, "Campo vazio");
+            return results;
+        }
+        ValidatorResults results = new ValidatorResults(true, "");
+        return results;
+    }
+
+    public static ValidatorResults ValidateIsEmpty(DatePicker txtData) {
+        if (txtData.getValue() == null) {
+            ValidatorResults results = new ValidatorResults(false, "Campo vazio");
+            return results;
+        }
+        if (txtData.getValue().isAfter(LocalDate.now())) {
+            ValidatorResults results = new ValidatorResults(false, "Data inválida");
+            return results;
+        }
+
+        ValidatorResults results = new ValidatorResults(true, "");
+        return results;
+    }
+
 }

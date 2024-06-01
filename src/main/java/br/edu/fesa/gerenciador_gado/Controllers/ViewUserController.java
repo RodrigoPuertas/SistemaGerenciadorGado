@@ -11,6 +11,7 @@ import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.valid
 import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorFields;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorFields.ValidateIsEmpty;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorPassword.validatePasswordFields;
+import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorResults;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -116,16 +117,21 @@ public class ViewUserController implements Initializable {
 
             
             //Poderia virar um método
-            String nomeAlerta = ValidateIsEmpty(txtNome);
-            String perfilAlerta = ValidateIsEmpty(cboPerfil);
-            String emailAlerta = validateEmailFields(txtEmail.getText());
+            ValidatorResults resultsNome = ValidateIsEmpty(txtNome);
+            String nomeAlerta = resultsNome.getErrorMessage();
             
-            lblAlertaEmail.setText(ValidatorEmail.validateEmailFields(txtEmail.getText()));
-            lblAlertaNome.setText(ValidatorFields.ValidateIsEmpty(txtNome));
-            lblAlertaPerfil.setText(ValidatorFields.ValidateIsEmpty(cboPerfil));
+            ValidatorResults resultsPerfil = ValidateIsEmpty(cboPerfil);
+            String perfilAlerta = resultsPerfil.getErrorMessage();
+            
+            ValidatorResults resultsEmail = validateEmailFields(txtEmail.getText());         
+            String emailAlerta = resultsEmail.getErrorMessage();
+            
+            lblAlertaEmail.setText(emailAlerta);
+            lblAlertaNome.setText(nomeAlerta);
+            lblAlertaPerfil.setText(perfilAlerta);
             //
             
-            if (nomeAlerta.isEmpty() && perfilAlerta.isEmpty() && emailAlerta.isEmpty()) {
+            if (resultsNome.isIsValid() && resultsPerfil.isIsValid() && resultsEmail.isIsValid()) {
                 user.setName(txtNome.getText());
 
                 user.setEmail(txtEmail.getText());

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/viewsingupcattle.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewSingUpCattleController">
+   <children>
+      <Pane layoutX="-4.0" prefHeight="600.0" prefWidth="350.0" styleClass="pane_left">
+         <children>
+            <ImageView fitHeight="235.0" fitWidth="350.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/img_telaLogin.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnBack" layoutX="29.0" layoutY="547.0" mnemonicParsing="false" onAction="#actionBack" prefHeight="36.0" prefWidth="96.0" styleClass="button_orange" text="Voltar" />
+         </children>
+      </Pane>
+      <Pane layoutX="346.0" prefHeight="600.0" prefWidth="650.0">
+         <children>
+            <Button fx:id="btnCadastrar" layoutX="186.0" layoutY="550.0" mnemonicParsing="false" onAction="#actionSingUpCattle" prefHeight="36.0" prefWidth="297.0" styleClass="button_cadastrar" text="Cadastrar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="lblAlertaEmail" layoutX="26.0" layoutY="300.0" prefHeight="17.0" prefWidth="300.0" styleClass="label_AlertaEmail" />
+            <Label fx:id="lblAlertaSenha" layoutX="28.0" layoutY="385.0" prefHeight="17.0" prefWidth="300.0" styleClass="label_AlertaSenha" />
+            <ComboBox fx:id="cboAplicacao" layoutX="342.0" layoutY="198.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
+            <Label layoutX="342.0" layoutY="172.0" styleClass="label_texto" text="Aplicação" />
+            <Label fx:id="lblAlertaNome" layoutX="28.0" layoutY="213.0" prefHeight="17.0" prefWidth="300.0" styleClass="label_AlertaNome" />
+            <Label fx:id="lblAlertaPerfil" layoutX="340.0" layoutY="213.0" prefHeight="17.0" prefWidth="297.0" styleClass="label_AlertaPerfil" />
+            <Label alignment="CENTER" layoutX="-3.0" layoutY="32.0" prefHeight="36.0" prefWidth="656.0" styleClass="label_titulo" text="Cadastro de gado" textAlignment="CENTER" />
+            <ComboBox fx:id="cboSexo" layoutX="23.0" layoutY="199.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
+            <Label layoutX="23.0" layoutY="173.0" styleClass="label_texto" text="Sexo" />
+            <DatePicker fx:id="txtDataNascimento" layoutX="22.0" layoutY="119.0" prefHeight="35.0" prefWidth="297.0" />
+            <Label layoutX="22.0" layoutY="98.0" styleClass="label_texto" text="Data de nascimento" />
+            <Label layoutX="29.0" layoutY="409.0" styleClass="label_texto" text="Descrição" />
+            <TextArea fx:id="txtDescricao" layoutX="29.0" layoutY="433.0" prefHeight="65.0" prefWidth="297.0" />
+            <Label layoutX="343.0" layoutY="409.0" styleClass="label_texto" text="Observações" />
+            <TextArea fx:id="txtObservacoes" layoutX="343.0" layoutY="433.0" prefHeight="65.0" prefWidth="297.0" />
+            <ComboBox fx:id="cboRaca" layoutX="23.0" layoutY="277.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
+            <Label layoutX="23.0" layoutY="251.0" styleClass="label_texto" text="Raça" />
+            <TextField fx:id="txtPeso" layoutX="342.0" layoutY="277.0" styleClass="textfield" />
+            <Label layoutX="343.0" layoutY="251.0" styleClass="label_texto" text="Peso atual" />
+            <Label layoutX="22.0" layoutY="154.0" styleClass="label_Alerta" text="Label" />
+            <Label layoutX="22.0" layoutY="233.0" styleClass="label_Alerta" text="Label" />
+            <Label layoutX="343.0" layoutY="233.0" styleClass="label_Alerta" text="Label" />
+            <Label layoutX="22.0" layoutY="310.0" styleClass="label_Alerta" text="Label" />
+            <Label layoutX="343.0" layoutY="310.0" styleClass="label_Alerta" text="Label" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

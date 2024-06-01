@@ -25,7 +25,6 @@ public class ValidatorPassword {
         {
             return "Campo vazio";
         }
-        
         if (!validatePassword(senha)) {
             return "Senha fraca";
         }

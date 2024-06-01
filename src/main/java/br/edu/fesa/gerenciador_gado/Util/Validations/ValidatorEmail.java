@@ -20,29 +20,37 @@ public class ValidatorEmail {
         return matcher.matches();
     }
 
-    public static String validateEmailFields(String email, String confirmEmail) {
-
+    public static ValidatorResults validateEmailFields(String email, String confirmEmail) {
+        ValidatorResults results;
         if (email.isBlank() || confirmEmail.isBlank()) {
-            return "Campo vazio";
+            results = new ValidatorResults(false, "Campo vazio");
+            return results;
         }
         if (!validateEmail(email)) {
-            return "Email inválido";
+            results = new ValidatorResults(false, "Email inválido");
+            return results;
         }
         if (!email.equals(confirmEmail)) {
-            return "Emails não são iguais";
+            results = new ValidatorResults(false, "Emails não são iguais");
+            return results;
         }
 
-        return "";
+        results = new ValidatorResults(true, "");
+        return results;
     }
 
-    public static String validateEmailFields(String emailLogin) {
+    public static ValidatorResults validateEmailFields(String emailLogin) {
+        ValidatorResults results;
         if (emailLogin.isBlank() || emailLogin.isBlank()) {
-            return "Campo vazio";
+            results = new ValidatorResults(false, "Email vazio");
+            return results;
         }
         if (!validateEmail(emailLogin)) {
-            return "O endereço de e-mail é inválido.";
+            results = new ValidatorResults(false, "O endereço de e-mail é inválido.");
+            return results;
         }
-        return "";
+        results = new ValidatorResults(true, "");
+        return results;
     }
 
 }

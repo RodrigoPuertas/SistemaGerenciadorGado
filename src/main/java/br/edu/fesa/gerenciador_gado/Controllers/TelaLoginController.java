@@ -12,6 +12,7 @@ import br.edu.fesa.gerenciador_gado.Util.DTO.ActionReturnDTO;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmail;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmailFields;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorPassword.validatePasswordFields;
+import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorResults;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -55,7 +56,11 @@ public class TelaLoginController implements Initializable {
     @FXML
     private void actionEntrar(ActionEvent event) {
         try {
-            lblAlertaEmail.setText(validateEmailFields(txtEmail.getText()));
+            
+            ValidatorResults resultsEmail = validateEmailFields(txtEmail.getText());         
+            String emailAlerta = resultsEmail.getErrorMessage();
+            
+            lblAlertaEmail.setText(emailAlerta);
 
             lblAlertaSenha.setText(validatePasswordFields(txtSenha.getText()));
 

@@ -94,7 +94,7 @@ public class ViewHomeController implements Initializable {
     @FXML
     void actionMoveToViewCattle(ActionEvent event) {
         try {
-            ControllerHelper.alertNoFuctionsEvents();
+            App.setRoot("viewSingUpCattle");
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
@@ -127,8 +127,8 @@ public class ViewHomeController implements Initializable {
 
         if (profile.getValue() == 1) {
             paneADM.setVisible(true);
-            paneFARMER.setVisible(false);
-            paneRANCHER.setVisible(false);
+            paneFARMER.setVisible(true);
+            paneRANCHER.setVisible(true);
         }
         if (profile.getValue() == 2) {
             paneADM.setVisible(false);

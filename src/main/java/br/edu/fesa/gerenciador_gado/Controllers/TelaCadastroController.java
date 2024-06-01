@@ -12,8 +12,9 @@ import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
 import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
 import br.edu.fesa.gerenciador_gado.Util.Exceptions.PersistenceException;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorEmail.validateEmailFields;
-import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorPassword.validatePasswordFields;
 import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorFields.ValidateIsEmpty;
+import static br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorPassword.validatePasswordFields;
+import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorResults;
 import java.net.URL;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ResourceBundle;
@@ -87,9 +88,15 @@ public class TelaCadastroController implements Initializable {
     void actionSingUp(ActionEvent event) {
         try {
             // Validando os campos e exibindo mensagens de alerta, se necessário
-            String nomeAlerta = ValidateIsEmpty(txtNome);
-            String perfilAlerta = ValidateIsEmpty(cboPerfil);
-            String emailAlerta = validateEmailFields(txtEmail.getText(), txtConfirmaEmail.getText());
+            ValidatorResults resultsNome = ValidateIsEmpty(txtNome);
+            String nomeAlerta = resultsNome.getErrorMessage();
+            
+            ValidatorResults resultsPerfil = ValidateIsEmpty(cboPerfil);
+            String perfilAlerta = resultsPerfil.getErrorMessage();
+            
+            ValidatorResults resultsEmail = validateEmailFields(txtEmail.getText(), txtConfirmaEmail.getText());         
+            String emailAlerta = resultsEmail.getErrorMessage();
+            
             String senhaAlerta = validatePasswordFields(txtPassword.getText(), txtConfirmPassword.getText());
 
             lblAlertaNome.setText(nomeAlerta);
@@ -98,7 +105,7 @@ public class TelaCadastroController implements Initializable {
             lblAlertaSenha.setText(senhaAlerta);
 
             // Verificando se houve algum alerta
-            if (nomeAlerta.isEmpty() && perfilAlerta.isEmpty() && emailAlerta.isEmpty() && senhaAlerta.isEmpty()) {
+            if (resultsNome.isIsValid() && resultsPerfil.isIsValid() && resultsEmail.isIsValid() && senhaAlerta.isEmpty()) {
                 // Criptografando a senha antes de salvar no banco de dados
                 String senhaCriptografada = PasswordHasher.hashPassword(txtPassword.getText());
 
