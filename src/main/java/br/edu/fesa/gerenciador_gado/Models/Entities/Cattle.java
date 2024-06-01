@@ -10,6 +10,7 @@ import br.edu.fesa.gerenciador_gado.Util.Enums.RacaGadoEnum;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -36,8 +37,21 @@ public class Cattle extends Animal {
         this.raca = raca;
     }
 
-    public Cattle(CattleAplicationEnum aplication, RacaGadoEnum raca,GenderEnum gender, LocalDate dataNascimento,
+    public Cattle(CattleAplicationEnum aplication, RacaGadoEnum raca, GenderEnum gender, LocalDate dataNascimento,
             List<Map<LocalDate, Double>> historicoPeso, String descricao, String observacao) {
+        super.setGender(gender);
+        super.setDataNascimento(dataNascimento);
+        super.setHistoricoPeso(historicoPeso);
+        super.setDescricao(descricao);
+        super.setObservacao(observacao);
+        this.aplication = aplication;
+        this.raca = raca;
+
+    }
+
+    public Cattle(Integer id, CattleAplicationEnum aplication, RacaGadoEnum raca, GenderEnum gender, LocalDate dataNascimento,
+            List<Map<LocalDate, Double>> historicoPeso, String descricao, String observacao) {
+        super.setId(id);
         super.setGender(gender);
         super.setDataNascimento(dataNascimento);
         super.setHistoricoPeso(historicoPeso);

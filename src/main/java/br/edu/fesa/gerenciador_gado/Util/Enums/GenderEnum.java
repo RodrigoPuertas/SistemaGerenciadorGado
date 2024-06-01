@@ -9,7 +9,7 @@ package br.edu.fesa.gerenciador_gado.Util.Enums;
  * @author Lohan
  */
 public enum GenderEnum {
-    Male('M'), Female('F'), Other('O');
+    Male('M'), Female('F');
 
     private final char genderChar;
 
@@ -27,8 +27,6 @@ public enum GenderEnum {
                 return Male;
             case 'F':
                 return Female;
-            case 'O':
-                return Other;
             default:
                 throw new IllegalArgumentException("Unknown gender: " + genderChar);
         }
