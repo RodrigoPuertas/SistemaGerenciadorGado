@@ -5,9 +5,8 @@
 package br.edu.fesa.gerenciador_gado.DAO;
 
 import br.edu.fesa.gerenciador_gado.Models.Entities.Cattle;
-import br.edu.fesa.gerenciador_gado.Models.Entities.User;
+import br.edu.fesa.gerenciador_gado.Util.Enums.CattleAplicationEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.GenderEnum;
-import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.RacaGadoEnum;
 import br.edu.fesa.gerenciador_gado.Util.Exceptions.PersistenceException;
 import java.sql.Connection;
@@ -32,12 +31,12 @@ public class CattleDAO implements GenericDAO<Cattle> {
         try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("SELECT * FROM GADO");  ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                cattle.add(new Cattle(resultSet.getInt("ID_Gado"), RacaGadoEnum.fromValue(resultSet.getString("Raca")), GenderEnum.fromString(resultSet.getString("Sexo")),
-                        resultSet.getDate("Data_Nascimento").toLocalDate(), ));
+                cattle.add(new Cattle(resultSet.getInt("ID_Gado"),CattleAplicationEnum.fromValue("Aplicacao"), RacaGadoEnum.fromValue(resultSet.getString("Raca")), GenderEnum.fromString(resultSet.getString("Sexo")),
+                        resultSet.getDate("Data_Nascimento").toLocalDate(), resultSet.getString("Descricao"), resultSet.getString("Observacao")));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            throw new PersistenceException("Error while listing users", ex);
+            Logger.getLogger(CattleDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new PersistenceException("Error while listing cattles", ex);
         }
         return cattle;
     }

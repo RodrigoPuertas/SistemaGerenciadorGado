@@ -5,11 +5,14 @@
 package br.edu.fesa.gerenciador_gado.Controllers;
 
 import br.edu.fesa.gerenciador_gado.App;
+import br.edu.fesa.gerenciador_gado.DAO.CattleDAO;
 import br.edu.fesa.gerenciador_gado.Models.Entities.Cattle;
+import br.edu.fesa.gerenciador_gado.Models.Entities.User;
 import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
 import br.edu.fesa.gerenciador_gado.Util.Enums.CattleAplicationEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.GenderEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.RacaGadoEnum;
+import br.edu.fesa.gerenciador_gado.Util.Exceptions.PersistenceException;
 import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorFields;
 import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorResults;
 import java.net.URL;
@@ -19,7 +22,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -130,6 +136,14 @@ public class ViewSingUpCattleController implements Initializable {
         cboRaca.setItems(FXCollections.observableArrayList(RacaGadoEnum.values()));
         cboSexo.setItems(FXCollections.observableArrayList(GenderEnum.values()));
         txtPeso.setText("0.00");
+        
+        CattleDAO gado = new CattleDAO();
+        
+        try {
+            ObservableList<Cattle> cattle = FXCollections.observableArrayList(gado.list());
+        } catch (PersistenceException ex) {
+            ControllerHelper.alertErrorGeneric(ex.toString());
+        }
 
     }
 
