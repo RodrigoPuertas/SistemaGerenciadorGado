@@ -36,7 +36,7 @@ public class Cattle extends Animal {
         this.raca = raca;
     }
 
-    public Cattle(CattleAplicationEnum aplication, RacaGadoEnum raca, Integer id, GenderEnum gender, LocalDate dataNascimento,
+    public Cattle(CattleAplicationEnum aplication, RacaGadoEnum raca,GenderEnum gender, LocalDate dataNascimento,
             List<Map<LocalDate, Double>> historicoPeso, String descricao, String observacao) {
         super.setGender(gender);
         super.setDataNascimento(dataNascimento);

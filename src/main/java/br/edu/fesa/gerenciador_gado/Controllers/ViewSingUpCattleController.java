@@ -94,7 +94,7 @@ public class ViewSingUpCattleController implements Initializable {
     @FXML
     void actionSingUpCattle(ActionEvent event) {
         try {
-            ValidatorResults resultsPeso = ValidatorFields.ValidateIsEmpty(txtPeso);
+            ValidatorResults resultsPeso = validatePeso();
             ValidatorResults resultsDataNascimento = ValidatorFields.ValidateIsEmpty(txtDataNascimento);
             ValidatorResults resultsAplicacao = ValidatorFields.ValidateIsEmpty(cboAplicacao);
             ValidatorResults resultsRaca = ValidatorFields.ValidateIsEmpty(cboRaca);
@@ -104,18 +104,20 @@ public class ViewSingUpCattleController implements Initializable {
             lblAlertaAplicacao.setText(resultsAplicacao.getErrorMessage());
             lblAlertaRaca.setText(resultsRaca.getErrorMessage());
             lblAlertaSexo.setText(resultsSexo.getErrorMessage());
-            if ((validatePeso() || !resultsPeso.isIsValid())) {
+
+            if ((validatePeso().isIsValid() || !resultsPeso.isIsValid())) {
                 lblAlertaPeso.setText(resultsPeso.getErrorMessage());
             }
 
-            List<Map<LocalDate  , Double>> historicoPeso = new ArrayList<Map<LocalDate, Double>>(); 
-            Map<LocalDate, Double> primeiroPeso = new HashMap<>();
-            primeiroPeso.put(LocalDate.now(),Double.parseDouble(txtPeso.getText()));
-            
-            if (resultsAplicacao.isIsValid() && resultsDataNascimento.isIsValid() && resultsPeso.isIsValid() && validatePeso() && resultsRaca.isIsValid()
-                    && resultsSexo.isIsValid()) {
-                Cattle gado = new Cattle(cboSexo.getValue(),txtDataNascimento.getValue(),primeiroPeso,txtDescricao.getText(),txtObservacoes.getText(),
-                        cboAplicacao.getValue(), cboRaca.getValue());//acho que é aluma coisa no dataNascimento
+            if (resultsAplicacao.isIsValid() && resultsDataNascimento.isIsValid() && resultsPeso.isIsValid()
+                    && validatePeso().isIsValid() && resultsRaca.isIsValid() && resultsSexo.isIsValid()) {
+                List<Map<LocalDate, Double>> historicoPeso = new ArrayList<Map<LocalDate, Double>>();
+                Map<LocalDate, Double> primeiroPeso = new HashMap<>();
+                primeiroPeso.put(LocalDate.now(), Double.parseDouble(txtPeso.getText()));
+                historicoPeso.add(primeiroPeso);
+
+                Cattle gado = new Cattle(cboAplicacao.getValue(), cboRaca.getValue(), cboSexo.getValue(), txtDataNascimento.getValue(),
+                        historicoPeso, txtDescricao.getText(), txtObservacoes.getText());
             }
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.toString());
@@ -127,15 +129,25 @@ public class ViewSingUpCattleController implements Initializable {
         cboAplicacao.setItems(FXCollections.observableArrayList(CattleAplicationEnum.values()));
         cboRaca.setItems(FXCollections.observableArrayList(RacaGadoEnum.values()));
         cboSexo.setItems(FXCollections.observableArrayList(GenderEnum.values()));
+        txtPeso.setText("0.00");
 
     }
 
-    Boolean validatePeso() {
-        if (Double.parseDouble(txtPeso.getText()) > 0) {
-            return true;
-        } else {
-            return false;
+    ValidatorResults validatePeso() {
+        ValidatorResults results;
+
+        try {
+            if (Double.parseDouble(txtPeso.getText()) > 0) {
+                results = new ValidatorResults(true, "");
+                return results;
+            }
+        } catch(Exception e)  {
+            results = new ValidatorResults(false, "Não é um valor válido");
+            return results;
         }
+        results = new ValidatorResults(false, "Peso precisa ser maior que zero");
+        return results;
+
     }
 
 }

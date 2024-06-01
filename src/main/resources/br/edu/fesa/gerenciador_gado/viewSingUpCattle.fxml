@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/viewsingupcattle.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewSingUpCattleController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/viewsingupcattle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewSingUpCattleController">
    <children>
       <Pane layoutX="-4.0" prefHeight="600.0" prefWidth="350.0" styleClass="pane_left">
          <children>
@@ -48,13 +48,13 @@
             <TextArea fx:id="txtObservacoes" layoutX="343.0" layoutY="433.0" prefHeight="65.0" prefWidth="297.0" />
             <ComboBox fx:id="cboRaca" layoutX="23.0" layoutY="277.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
             <Label layoutX="23.0" layoutY="251.0" styleClass="label_texto" text="Raça" />
-            <TextField fx:id="txtPeso" layoutX="342.0" layoutY="277.0" styleClass="textfield" />
+            <TextField fx:id="txtPeso" layoutX="342.0" layoutY="277.0" promptText="0000,00" styleClass="textfield" />
             <Label layoutX="343.0" layoutY="251.0" styleClass="label_texto" text="Peso atual" />
-            <Label fx:id="lblAlertaNascimento" layoutX="22.0" layoutY="154.0" styleClass="label_Alerta" text="Label" />
-            <Label fx:id="lblAlertaSexo" layoutX="22.0" layoutY="233.0" styleClass="label_Alerta" text="Label" />
-            <Label fx:id="lblAlertaAplicacao" layoutX="343.0" layoutY="233.0" styleClass="label_Alerta" text="Label" />
-            <Label fx:id="lblAlertaRaca" layoutX="22.0" layoutY="310.0" styleClass="label_Alerta" text="Label" />
-            <Label fx:id="lblAlertaPeso" layoutX="343.0" layoutY="310.0" styleClass="label_Alerta" text="Label" />
+            <Label fx:id="lblAlertaNascimento" layoutX="22.0" layoutY="154.0" styleClass="label_Alerta" />
+            <Label fx:id="lblAlertaSexo" layoutX="22.0" layoutY="233.0" styleClass="label_Alerta" />
+            <Label fx:id="lblAlertaAplicacao" layoutX="343.0" layoutY="233.0" styleClass="label_Alerta" />
+            <Label fx:id="lblAlertaRaca" layoutX="22.0" layoutY="311.0" styleClass="label_Alerta" />
+            <Label fx:id="lblAlertaPeso" layoutX="343.0" layoutY="311.0" styleClass="label_Alerta" />
          </children>
       </Pane>
    </children>
