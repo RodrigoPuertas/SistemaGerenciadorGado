@@ -5,14 +5,19 @@
 package br.edu.fesa.gerenciador_gado.Controllers;
 
 import br.edu.fesa.gerenciador_gado.App;
+import br.edu.fesa.gerenciador_gado.Models.Entities.Cattle;
 import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
 import br.edu.fesa.gerenciador_gado.Util.Enums.CattleAplicationEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.GenderEnum;
-import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.RacaGadoEnum;
 import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorFields;
 import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorResults;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -51,17 +56,19 @@ public class ViewSingUpCattleController implements Initializable {
     private ComboBox<GenderEnum> cboSexo;
 
     @FXML
-    private Label lblAlertaEmail;
+    private Label lblAlertaAplicacao;
 
     @FXML
-    private Label lblAlertaNome;
+    private Label lblAlertaNascimento;
 
     @FXML
-    private Label lblAlertaPerfil;
+    private Label lblAlertaSexo;
 
     @FXML
-    private Label lblAlertaSenha;
+    private Label lblAlertaPeso;
 
+    @FXML
+    private Label lblAlertaRaca;
     @FXML
     private DatePicker txtDataNascimento;
 
@@ -79,20 +86,40 @@ public class ViewSingUpCattleController implements Initializable {
     void actionBack(ActionEvent event) {
         try {
             App.setRoot("viewSingUpCattle");
-        } catch(Exception error)  {
+        } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
     }
 
     @FXML
     void actionSingUpCattle(ActionEvent event) {
-        
-       
-        //ValidatorResults results ValidatorFields.ValidateIsEmpty(txtPeso);
-        ValidatorFields.ValidateIsEmpty(txtObservacoes);
-        ValidatorFields.ValidateIsEmpty(txtDescricao);
-        ValidatorFields.ValidateIsEmpty(txtDataNascimento);
-        ValidatorFields.ValidateIsEmpty(txtPeso);
+        try {
+            ValidatorResults resultsPeso = ValidatorFields.ValidateIsEmpty(txtPeso);
+            ValidatorResults resultsDataNascimento = ValidatorFields.ValidateIsEmpty(txtDataNascimento);
+            ValidatorResults resultsAplicacao = ValidatorFields.ValidateIsEmpty(cboAplicacao);
+            ValidatorResults resultsRaca = ValidatorFields.ValidateIsEmpty(cboRaca);
+            ValidatorResults resultsSexo = ValidatorFields.ValidateIsEmpty(cboSexo);
+
+            lblAlertaNascimento.setText(resultsDataNascimento.getErrorMessage());
+            lblAlertaAplicacao.setText(resultsAplicacao.getErrorMessage());
+            lblAlertaRaca.setText(resultsRaca.getErrorMessage());
+            lblAlertaSexo.setText(resultsSexo.getErrorMessage());
+            if ((validatePeso() || !resultsPeso.isIsValid())) {
+                lblAlertaPeso.setText(resultsPeso.getErrorMessage());
+            }
+
+            List<Map<LocalDate  , Double>> historicoPeso = new ArrayList<Map<LocalDate, Double>>(); 
+            Map<LocalDate, Double> primeiroPeso = new HashMap<>();
+            primeiroPeso.put(LocalDate.now(),Double.parseDouble(txtPeso.getText()));
+            
+            if (resultsAplicacao.isIsValid() && resultsDataNascimento.isIsValid() && resultsPeso.isIsValid() && validatePeso() && resultsRaca.isIsValid()
+                    && resultsSexo.isIsValid()) {
+                Cattle gado = new Cattle(cboSexo.getValue(),txtDataNascimento.getValue(),primeiroPeso,txtDescricao.getText(),txtObservacoes.getText(),
+                        cboAplicacao.getValue(), cboRaca.getValue());//acho que é aluma coisa no dataNascimento
+            }
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.toString());
+        }
     }
 
     @Override
@@ -100,7 +127,15 @@ public class ViewSingUpCattleController implements Initializable {
         cboAplicacao.setItems(FXCollections.observableArrayList(CattleAplicationEnum.values()));
         cboRaca.setItems(FXCollections.observableArrayList(RacaGadoEnum.values()));
         cboSexo.setItems(FXCollections.observableArrayList(GenderEnum.values()));
-        
+
+    }
+
+    Boolean validatePeso() {
+        if (Double.parseDouble(txtPeso.getText()) > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

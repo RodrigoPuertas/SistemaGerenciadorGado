@@ -50,11 +50,11 @@
             <Label layoutX="23.0" layoutY="251.0" styleClass="label_texto" text="Raça" />
             <TextField fx:id="txtPeso" layoutX="342.0" layoutY="277.0" styleClass="textfield" />
             <Label layoutX="343.0" layoutY="251.0" styleClass="label_texto" text="Peso atual" />
-            <Label layoutX="22.0" layoutY="154.0" styleClass="label_Alerta" text="Label" />
-            <Label layoutX="22.0" layoutY="233.0" styleClass="label_Alerta" text="Label" />
-            <Label layoutX="343.0" layoutY="233.0" styleClass="label_Alerta" text="Label" />
-            <Label layoutX="22.0" layoutY="310.0" styleClass="label_Alerta" text="Label" />
-            <Label layoutX="343.0" layoutY="310.0" styleClass="label_Alerta" text="Label" />
+            <Label fx:id="lblAlertaNascimento" layoutX="22.0" layoutY="154.0" styleClass="label_Alerta" text="Label" />
+            <Label fx:id="lblAlertaSexo" layoutX="22.0" layoutY="233.0" styleClass="label_Alerta" text="Label" />
+            <Label fx:id="lblAlertaAplicacao" layoutX="343.0" layoutY="233.0" styleClass="label_Alerta" text="Label" />
+            <Label fx:id="lblAlertaRaca" layoutX="22.0" layoutY="310.0" styleClass="label_Alerta" text="Label" />
+            <Label fx:id="lblAlertaPeso" layoutX="343.0" layoutY="310.0" styleClass="label_Alerta" text="Label" />
          </children>
       </Pane>
    </children>

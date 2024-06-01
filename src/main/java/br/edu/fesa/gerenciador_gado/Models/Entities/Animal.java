@@ -4,10 +4,9 @@
  */
 package br.edu.fesa.gerenciador_gado.Models.Entities;
 
-import br.edu.fesa.gerenciador_gado.Util.Enums.CattleAplicationEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.GenderEnum;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +19,8 @@ public class Animal {
 
     private Integer id;
     private GenderEnum gender;
-    private LocalDateTime dataNascimento;
-    private List<Map<DateTimeFormatter, Double>> historicoPeso = new ArrayList();
+    private LocalDate dataNascimento;
+    private List<Map<LocalDate, Double>> historicoPeso = new ArrayList();
     private String descricao;
     private String observacao;
 
@@ -57,19 +56,19 @@ public class Animal {
         this.gender = gender;
     }
 
-    public LocalDateTime getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDateTime dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public List<Map<DateTimeFormatter, Double>> getHistoricoPeso() {
+    public List<Map<LocalDate, Double>> getHistoricoPeso() {
         return historicoPeso;
     }
 
-    public void setHistoricoPeso(List<Map<DateTimeFormatter, Double>> historicoPeso) {
+    public void setHistoricoPeso(List<Map<LocalDate, Double>> historicoPeso) {
         this.historicoPeso = historicoPeso;
     }
 
