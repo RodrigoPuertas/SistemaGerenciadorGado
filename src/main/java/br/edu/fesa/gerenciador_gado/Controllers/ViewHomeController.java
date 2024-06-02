@@ -103,7 +103,7 @@ public class ViewHomeController implements Initializable {
     @FXML
     void actionMoveToViewPatrimony(ActionEvent event) {
         try {
-            ControllerHelper.alertNoFuctionsEvents();
+            App.setRoot("viewDashboard");
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }

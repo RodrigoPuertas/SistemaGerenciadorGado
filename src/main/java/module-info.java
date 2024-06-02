@@ -3,6 +3,8 @@ module br.edu.fesa.gerenciador_gado {
     requires javafx.fxml;
     requires java.base;
     requires java.sql;
+    requires javafx.base;
+    requires javafx.graphics;
 
     opens br.edu.fesa.gerenciador_gado to javafx.fxml;
     opens br.edu.fesa.gerenciador_gado.Controllers to javafx.fxml;
