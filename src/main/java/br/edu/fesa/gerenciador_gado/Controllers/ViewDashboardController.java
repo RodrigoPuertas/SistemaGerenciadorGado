@@ -5,14 +5,15 @@
 package br.edu.fesa.gerenciador_gado.Controllers;
 
 import br.edu.fesa.gerenciador_gado.App;
+import br.edu.fesa.gerenciador_gado.DAO.CattleDAO;
 import br.edu.fesa.gerenciador_gado.DAO.HistoricoPesosGadoDAO;
 import br.edu.fesa.gerenciador_gado.DAO.PriceCattleDAO;
+import br.edu.fesa.gerenciador_gado.Models.Entities.Cattle;
 import br.edu.fesa.gerenciador_gado.Models.Entities.HistoricoPesosGado;
 import br.edu.fesa.gerenciador_gado.Models.Entities.PriceCattle;
 import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
 import br.edu.fesa.gerenciador_gado.Util.Exceptions.PersistenceException;
 import java.net.URL;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -85,23 +86,25 @@ public class ViewDashboardController implements Initializable {
 
     }
 
-    private void createPieChart(){
-//        CattleDAO cattleDao = new CattleDAO();
+    private void createPieChart() throws PersistenceException{
+        CattleDAO cattleDao = new CattleDAO();
+        List<Cattle> listCattle = cattleDao.list();
+        long qtdCorte = listCattle.stream().filter(c -> c.getAplication().getValue() == "Corte").count();
+        long qtdMisto = listCattle.stream().filter(c -> c.getAplication().getValue() == "Misto").count();
+        long qtdLeiteiro = listCattle.stream().filter(c -> c.getAplication().getValue() == "Leiteiro").count();
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
-                        new PieChart.Data("Grapefruit", 13),
-                        new PieChart.Data("Oranges", 25),
-                        new PieChart.Data("Plums", 10),
-                        new PieChart.Data("Pears", 22),
-                        new PieChart.Data("Apples", 30));
+                        new PieChart.Data("Corte", qtdCorte),
+                        new PieChart.Data("Misto", qtdMisto),
+                        new PieChart.Data("Leiteiro", qtdLeiteiro));
         final PieChart chart = new PieChart(pieChartData);
         chart.setTitle("Imported Fruits");
 
         pieChart.setData(pieChartData);
-        pieChart.setTitle("Test");
         pieChart.setClockwise(true);
         pieChart.setLabelLineLength(50);
         pieChart.setStartAngle(180);
+
 
     }
 
