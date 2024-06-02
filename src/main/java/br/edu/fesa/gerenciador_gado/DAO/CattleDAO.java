@@ -78,9 +78,9 @@ public class CattleDAO implements GenericDAO<Cattle> {
             statement.setString(4, cattle.getAplication().getValue());
             statement.setString(5, cattle.getDescricao().toString());
             statement.setString(6, cattle.getObservacao().toString());
-            
+
             statement.setInt(7, cattle.getId());
-                    
+
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -93,6 +93,31 @@ public class CattleDAO implements GenericDAO<Cattle> {
         try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("DELETE FROM Gado WHERE ID = ?")) {
             statement.setInt(1, cattle.getId());
             statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new PersistenceException("Error while removing cattle", ex);
+        }
+    }
+
+    public double GetTotalPoundFromCattle() throws PersistenceException {
+        String query = "SELECT SUM(peso_kg) AS soma_ultimas_pesagens\n"
+                + "FROM (\n"
+                + "    SELECT id_gado, peso_kg\n"
+                + "    FROM historicopesosgado AS t1\n"
+                + "    WHERE data_pesagem = (\n"
+                + "        SELECT MAX(data_pesagem)\n"
+                + "        FROM historicopesosgado AS t2\n"
+                + "        WHERE t1.id_gado = t2.id_gado\n"
+                + "    )\n"
+                + ") AS ultimas_pesagens";
+        double value = 0;
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement(query);  ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                value += resultSet.getDouble("soma_ultimas_pesagens");
+            }
+
+            return value;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             throw new PersistenceException("Error while removing cattle", ex);
