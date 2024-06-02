@@ -33,8 +33,8 @@ public class CattleDAO implements GenericDAO<Cattle> {
         try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("SELECT * FROM GADO");  ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                cattle.add(new Cattle(resultSet.getInt("ID_Gado"), CattleAplicationEnum.fromValue("Aplicacao"), RacaGadoEnum.fromValue(resultSet.getString("Raca")), GenderEnum.fromString(resultSet.getString("Sexo")),
-                        resultSet.getDate("Data_Nascimento").toLocalDate(), resultSet.getString("Descricao"), resultSet.getString("Observacao")));
+                cattle.add(new Cattle(resultSet.getInt("ID"), CattleAplicationEnum.fromValue(resultSet.getString("Aplicacao")), RacaGadoEnum.fromValue(resultSet.getString("Raca")), GenderEnum.fromString(resultSet.getString("Sexo")),
+                        resultSet.getDate("Data_Nascimento").toLocalDate(), resultSet.getString("Descricao"), resultSet.getString("Observacoes")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CattleDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,14 +69,13 @@ public class CattleDAO implements GenericDAO<Cattle> {
 
     @Override
     public void update(Cattle cattle) throws PersistenceException {
-        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement
-        ("UPDATE Gado SET Raca = ?, Sexo = ?, Data_Nascimento = ?, Aplicacao = ?, Descricao = ?, Observacoes = ? WHERE ID = ?")) {
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("UPDATE Gado SET Raca = ?, Sexo = ?, Data_Nascimento = ?, Aplicacao = ?, Descricao = ?, Observacoes = ? WHERE ID = ?")) {
             statement.setString(1, cattle.getRaca().getValue());
             statement.setString(2, Character.toString(cattle.getGender().getGenderChar()));
             statement.setDate(3, Date.valueOf(cattle.getDataNascimento()));
             statement.setString(4, cattle.getAplication().getValue());
-            statement.setString(5, cattle.getDescricao());
-            statement.setString(6, cattle.getObservacao());
+            statement.setString(5, cattle.getDescricao().toString());
+            statement.setString(6, cattle.getObservacao().toString());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,8 +85,7 @@ public class CattleDAO implements GenericDAO<Cattle> {
 
     @Override
     public void remove(Cattle cattle) throws PersistenceException {
-        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement
-        ("DELETE FROM Gado WHERE ID = ?")) {
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("DELETE FROM Gado WHERE ID = ?")) {
             statement.setInt(1, cattle.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -95,7 +93,5 @@ public class CattleDAO implements GenericDAO<Cattle> {
             throw new PersistenceException("Error while removing user", ex);
         }
     }
-
-
 
 }

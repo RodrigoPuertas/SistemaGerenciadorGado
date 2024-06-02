@@ -47,6 +47,14 @@
                      </image>
                   </ImageView>
                   <Label layoutX="9.0" layoutY="578.0" text="Rancher" />
+                  <Button fx:id="btnCattleManagement" layoutX="9.0" layoutY="280.0" mnemonicParsing="false" onAction="#actionMoveToViewCattleMan" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Management">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
             <Pane fx:id="paneRANCHER" layoutX="273.0" prefHeight="600.0" prefWidth="248.0" styleClass="pane_left">

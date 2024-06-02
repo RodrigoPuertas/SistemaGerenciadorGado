@@ -68,6 +68,9 @@ public class ViewHomeController implements Initializable {
     private Pane paneRANCHER;
 
     @FXML
+    private Button btnCattleManagement;
+
+    @FXML
     void actionLogOut(ActionEvent event) {
         try {
             UserSession userSession = UserSession.getInstance();
@@ -113,6 +116,15 @@ public class ViewHomeController implements Initializable {
     void actionMoveToViewUser(ActionEvent event) {
         try {
             App.setRoot("viewUser");
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.getMessage());
+        }
+    }
+
+    @FXML
+    void actionMoveToViewCattleMan(ActionEvent event) {
+        try {
+            App.setRoot("viewCattle");
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }

@@ -12,7 +12,7 @@ package br.edu.fesa.gerenciador_gado.Util.Enums;
 public enum CattleAplicationEnum {
     Corte("Corte"),
     Leiteiro("Leiteiro"),
-    Mista("Mista"),
+    Mista("Misto"),
     None("None");
 
     private final String aplicacaoValue;
@@ -27,7 +27,7 @@ public enum CattleAplicationEnum {
 
     public static CattleAplicationEnum fromValue(String value) {
         for (CattleAplicationEnum aplicacao : CattleAplicationEnum.values()) {
-            if (aplicacao.getValue() == value) {
+            if (aplicacao.getValue().equals(value)) {
                 return aplicacao;
             }
         }

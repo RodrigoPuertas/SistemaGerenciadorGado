@@ -31,12 +31,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="lblAlertaEmail" layoutX="26.0" layoutY="300.0" prefHeight="17.0" prefWidth="300.0" styleClass="label_AlertaEmail" />
-            <Label fx:id="lblAlertaSenha" layoutX="28.0" layoutY="385.0" prefHeight="17.0" prefWidth="300.0" styleClass="label_AlertaSenha" />
             <ComboBox fx:id="cboAplicacao" layoutX="342.0" layoutY="198.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
             <Label layoutX="342.0" layoutY="172.0" styleClass="label_texto" text="Aplicação" />
-            <Label fx:id="lblAlertaNome" layoutX="28.0" layoutY="213.0" prefHeight="17.0" prefWidth="300.0" styleClass="label_AlertaNome" />
-            <Label fx:id="lblAlertaPerfil" layoutX="340.0" layoutY="213.0" prefHeight="17.0" prefWidth="297.0" styleClass="label_AlertaPerfil" />
             <Label alignment="CENTER" layoutX="-3.0" layoutY="32.0" prefHeight="36.0" prefWidth="656.0" styleClass="label_titulo" text="Cadastro de gado" textAlignment="CENTER" />
             <ComboBox fx:id="cboSexo" layoutX="23.0" layoutY="199.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
             <Label layoutX="23.0" layoutY="173.0" styleClass="label_texto" text="Sexo" />

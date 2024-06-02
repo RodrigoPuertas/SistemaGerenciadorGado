@@ -1,7 +1,7 @@
 package br.edu.fesa.gerenciador_gado.Util.Enums;
 
 public enum RacaGadoEnum {
-    
+
     NELORE("NELORE"),
     ANGUS("ANGUS"),
     HEREFORD("HEREFORD"),
@@ -25,10 +25,10 @@ public enum RacaGadoEnum {
     public String getValue() {
         return racaValue;
     }
-    
+
     public static RacaGadoEnum fromValue(String value) {
         for (RacaGadoEnum raca : RacaGadoEnum.values()) {
-            if (raca.getValue() == value) {
+            if (raca.getValue().equals(value)) { // Corrigido aqui
                 return raca;
             }
         }
