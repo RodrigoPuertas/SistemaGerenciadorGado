@@ -91,7 +91,7 @@ public class ViewSingUpCattleController implements Initializable {
 
     void actionBack(ActionEvent event) {
         try {
-            App.setRoot("viewSingUpCattle");
+            App.setRoot("viewHome");
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
@@ -124,6 +124,12 @@ public class ViewSingUpCattleController implements Initializable {
 
                 Cattle gado = new Cattle(cboAplicacao.getValue(), cboRaca.getValue(), cboSexo.getValue(), txtDataNascimento.getValue(),
                         historicoPeso, txtDescricao.getText(), txtObservacoes.getText());
+                
+                CattleDAO dao = new CattleDAO();
+                
+                dao.insert(gado);
+                
+                ControllerHelper.alertSucessGeneric("Gado inserido no banco de dados");
             }
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.toString());
@@ -138,12 +144,6 @@ public class ViewSingUpCattleController implements Initializable {
         txtPeso.setText("0.00");
         
         CattleDAO gado = new CattleDAO();
-        
-        try {
-            ObservableList<Cattle> cattle = FXCollections.observableArrayList(gado.list());
-        } catch (PersistenceException ex) {
-            ControllerHelper.alertErrorGeneric(ex.toString());
-        }
 
     }
 

@@ -23,5 +23,5 @@ public interface GenericDAO<E> extends Serializable{
 
     public void remove(E e) throws PersistenceException;
 
-    public E listById(E e) throws PersistenceException;
+
 }

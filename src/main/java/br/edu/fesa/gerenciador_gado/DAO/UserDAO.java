@@ -117,24 +117,4 @@ public class UserDAO implements GenericDAO<User> {
         }
     }
 
-    @Override
-    public User listById(User user) throws PersistenceException {
-        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("SELECT * FROM USERS WHERE ID_USER = ? LIMIT 1")) {
-            statement.setInt(1, user.getId());
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                user.setName(resultSet.getString("NAME"));
-                user.setEmail(resultSet.getString("EMAIL"));
-                user.setPassword(resultSet.getString("PASSWORD"));
-                user.setProfileCode(ProfileEnum.fromValue(resultSet.getInt("PROFILE_CODE")));
-            } else {
-                throw new PersistenceException("User not found with provided ID");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            throw new PersistenceException("Error while listing user by ID", ex);
-        }
-        return user;
-    }
 }
