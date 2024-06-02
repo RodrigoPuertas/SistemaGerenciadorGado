@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -89,12 +88,9 @@
       <TextArea fx:id="txtObservacoes" layoutX="637.0" layoutY="484.0" prefHeight="65.0" prefWidth="300.0" />
       <ComboBox fx:id="cboRaca" layoutX="321.0" layoutY="406.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
       <Label layoutX="321.0" layoutY="380.0" styleClass="label_texto" text="Raça" />
-      <TextField fx:id="txtPeso" layoutX="640.0" layoutY="406.0" promptText="0000,00" styleClass="textfield" />
-      <Label layoutX="641.0" layoutY="380.0" styleClass="label_texto" text="Peso atual" />
-      <Label fx:id="lblAlertaNascimento" layoutX="320.0" layoutY="283.0" styleClass="label_AlertaEmail" text="Label" />
-      <Label fx:id="lblAlertaSexo" layoutX="320.0" layoutY="362.0" styleClass="label_AlertaEmail" text="Label" />
-      <Label fx:id="lblAlertaAplicacao" layoutX="640.0" layoutY="362.0" styleClass="label_AlertaEmail" text="Label" />
-      <Label fx:id="lblAlertaRaca" layoutX="320.0" layoutY="441.0" styleClass="label_AlertaEmail" text="Label" />
-      <Label fx:id="lblAlertaPeso" layoutX="640.0" layoutY="441.0" styleClass="label_AlertaEmail" text="Label" />
+      <Label fx:id="lblAlertaNascimento" layoutX="320.0" layoutY="283.0" styleClass="label_AlertaEmail" />
+      <Label fx:id="lblAlertaSexo" layoutX="320.0" layoutY="362.0" styleClass="label_AlertaEmail" />
+      <Label fx:id="lblAlertaAplicacao" layoutX="640.0" layoutY="362.0" styleClass="label_AlertaEmail" />
+      <Label fx:id="lblAlertaRaca" layoutX="320.0" layoutY="441.0" styleClass="label_AlertaEmail" />
    </children>
 </AnchorPane>
