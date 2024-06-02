@@ -90,7 +90,7 @@ public class CattleDAO implements GenericDAO<Cattle> {
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            throw new PersistenceException("Error while removing user", ex);
+            throw new PersistenceException("Error while removing cattle", ex);
         }
     }
 
