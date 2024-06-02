@@ -45,7 +45,8 @@ public class CattleDAO implements GenericDAO<Cattle> {
 
     @Override
     public void insert(Cattle cattle) throws PersistenceException {
-        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("INSERT INTO Gado (Raca, Sexo, Data_Nascimento, Aplicacao,"
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement(
+                "INSERT INTO Gado (Raca, Sexo, Data_Nascimento, Aplicacao,"
                 + " Descricao, Observacoes) VALUES (?, ?, ?, ?, ?, ?)")) {
             statement.setString(1, cattle.getRaca().getValue());
             statement.setString(2, Character.toString(cattle.getGender().getGenderChar()));
@@ -69,13 +70,17 @@ public class CattleDAO implements GenericDAO<Cattle> {
 
     @Override
     public void update(Cattle cattle) throws PersistenceException {
-        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("UPDATE Gado SET Raca = ?, Sexo = ?, Data_Nascimento = ?, Aplicacao = ?, Descricao = ?, Observacoes = ? WHERE ID = ?")) {
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement(
+                "UPDATE Gado SET Raca = ?, Sexo = ?, Data_Nascimento = ?, Aplicacao = ?, Descricao = ?, Observacoes = ? WHERE ID = ?")) {
             statement.setString(1, cattle.getRaca().getValue());
             statement.setString(2, Character.toString(cattle.getGender().getGenderChar()));
             statement.setDate(3, Date.valueOf(cattle.getDataNascimento()));
             statement.setString(4, cattle.getAplication().getValue());
             statement.setString(5, cattle.getDescricao().toString());
             statement.setString(6, cattle.getObservacao().toString());
+            
+            statement.setInt(7, cattle.getId());
+                    
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

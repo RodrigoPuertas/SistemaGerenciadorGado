@@ -12,8 +12,14 @@ import br.edu.fesa.gerenciador_gado.Util.Enums.CattleAplicationEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.GenderEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.RacaGadoEnum;
 import br.edu.fesa.gerenciador_gado.Util.Exceptions.PersistenceException;
+import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorFields;
+import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorResults;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,13 +88,28 @@ public class ViewCattleController implements Initializable {
     private TableColumn<Cattle, GenderEnum> colunaSexo;
 
     @FXML
+    private Label lblAlertaAplicacao;
+
+    @FXML
     private Label lblAlertaEmail;
+
+    @FXML
+    private Label lblAlertaNascimento;
 
     @FXML
     private Label lblAlertaNome;
 
     @FXML
     private Label lblAlertaPerfil;
+
+    @FXML
+    private Label lblAlertaPeso;
+
+    @FXML
+    private Label lblAlertaRaca;
+
+    @FXML
+    private Label lblAlertaSexo;
 
     @FXML
     private Pane paneLeft;
@@ -136,12 +157,57 @@ public class ViewCattleController implements Initializable {
 
     @FXML
     void actionShowData(MouseEvent event) {
-
+        try {
+            Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
+            txtDataNascimento.setValue(cattle.getDataNascimento());
+            cboSexo.setValue(cattle.getGender());
+            cboAplicacao.setValue(cattle.getAplication());
+            cboRaca.setValue(cattle.getRaca());
+            txtPeso.setText(cattle.getHistoricoPeso().toString());
+            txtDescricao.setText(cattle.getDescricao());
+            txtObservacoes.setText(cattle.getObservacao());
+        } catch (Exception error) {
+            ControllerHelper.alertWarningGeneric(error.toString());
+        }
     }
 
     @FXML
     void actionUpdate(ActionEvent event) {
+        try {
 
+            ValidatorResults resultNascimento = ValidatorFields.ValidateIsEmpty(txtDataNascimento);
+            ValidatorResults resultSexo = ValidatorFields.ValidateIsEmpty(cboSexo);
+            ValidatorResults resultAplicacao = ValidatorFields.ValidateIsEmpty(cboAplicacao);
+            ValidatorResults resultRaca = ValidatorFields.ValidateIsEmpty(cboRaca);
+            ValidatorResults resultPeso = ValidatorFields.ValidateIsEmpty(txtPeso);
+
+            lblAlertaNascimento.setText(resultNascimento.getErrorMessage());
+            lblAlertaSexo.setText(resultSexo.getErrorMessage());
+            lblAlertaAplicacao.setText(resultAplicacao.getErrorMessage());
+            lblAlertaRaca.setText(resultRaca.getErrorMessage());
+            lblAlertaPeso.setText(resultPeso.getErrorMessage());
+            
+            Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
+            
+            if (resultNascimento.isIsValid() && resultAplicacao.isIsValid() && resultPeso.isIsValid()
+                    && validatePeso().isIsValid() && resultRaca.isIsValid() && resultSexo.isIsValid()) {
+                List<Map<LocalDate, Double>> historicoPeso = new ArrayList<Map<LocalDate, Double>>();
+                Map<LocalDate, Double> primeiroPeso = new HashMap<>();
+                primeiroPeso.put(LocalDate.now(), Double.parseDouble(txtPeso.getText()));
+                historicoPeso.add(primeiroPeso);
+
+                Cattle gado = new Cattle(cattle.getId(),cboAplicacao.getValue(), cboRaca.getValue(), cboSexo.getValue(), txtDataNascimento.getValue(),
+                        historicoPeso, txtDescricao.getText(), txtObservacoes.getText());
+
+                CattleDAO dao = new CattleDAO();
+
+                dao.update(gado);
+                refresh();
+            }
+
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.toString());
+        }
     }
 
     @Override
@@ -185,4 +251,22 @@ public class ViewCattleController implements Initializable {
         }
 
     }
+
+    ValidatorResults validatePeso() {
+        ValidatorResults results;
+
+        try {
+            if (Double.parseDouble(txtPeso.getText()) > 0) {
+                results = new ValidatorResults(true, "");
+                return results;
+            }
+        } catch (Exception e) {
+            results = new ValidatorResults(false, "Não é um valor válido");
+            return results;
+        }
+        results = new ValidatorResults(false, "Peso precisa ser maior que zero");
+        return results;
+
+    }
+
 }
