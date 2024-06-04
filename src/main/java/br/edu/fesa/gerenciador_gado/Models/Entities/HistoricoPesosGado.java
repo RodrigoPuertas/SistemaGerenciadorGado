@@ -17,6 +17,12 @@ public class HistoricoPesosGado {
     private int idGado;
     private double pesoKg;
 
+     public HistoricoPesosGado(LocalDate dataPesagem, int idGado,double pesoKg) {
+        setDataPesagem(dataPesagem);
+        setIdGado(idGado);
+        setPesoKg(pesoKg);
+    }
+    
     public HistoricoPesosGado(int id, LocalDate dataPesagem, int idGado,double pesoKg) {
         setId(id);
         setDataPesagem(dataPesagem);

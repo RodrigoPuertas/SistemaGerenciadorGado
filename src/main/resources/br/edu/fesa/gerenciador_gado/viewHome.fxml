@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewHomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewHomeController">
    <children>
       <Pane layoutX="248.0" prefHeight="600.0" prefWidth="752.0">
          <children>
@@ -20,7 +26,7 @@
             <Label fx:id="lblAlertaPerfil" layoutX="30.0" layoutY="242.0" styleClass="label_AlertaPerfil" />
             <Pane fx:id="paneFARMER" layoutX="7.0" prefHeight="600.0" prefWidth="248.0" styleClass="pane_left">
                <children>
-                  <Button fx:id="btnCattle1" layoutX="9.0" layoutY="202.0" mnemonicParsing="false" onAction="#actionMoveToViewCattle" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Cattle">
+                  <Button fx:id="btnCattle" layoutX="9.0" layoutY="202.0" mnemonicParsing="false" onAction="#actionMoveToViewCattle" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Cattle">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -47,7 +53,15 @@
                      </image>
                   </ImageView>
                   <Label layoutX="9.0" layoutY="578.0" text="Rancher" />
-                  <Button fx:id="btnCattleManagement" layoutX="9.0" layoutY="280.0" mnemonicParsing="false" onAction="#actionMoveToViewCattleMan" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Management">
+                  <Button fx:id="btnCattleManagement" layoutX="9.0" layoutY="354.0" mnemonicParsing="false" onAction="#actionMoveToViewCattleMan" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Management">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnWeight" layoutX="9.0" layoutY="280.0" mnemonicParsing="false" onAction="#actionMoveToViewWeightHistory" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Cattle weighing">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

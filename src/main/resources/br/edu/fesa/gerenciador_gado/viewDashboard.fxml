@@ -15,9 +15,9 @@
         <URL value="@/styles/viewdashboard.css" />
     </stylesheets>
    <children>
-      <Pane layoutX="1.0" prefHeight="600.0" prefWidth="355.0" styleClass="pane_left" stylesheets="@../../../../styles/viewuser.css">
+      <Pane layoutX="1.0" prefHeight="600.0" prefWidth="306.0" styleClass="pane_left" stylesheets="@../../../../styles/viewuser.css">
          <children>
-            <ImageView fitHeight="235.0" fitWidth="350.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="233.0" fitWidth="312.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/img_telaLogin.png" />
                </image>
@@ -25,20 +25,28 @@
             <Button fx:id="btnBack" layoutX="29.0" layoutY="547.0" mnemonicParsing="false" onAction="#actionBack" prefHeight="36.0" prefWidth="96.0" styleClass="button_orange" text="Voltar" />
          </children>
       </Pane>
-      <PieChart fx:id="pieChart" disable="true" labelLineLength="50.0" layoutX="375.0" layoutY="35.0" legendSide="LEFT" prefHeight="211.0" prefWidth="306.0" />
-      <BarChart fx:id="barChart" layoutX="368.0" layoutY="265.0" prefHeight="320.0" prefWidth="619.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" fx:id="xAxis" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis fx:id="yAxis" side="LEFT" />
-        </yAxis>
-      </BarChart>
-      <TableView layoutX="694.0" layoutY="34.0" prefHeight="215.0" prefWidth="291.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
+      <Pane layoutX="698.0" layoutY="25.0" prefHeight="209.0" prefWidth="288.0" styleClass="painel-estilizado">
+         <children>
+            <Label layoutX="14.0" layoutY="36.0" styleClass="titulo" text="Seu patrimônio total hoje é de:" />
+            <Label fx:id="lblPatrimonio" layoutX="30.0" layoutY="77.0" prefHeight="92.0" prefWidth="228.0" styleClass="label-grande-laranja" />
+         </children>
+      </Pane>
+      <Pane layoutX="317.0" layoutY="25.0" prefHeight="209.0" prefWidth="366.0" styleClass="painel-estilizado">
+         <children>
+            <PieChart fx:id="pieChart" disable="true" labelLineLength="50.0" layoutX="9.0" legendSide="LEFT" prefHeight="211.0" prefWidth="346.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="316.0" layoutY="247.0" prefHeight="338.0" prefWidth="673.0" styleClass="painel-estilizado">
+         <children>
+            <BarChart fx:id="barChart" layoutX="6.0" layoutY="14.0" prefHeight="320.0" prefWidth="661.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

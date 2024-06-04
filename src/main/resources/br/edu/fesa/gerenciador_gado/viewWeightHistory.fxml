@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -13,7 +19,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="label_AlertaPerfil" stylesheets="@../../../../styles/viewuser.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewCattleController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="label_AlertaPerfil" stylesheets="@../../../../styles/viewuser.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewWeightHistoryController">
    <children>
       <Pane fx:id="paneLeft" prefHeight="600.0" prefWidth="248.0" styleClass="pane_left">
          <children>
@@ -37,9 +43,9 @@
             </ImageView>
          </children>
       </Pane>
-      <TableView fx:id="tblWeightHistory" layoutX="671.0" layoutY="239.0" onMouseClicked="#actionShowDataWeight" prefHeight="347.0" prefWidth="315.0">
+      <TableView fx:id="tblWeightHistory" layoutX="671.0" layoutY="239.0" onMouseClicked="#preencheCamposPeso" prefHeight="347.0" prefWidth="315.0">
         <columns>
-            <TableColumn fx:id="colunaID" prefWidth="65.0" text="ID" />
+            <TableColumn fx:id="colunaIDHist" prefWidth="65.0" text="ID" />
           <TableColumn fx:id="tblID_Gado" prefWidth="65.0" text="ID_Gado" />
           <TableColumn fx:id="colunaPeso" prefWidth="84.0" text="Peso (Kg)" />
             <TableColumn fx:id="colunaDataPesagem" prefWidth="100.0" text="Data_Pesagem" />
@@ -59,7 +65,7 @@
       <Label layoutX="303.0" layoutY="267.0" styleClass="label_texto" text="Peso (Kg)" />
       <DatePicker fx:id="txtDataPesagem" layoutX="305.0" layoutY="367.0" prefHeight="35.0" prefWidth="300.0" />
       <Label layoutX="305.0" layoutY="345.0" styleClass="label_texto" text="Data de pesagem" />
-      <Button fx:id="btnRegister" layoutX="296.0" layoutY="442.0" mnemonicParsing="false" onAction="#actionMoveToSIngUp" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Register">
+      <Button fx:id="btnRegister" layoutX="296.0" layoutY="442.0" mnemonicParsing="false" onAction="#actionRegister" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Register">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -67,9 +73,9 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TableView fx:id="tblCattle" layoutX="253.0" layoutY="36.0" onMouseClicked="#actionShowDataCattle" prefHeight="175.0" prefWidth="742.0">
+      <TableView fx:id="tblCattle" layoutX="253.0" layoutY="36.0" onMouseClicked="#loadTableHistory" prefHeight="175.0" prefWidth="742.0">
          <columns>
-            <TableColumn fx:id="colunaID1" prefWidth="50.0" text="ID" />
+            <TableColumn fx:id="colunaID" prefWidth="50.0" text="ID" />
             <TableColumn fx:id="colunaRaca" prefWidth="113.0" text="Raça" />
             <TableColumn fx:id="colunaSexo" prefWidth="58.0" text="Sexo" />
             <TableColumn fx:id="colunaDataNascimento" prefWidth="160.0" text="Data de Nascimento" />
@@ -78,7 +84,7 @@
             <TableColumn fx:id="colunaObservacao" prefWidth="142.0" text="Observação" />
          </columns>
       </TableView>
-      <Button fx:id="btnUpdate" layoutX="410.0" layoutY="442.0" mnemonicParsing="false" onAction="#actionMoveToSIngUp" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Update">
+      <Button fx:id="btnUpdate" layoutX="410.0" layoutY="442.0" mnemonicParsing="false" onAction="#actionUpdate" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Update">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -86,7 +92,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnDelete" layoutX="524.0" layoutY="442.0" mnemonicParsing="false" onAction="#actionMoveToSIngUp" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Delete">
+      <Button fx:id="btnDelete" layoutX="524.0" layoutY="442.0" mnemonicParsing="false" onAction="#actionDelete" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Delete">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -94,5 +100,7 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Label fx:id="lblAlertaPeso" layoutX="304.0" layoutY="335.0" styleClass="label_Alerta" />
+      <Label fx:id="lblAlertaDataPesagem" layoutX="311.0" layoutY="402.0" prefHeight="21.0" prefWidth="0.0" styleClass="label_Alerta" />
    </children>
 </AnchorPane>

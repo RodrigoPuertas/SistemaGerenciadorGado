@@ -160,12 +160,10 @@ public class ViewCattleController implements Initializable {
         try {
             Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
             
-            
             txtDataNascimento.setValue(cattle.getDataNascimento());
             cboSexo.setValue(cattle.getGender());
             cboAplicacao.setValue(cattle.getAplication());
             cboRaca.setValue(cattle.getRaca());
-            txtPeso.setText(cattle.getHistoricoPeso().toString());
             txtDescricao.setText(cattle.getDescricao());
             txtObservacoes.setText(cattle.getObservacao());
         } catch (Exception error) {

@@ -48,6 +48,9 @@ public class ViewHomeController implements Initializable {
 
     @FXML
     private Button btnCattle;
+    
+    @FXML
+    private Button btnWeight;
 
     @FXML
     private Label lblAlertaRegistro;
@@ -125,6 +128,15 @@ public class ViewHomeController implements Initializable {
     void actionMoveToViewCattleMan(ActionEvent event) {
         try {
             App.setRoot("viewCattle");
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.getMessage());
+        }
+    }
+    
+    @FXML
+    void actionMoveToViewWeightHistory(ActionEvent event) {
+        try {
+            App.setRoot("viewWeightHistory");
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }

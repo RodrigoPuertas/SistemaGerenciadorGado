@@ -8,6 +8,7 @@ import br.edu.fesa.gerenciador_gado.App;
 import br.edu.fesa.gerenciador_gado.DAO.CattleDAO;
 import br.edu.fesa.gerenciador_gado.DAO.HistoricoPesosGadoDAO;
 import br.edu.fesa.gerenciador_gado.DAO.PriceCattleDAO;
+import br.edu.fesa.gerenciador_gado.Models.BLL.DashboardBll;
 import br.edu.fesa.gerenciador_gado.Models.Entities.Cattle;
 import br.edu.fesa.gerenciador_gado.Models.Entities.HistoricoPesosGado;
 import br.edu.fesa.gerenciador_gado.Models.Entities.PriceCattle;
@@ -25,6 +26,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -42,6 +44,7 @@ public class ViewDashboardController implements Initializable {
             createPieChart();
             createTable();
             createBarChart();
+            createLabelTotalAsset();
         } catch (Exception e) {
 
 
@@ -59,6 +62,9 @@ public class ViewDashboardController implements Initializable {
     private PieChart pieChart;
 
     @FXML
+    private Label lblPatrimonio;
+    
+    @FXML
 
     void actionBack(ActionEvent event) {
         try {
@@ -68,6 +74,12 @@ public class ViewDashboardController implements Initializable {
         }
     }
 
+    private void createLabelTotalAsset(){
+        DashboardBll dashBll = new DashboardBll();
+        lblPatrimonio.setText(dashBll.ReturnTotalAssets());
+    }
+    
+    
     private void createBarChart() throws PersistenceException {
         PriceCattleDAO priceCattleDAO = new PriceCattleDAO();
         HistoricoPesosGadoDAO historicoPesosDAO = new HistoricoPesosGadoDAO();
