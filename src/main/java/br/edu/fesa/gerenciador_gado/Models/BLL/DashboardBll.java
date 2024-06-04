@@ -50,8 +50,8 @@ public class DashboardBll {
                     valorTexto = valorTexto.replace(",", ".");
                     double valor = Double.parseDouble(valorTexto);
                     double valorArroba = 14.688;
-                    double pesoTotal = cattleDao.GetTotalPoundFromCattle();
-                    String valorTotal = String.format("%.2f", (pesoTotal / valorArroba) * valor);
+                    //double pesoTotal = cattleDao.GetTotalPoundFromCattle();
+                    //String valorTotal = String.format("%.2f", (pesoTotal / valorArroba) * valor);
                     String patrimonioTotal = "Seu patrimônio no dia de hoje é: R$ " + valorTotal;
                 } else {
                     System.out.println("Valor não encontrado.");

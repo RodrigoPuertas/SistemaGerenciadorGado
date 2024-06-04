@@ -159,6 +159,8 @@ public class ViewCattleController implements Initializable {
     void actionShowData(MouseEvent event) {
         try {
             Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
+            
+            
             txtDataNascimento.setValue(cattle.getDataNascimento());
             cboSexo.setValue(cattle.getGender());
             cboAplicacao.setValue(cattle.getAplication());
