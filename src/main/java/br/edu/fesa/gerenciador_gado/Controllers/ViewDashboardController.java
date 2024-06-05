@@ -104,13 +104,16 @@ public class ViewDashboardController implements Initializable {
         long qtdCorte = listCattle.stream().filter(c -> c.getAplication().getValue() == "Corte").count();
         long qtdMisto = listCattle.stream().filter(c -> c.getAplication().getValue() == "Misto").count();
         long qtdLeiteiro = listCattle.stream().filter(c -> c.getAplication().getValue() == "Leiteiro").count();
+        long qtdReprodutor = listCattle.stream().filter(c -> c.getAplication().getValue() == "Reprodução").count();
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
                         new PieChart.Data("BEEF", qtdCorte),
                         new PieChart.Data("MIXED", qtdMisto),
-                        new PieChart.Data("MILKING", qtdLeiteiro));
+                        new PieChart.Data("MILKING", qtdLeiteiro),
+                        new PieChart.Data("BREEDING", qtdReprodutor));
+                        
         final PieChart chart = new PieChart(pieChartData);
-        chart.setTitle("Imported Fruits");
+        
 
         pieChart.setData(pieChartData);
         pieChart.setClockwise(true);

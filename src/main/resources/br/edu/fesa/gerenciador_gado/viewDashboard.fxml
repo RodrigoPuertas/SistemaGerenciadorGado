@@ -33,7 +33,7 @@
       </Pane>
       <Pane layoutX="675.0" layoutY="12.0" prefHeight="227.0" prefWidth="312.0" styleClass="painel-estilizado">
          <children>
-            <Label fx:id="lblPatrimonio" layoutX="42.0" layoutY="77.0" prefHeight="92.0" prefWidth="228.0" styleClass="label-grande-laranja" />
+            <Label fx:id="lblPatrimonio" layoutX="3.0" layoutY="77.0" prefHeight="92.0" prefWidth="312.0" styleClass="label-grande-laranja" />
             <Label layoutX="42.0" layoutY="14.0" styleClass="titulo" text="Your total assets today are:" />
          </children>
       </Pane>

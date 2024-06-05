@@ -13,6 +13,7 @@ public enum CattleAplicationEnum {
     Corte("Corte"),
     Leiteiro("Leiteiro"),
     Mista("Misto"),
+    Reproducao("Reprodução"),
     None("None");
 
     private final String aplicacaoValue;
