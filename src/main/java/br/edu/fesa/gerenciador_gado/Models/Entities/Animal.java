@@ -20,7 +20,6 @@ public class Animal {
     private Integer id;
     private GenderEnum gender;
     private LocalDate dataNascimento;
-    private List<Map<LocalDate, Double>> historicoPeso = new ArrayList();
     private String descricao;
     private String observacao;
 
@@ -64,12 +63,5 @@ public class Animal {
         this.dataNascimento = dataNascimento;
     }
 
-    public List<Map<LocalDate, Double>> getHistoricoPeso() {
-        return historicoPeso;
-    }
-
-    public void setHistoricoPeso(List<Map<LocalDate, Double>> historicoPeso) {
-        this.historicoPeso = historicoPeso;
-    }
 
 }

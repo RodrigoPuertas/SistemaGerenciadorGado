@@ -114,23 +114,17 @@ public class ViewSingUpCattleController implements Initializable {
 
             if (resultsAplicacao.isIsValid() && resultsDataNascimento.isIsValid() && resultsPeso.isIsValid()
                     && validatePeso().isIsValid() && resultsRaca.isIsValid() && resultsSexo.isIsValid()) {
-                List<Map<LocalDate, Double>> historicoPeso = new ArrayList<Map<LocalDate, Double>>();
-                
-                Map<LocalDate, Double> primeiroPeso = new HashMap<>();
-                primeiroPeso.put(LocalDate.now(), Double.parseDouble(txtPeso.getText()));
-                historicoPeso.add(primeiroPeso);
-
                 Cattle gado = new Cattle(cboAplicacao.getValue(), cboRaca.getValue(), cboSexo.getValue(), txtDataNascimento.getValue(),
-                        historicoPeso, txtDescricao.getText(), txtObservacoes.getText());
+                        txtDescricao.getText(), txtObservacoes.getText());
 
                 CattleDAO dao = new CattleDAO();
                 dao.insert(gado);
 
                 ControllerHelper.alertSucessGeneric("Gado inserido no banco de dados");
-                
+
                 Cattle gadoHistorico = dao.lastCattle();
                 HistoricoPesosGado peso = new HistoricoPesosGado(gadoHistorico.getDataNascimento(), gadoHistorico.getId(), Double.parseDouble(txtPeso.getText()));
-                
+
                 HistoricoPesosGadoDAO pesosDAO = new HistoricoPesosGadoDAO();
                 pesosDAO.insert(peso);
             }

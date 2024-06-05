@@ -91,19 +91,7 @@ public class ViewCattleController implements Initializable {
     private Label lblAlertaAplicacao;
 
     @FXML
-    private Label lblAlertaEmail;
-
-    @FXML
     private Label lblAlertaNascimento;
-
-    @FXML
-    private Label lblAlertaNome;
-
-    @FXML
-    private Label lblAlertaPerfil;
-
-    @FXML
-    private Label lblAlertaPeso;
 
     @FXML
     private Label lblAlertaRaca;
@@ -125,9 +113,6 @@ public class ViewCattleController implements Initializable {
 
     @FXML
     private TextArea txtObservacoes;
-
-    @FXML
-    private TextField txtPeso;
 
     @FXML
     void actionBack(ActionEvent event) {
@@ -183,25 +168,19 @@ public class ViewCattleController implements Initializable {
             ValidatorResults resultSexo = ValidatorFields.ValidateIsEmpty(cboSexo);
             ValidatorResults resultAplicacao = ValidatorFields.ValidateIsEmpty(cboAplicacao);
             ValidatorResults resultRaca = ValidatorFields.ValidateIsEmpty(cboRaca);
-            ValidatorResults resultPeso = ValidatorFields.ValidateIsEmpty(txtPeso);
 
             lblAlertaNascimento.setText(resultNascimento.getErrorMessage());
             lblAlertaSexo.setText(resultSexo.getErrorMessage());
             lblAlertaAplicacao.setText(resultAplicacao.getErrorMessage());
             lblAlertaRaca.setText(resultRaca.getErrorMessage());
-            lblAlertaPeso.setText(resultPeso.getErrorMessage());
 
             Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
 
-            if (resultNascimento.isIsValid() && resultAplicacao.isIsValid() && resultPeso.isIsValid()
-                    && validatePeso().isIsValid() && resultRaca.isIsValid() && resultSexo.isIsValid()) {
-                List<Map<LocalDate, Double>> historicoPeso = new ArrayList<Map<LocalDate, Double>>();
-                Map<LocalDate, Double> primeiroPeso = new HashMap<>();
-                primeiroPeso.put(LocalDate.now(), Double.parseDouble(txtPeso.getText()));
-                historicoPeso.add(primeiroPeso);
+            if (resultNascimento.isIsValid() && resultAplicacao.isIsValid() 
+                    && resultRaca.isIsValid() && resultSexo.isIsValid()) {
 
                 Cattle gado = new Cattle(cattle.getId(), cboAplicacao.getValue(), cboRaca.getValue(), cboSexo.getValue(), txtDataNascimento.getValue(),
-                        historicoPeso, txtDescricao.getText(), txtObservacoes.getText());
+                        txtDescricao.getText(), txtObservacoes.getText());
 
                 CattleDAO dao = new CattleDAO();
 
@@ -255,7 +234,7 @@ public class ViewCattleController implements Initializable {
         }
 
     }
-
+/*
     ValidatorResults validatePeso() {
         ValidatorResults results;
 
@@ -271,6 +250,6 @@ public class ViewCattleController implements Initializable {
         results = new ValidatorResults(false, "Peso precisa ser maior que zero");
         return results;
 
-    }
+    }*/
 
 }

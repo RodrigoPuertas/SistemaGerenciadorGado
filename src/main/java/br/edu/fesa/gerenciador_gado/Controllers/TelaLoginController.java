@@ -85,7 +85,7 @@ public class TelaLoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        txtEmail.setText("082210017@faculdade.cefsa.edu.br");
-        txtSenha.setText("1234");
+        //txtEmail.setText("082210017@faculdade.cefsa.edu.br");
+        //txtSenha.setText("1234");
     }   
 }

@@ -15,8 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+
 
 /**
  * FXML Controller class
@@ -63,6 +63,10 @@ public class ViewHomeController implements Initializable {
 
     @FXML
     private Pane paneRANCHER;
+    
+    @FXML
+    private Pane paneNews;
+    
 
     @FXML
     void actionLogOut(ActionEvent event) {
@@ -142,8 +146,8 @@ public class ViewHomeController implements Initializable {
 
         if (profile.getValue() == 1) {
             paneADM.setVisible(true);
-            paneFARMER.setVisible(true);
-            paneRANCHER.setVisible(true);
+            paneFARMER.setVisible(false);
+            paneRANCHER.setVisible(false);
         }
         if (profile.getValue() == 2) {
             paneADM.setVisible(false);
@@ -155,7 +159,6 @@ public class ViewHomeController implements Initializable {
             paneFARMER.setVisible(false);
             paneRANCHER.setVisible(true);
         }
-
     }
 
 }

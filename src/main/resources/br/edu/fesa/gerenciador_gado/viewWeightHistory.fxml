@@ -94,7 +94,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="lblAlertaPeso" layoutX="304.0" layoutY="330.0" prefHeight="17.0" prefWidth="300.0" styleClass="label_AlertaEmail" text="Label" />
-      <Label fx:id="lblAlertaDataPesagem" layoutX="307.0" layoutY="411.0" prefHeight="21.0" prefWidth="300.0" styleClass="label_AlertaEmail" text="Label" />
+      <Label fx:id="lblAlertaPeso" layoutX="304.0" layoutY="330.0" prefHeight="17.0" prefWidth="300.0" styleClass="label_AlertaEmail" />
+      <Label fx:id="lblAlertaDataPesagem" layoutX="307.0" layoutY="411.0" prefHeight="21.0" prefWidth="300.0" styleClass="label_AlertaEmail" />
    </children>
 </AnchorPane>

@@ -49,9 +49,6 @@
             </ImageView>
          </children>
       </Pane>
-      <Label fx:id="lblAlertaNome" layoutX="310.0" layoutY="418.0" styleClass="label_AlertaPerfil" />
-      <Label fx:id="lblAlertaEmail" layoutX="315.0" layoutY="429.0" styleClass="label_AlertaEmail" />
-      <Label fx:id="lblAlertaPerfil" layoutX="668.0" layoutY="363.0" styleClass="label_AlertaPerfil" />
       <ComboBox fx:id="cboAplicacao" layoutX="635.0" layoutY="367.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
       <Label layoutX="635.0" layoutY="341.0" styleClass="label_texto" text="Application" />
       <ComboBox fx:id="cboSexo" layoutX="316.0" layoutY="368.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
@@ -64,10 +61,10 @@
       <TextArea fx:id="txtObservacoes" layoutX="636.0" layoutY="449.0" prefHeight="65.0" prefWidth="300.0" />
       <ComboBox fx:id="cboRaca" layoutX="635.0" layoutY="288.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
       <Label layoutX="635.0" layoutY="267.0" prefHeight="20.0" prefWidth="70.0" styleClass="label_texto" text="Breed" />
-      <Label fx:id="lblAlertaNascimento" layoutX="315.0" layoutY="303.0" styleClass="label_AlertaEmail" />
-      <Label fx:id="lblAlertaSexo" layoutX="315.0" layoutY="382.0" styleClass="label_AlertaEmail" />
-      <Label fx:id="lblAlertaAplicacao" layoutX="635.0" layoutY="382.0" styleClass="label_AlertaEmail" />
-      <Label fx:id="lblAlertaRaca" layoutX="319.0" layoutY="386.0" styleClass="label_AlertaEmail" />
+      <Label fx:id="lblAlertaNascimento" layoutX="315.0" layoutY="323.0" prefHeight="17.0" prefWidth="147.0" styleClass="label_AlertaEmail" />
+      <Label fx:id="lblAlertaSexo" layoutX="315.0" layoutY="403.0" prefHeight="17.0" prefWidth="140.0" styleClass="label_AlertaEmail" />
+      <Label fx:id="lblAlertaAplicacao" layoutX="634.0" layoutY="403.0" prefHeight="17.0" prefWidth="160.0" styleClass="label_AlertaEmail" />
+      <Label fx:id="lblAlertaRaca" layoutX="636.0" layoutY="323.0" prefHeight="17.0" prefWidth="213.0" styleClass="label_AlertaEmail" />
       <Button fx:id="btnUpdate" layoutX="580.0" layoutY="537.0" mnemonicParsing="false" onAction="#actionUpdate" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Update">
          <cursor>
             <Cursor fx:constant="HAND" />
