@@ -88,10 +88,10 @@ public class ViewDashboardController implements Initializable {
         HistoricoPesosGado historicoPesos = historicoPesosDAO.listGrouped();
 
         XYChart.Series series1 = new XYChart.Series();
-        series1.setName("Patrimônio");
-
+        series1.setName("Assets");
+        final double valorArroba = 14.688;
         for (PriceCattle priceCattle : listPriceCattle) {
-            series1.getData().add(new XYChart.Data(priceCattle.getDtPrice().toString(), priceCattle.getPrice() * historicoPesos.getPesoKg()));
+            series1.getData().add(new XYChart.Data(priceCattle.getDtPrice().toString(), (priceCattle.getPrice() * historicoPesos.getPesoKg()) / valorArroba));
         }
 
         barChart.getData().addAll(series1);
@@ -106,9 +106,9 @@ public class ViewDashboardController implements Initializable {
         long qtdLeiteiro = listCattle.stream().filter(c -> c.getAplication().getValue() == "Leiteiro").count();
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
-                        new PieChart.Data("Corte", qtdCorte),
-                        new PieChart.Data("Misto", qtdMisto),
-                        new PieChart.Data("Leiteiro", qtdLeiteiro));
+                        new PieChart.Data("BEEF", qtdCorte),
+                        new PieChart.Data("MIXED", qtdMisto),
+                        new PieChart.Data("MILKING", qtdLeiteiro));
         final PieChart chart = new PieChart(pieChartData);
         chart.setTitle("Imported Fruits");
 

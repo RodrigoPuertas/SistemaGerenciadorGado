@@ -16,8 +16,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import java.awt.Desktop;
 
 /**
  * FXML Controller class
@@ -57,19 +60,31 @@ public class ViewHomeController implements Initializable {
     private Button btnWeight;
 
     @FXML
+    private Hyperlink hyperlinkNews1;
+
+    @FXML
+    private Hyperlink hyperlinkNews2;
+
+    @FXML
+    private ImageView imageNews1;
+
+    @FXML
+    private ImageView imageNews11;
+
+    @FXML
+    private Label lblPreco;
+
+    @FXML
     private Pane paneADM;
 
     @FXML
     private Pane paneFARMER;
 
     @FXML
-    private Pane paneRANCHER;
+    private Pane paneNews;
 
     @FXML
-    private Pane paneNews;
-    
-    @FXML
-    private Label lblPreco;
+    private Pane paneRANCHER;
 
     @FXML
     void actionLogOut(ActionEvent event) {
@@ -140,6 +155,26 @@ public class ViewHomeController implements Initializable {
         }
     }
 
+    @FXML
+    void actionNews1(ActionEvent event) {
+        try {
+            Desktop desktop = Desktop.getDesktop();
+            desktop.browse(java.net.URI.create("https://globorural.globo.com/pecuaria/boi/noticia/2024/06/vaca-da-raca-tabapua-passa-a-valer-mais-de-r-2-milhoes-depois-de-leilao.ghtml"));
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.getMessage());
+        }
+    }
+
+    @FXML
+    void actionNews2(ActionEvent event) {
+        try {
+            Desktop desktop = Desktop.getDesktop();
+            desktop.browse(java.net.URI.create("https://globorural.globo.com/pecuaria/boi/noticia/2024/06/cai-a-cotacao-do-boi-china-nas-pracas-paulistas.ghtml"));
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.getMessage());
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         UserSession userSession = UserSession.getInstance();
@@ -162,12 +197,10 @@ public class ViewHomeController implements Initializable {
             paneFARMER.setVisible(false);
             paneRANCHER.setVisible(true);
         }
-        
-        
+
         DashboardBll valor = new DashboardBll();
-        
-        lblPreco.setText(lblPreco.getText() + valor.valorArroba()); 
-        
+
+        lblPreco.setText(lblPreco.getText() + valor.valorArroba());
     }
 
 }

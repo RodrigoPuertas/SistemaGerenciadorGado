@@ -147,6 +147,7 @@ public class ViewWeightHistoryController implements Initializable {
                     HistoricoPesosGadoDAO histPesosDao = new HistoricoPesosGadoDAO();
                     histPesosDao.insert(pesoGado);
                     refresh(cattle.getId());
+                    cleanFields();
                 }
 
             } else {
@@ -186,8 +187,9 @@ public class ViewWeightHistoryController implements Initializable {
                     histSelected.setPesoKg(Double.parseDouble(txtPeso.getText()));
                     histPesosDao.update(histSelected);
                 }
-                
+
                 refresh(cattle.getId());
+                cleanFields();
 
             } else {
                 ControllerHelper.alertWarningGeneric("Selecione um peso para atualizar!");
@@ -218,6 +220,7 @@ public class ViewWeightHistoryController implements Initializable {
             }
 
             refresh(histSelected.getIdGado());
+            cleanFields();
 
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
@@ -309,6 +312,11 @@ public class ViewWeightHistoryController implements Initializable {
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
+    }
+
+    public void cleanFields() {
+        txtDataPesagem.setValue(null);
+        txtPeso.setText("");
     }
 
 }

@@ -130,6 +130,7 @@ public class ViewCattleController implements Initializable {
             CattleDAO dao = new CattleDAO();
             dao.remove(cattle);
             refresh();
+            cleanFields();
         } catch (PersistenceException error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
@@ -176,7 +177,7 @@ public class ViewCattleController implements Initializable {
 
             Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
 
-            if (resultNascimento.isIsValid() && resultAplicacao.isIsValid() 
+            if (resultNascimento.isIsValid() && resultAplicacao.isIsValid()
                     && resultRaca.isIsValid() && resultSexo.isIsValid()) {
 
                 Cattle gado = new Cattle(cattle.getId(), cboAplicacao.getValue(), cboRaca.getValue(), cboSexo.getValue(), txtDataNascimento.getValue(),
@@ -186,6 +187,7 @@ public class ViewCattleController implements Initializable {
 
                 dao.update(gado);
                 refresh();
+                cleanFields();
             }
 
         } catch (Exception error) {
@@ -234,22 +236,14 @@ public class ViewCattleController implements Initializable {
         }
 
     }
-/*
-    ValidatorResults validatePeso() {
-        ValidatorResults results;
 
-        try {
-            if (Double.parseDouble(txtPeso.getText()) > 0) {
-                results = new ValidatorResults(true, "");
-                return results;
-            }
-        } catch (Exception e) {
-            results = new ValidatorResults(false, "Não é um valor válido");
-            return results;
-        }
-        results = new ValidatorResults(false, "Peso precisa ser maior que zero");
-        return results;
-
-    }*/
+    public void cleanFields() {
+        txtDataNascimento.setValue(null);
+        cboAplicacao.setValue(null);
+        cboRaca.setValue(null);
+        cboSexo.setValue(null);
+        txtDescricao.setText("");
+        txtObservacoes.setText("");
+    }
 
 }

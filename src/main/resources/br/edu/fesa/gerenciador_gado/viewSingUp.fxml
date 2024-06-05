@@ -20,7 +20,10 @@
                   <Image url="@images/img_telaLogin.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnBack" layoutX="204.0" layoutY="550.0" mnemonicParsing="false" onAction="#actionBack" prefHeight="36.0" prefWidth="118.0" styleClass="button_orange" text="Home Page" />
+            <Button fx:id="btnBack" layoutX="204.0" layoutY="550.0" mnemonicParsing="false" onAction="#actionBack" prefHeight="36.0" prefWidth="118.0" styleClass="button_orange" text="Home Page">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </Pane>
       <Pane layoutX="350.0" prefHeight="600.0" prefWidth="650.0">

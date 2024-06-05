@@ -59,10 +59,10 @@ public class CattleDAO implements GenericDAO<Cattle> {
 
             //Exception para ver se há duas pks iguais
             if (ex instanceof SQLIntegrityConstraintViolationException) {
-                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CattleDAO.class.getName()).log(Level.SEVERE, null, ex);
                 throw new PersistenceException("Gado já cadastrado", ex);
             } else {
-                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CattleDAO.class.getName()).log(Level.SEVERE, null, ex);
                 throw new PersistenceException("Error while inserting cattle", ex);
             }
         }
@@ -82,10 +82,12 @@ public class CattleDAO implements GenericDAO<Cattle> {
             statement.setInt(7, cattle.getId());
 
             statement.executeUpdate();
+
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            throw new PersistenceException("Error while updating user", ex);
+            Logger.getLogger(CattleDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new PersistenceException("Error while updating cattle", ex);
         }
+
     }
 
     @Override
@@ -94,34 +96,33 @@ public class CattleDAO implements GenericDAO<Cattle> {
             statement.setInt(1, cattle.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CattleDAO.class.getName()).log(Level.SEVERE, null, ex);
             throw new PersistenceException("Error while removing cattle", ex);
         }
     }
 
-public Cattle lastCattle() throws PersistenceException {
-    try (Connection connection = ConnectionDAO.getConnectionDAO().getConnection();
-         PreparedStatement statement = connection.prepareStatement(
-                "SELECT * FROM gado ORDER BY id DESC LIMIT 1");
-         ResultSet resultSet = statement.executeQuery()) {
+    public Cattle lastCattle() throws PersistenceException {
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement(
+                "SELECT * FROM gado ORDER BY id DESC LIMIT 1");  ResultSet resultSet = statement.executeQuery()) {
 
-        if (resultSet.next()) {
-            return new Cattle(
-                resultSet.getInt("ID"),
-                CattleAplicationEnum.fromValue(resultSet.getString("Aplicacao")),
-                RacaGadoEnum.fromValue(resultSet.getString("Raca")),
-                GenderEnum.fromString(resultSet.getString("Sexo")),
-                resultSet.getDate("Data_Nascimento").toLocalDate(),
-                resultSet.getString("Descricao"),
-                resultSet.getString("Observacoes")
-            );
-        } else {
-            throw new PersistenceException("No cattle found in the database.");
+            if (resultSet.next()) {
+                return new Cattle(
+                        resultSet.getInt("ID"),
+                        CattleAplicationEnum.fromValue(resultSet.getString("Aplicacao")),
+                        RacaGadoEnum.fromValue(resultSet.getString("Raca")),
+                        GenderEnum.fromString(resultSet.getString("Sexo")),
+                        resultSet.getDate("Data_Nascimento").toLocalDate(),
+                        resultSet.getString("Descricao"),
+                        resultSet.getString("Observacoes")
+                );
+            } else {
+                throw new PersistenceException("No cattle found in the database.");
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException("Error accessing the database.", e);
         }
-    } catch (SQLException e) {
-        throw new PersistenceException("Error accessing the database.", e);
     }
-}
 
 
+    
 }

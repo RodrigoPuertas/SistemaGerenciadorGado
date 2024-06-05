@@ -41,10 +41,20 @@ public class HistoricoPesosGadoDAO implements GenericDAO<HistoricoPesosGado> {
 
     public HistoricoPesosGado listGrouped() throws PersistenceException {
         List<HistoricoPesosGado> pesos = new ArrayList<>();
-        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement("SELECT Data_Pesagem, sum(Peso_kg) as Peso_kg FROM historicopesosgado INNER JOIN gado ON historicopesosgado.ID_Gado = Gado.ID WHERE Gado.Aplicacao = 'Corte' OR Gado.Aplicacao = 'Misto' GROUP BY Data_Pesagem ORDER BY Data_Pesagem DESC LIMIT 1");  ResultSet resultSet = statement.executeQuery()) {
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement(
+                "SELECT SUM(peso_kg) AS soma_ultimas_pesagens\n"
+                + "                       FROM (\n"
+                + "                       SELECT id_gado, peso_kg\n"
+                + "    FROM historicopesosgado AS t1 inner join gado on t1.ID_Gado = gado.ID\n"
+                + "    WHERE data_pesagem = (\n"
+                + "        SELECT MAX(data_pesagem)\n"
+                + "        FROM historicopesosgado AS t2\n"
+                + "        WHERE (t1.id_gado = t2.id_gado) and (gado.aplicacao = 'Corte' or gado.aplicacao = 'Misto')\n"
+                + "                        )\n"
+                + "                       ) AS ultimas_pesagens");  ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                pesos.add(new HistoricoPesosGado(0, resultSet.getDate("Data_Pesagem").toLocalDate(), 0, resultSet.getDouble("Peso_kg")));
+                pesos.add(new HistoricoPesosGado(0, null, 0, resultSet.getDouble("soma_ultimas_pesagens")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,35 +115,32 @@ public class HistoricoPesosGadoDAO implements GenericDAO<HistoricoPesosGado> {
             throw new PersistenceException("Error while removing cattle", ex);
         }
     }
-    
-    public double GetTotalPoundFromCattle() throws PersistenceException
-    {
-        String query = "SELECT SUM(peso_kg) AS soma_ultimas_pesagens\n" +
-                       "FROM (\n" +
-                       "    SELECT id_gado, peso_kg\n" +
-                       "    FROM historicopesosgado AS t1\n" +
-                       "    WHERE data_pesagem = (\n" +
-                       "        SELECT MAX(data_pesagem)\n" +
-                       "        FROM historicopesosgado AS t2\n" +
-                       "        WHERE t1.id_gado = t2.id_gado\n" +
-                       "    )\n" +
-                       ") AS ultimas_pesagens";
+
+    public double GetTotalPoundFromCattle() throws PersistenceException {
+        String query = "SELECT SUM(peso_kg) AS soma_ultimas_pesagens\n"
+                + "FROM (\n"
+                + "    SELECT id_gado, peso_kg\n"
+                + "    FROM historicopesosgado AS t1\n"
+                + "    WHERE data_pesagem = (\n"
+                + "        SELECT MAX(data_pesagem)\n"
+                + "        FROM historicopesosgado AS t2\n"
+                + "        WHERE t1.id_gado = t2.id_gado\n"
+                + "    )\n"
+                + ") AS ultimas_pesagens";
         double value = 0;
-        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();
-              PreparedStatement statement = connection.prepareStatement(query);
-              ResultSet resultSet = statement.executeQuery()) {
-           
-             while (resultSet.next()) {
-                 value += resultSet.getDouble("soma_ultimas_pesagens");
-             }
-             
-             return value;
+        try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement(query);  ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                value += resultSet.getDouble("soma_ultimas_pesagens");
+            }
+
+            return value;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             throw new PersistenceException("Error while removing cattle", ex);
         }
     }
-    
+
     public List<HistoricoPesosGado> listByIdGado(int idGado) throws PersistenceException {
         List<HistoricoPesosGado> pesos = new ArrayList<>();
         try ( Connection connection = ConnectionDAO.getConnectionDAO().getConnection();  PreparedStatement statement = connection.prepareStatement(

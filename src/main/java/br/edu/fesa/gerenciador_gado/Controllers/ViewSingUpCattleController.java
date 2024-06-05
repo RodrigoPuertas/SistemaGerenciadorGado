@@ -127,6 +127,7 @@ public class ViewSingUpCattleController implements Initializable {
 
                 HistoricoPesosGadoDAO pesosDAO = new HistoricoPesosGadoDAO();
                 pesosDAO.insert(peso);
+                cleanFields();
             }
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.toString());
@@ -159,6 +160,16 @@ public class ViewSingUpCattleController implements Initializable {
         results = new ValidatorResults(false, "Peso precisa ser maior que zero");
         return results;
 
+    }
+
+    public void cleanFields() {
+        txtDataNascimento.setValue(null);
+        cboAplicacao.setValue(null);
+        cboRaca.setValue(null);
+        cboSexo.setValue(null);
+        txtDescricao.setText("");
+        txtObservacoes.setText("");
+        txtPeso.setText("");
     }
 
 }
