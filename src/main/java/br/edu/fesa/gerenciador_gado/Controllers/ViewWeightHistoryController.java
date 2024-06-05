@@ -71,7 +71,6 @@ public class ViewWeightHistoryController implements Initializable {
     @FXML
     private TableColumn<Cattle, String> colunaObservacao;
 
-
     @FXML
     private TableColumn<Cattle, RacaGadoEnum> colunaRaca;
 
@@ -86,16 +85,16 @@ public class ViewWeightHistoryController implements Initializable {
 
     @FXML
     private TableView<HistoricoPesosGado> tblWeightHistory;
-    
+
     @FXML
     private TableColumn<HistoricoPesosGado, Integer> tblID_Gado;
-    
+
     @FXML
     private TableColumn<HistoricoPesosGado, Double> colunaPeso;
-    
+
     @FXML
     private TableColumn<HistoricoPesosGado, LocalDate> colunaDataPesagem;
-    
+
     @FXML
     private TableColumn<HistoricoPesosGado, Integer> colunaIDHist;
 
@@ -104,7 +103,7 @@ public class ViewWeightHistoryController implements Initializable {
 
     @FXML
     private TextField txtPeso;
-    
+
     @FXML
     private Label lblAlertaPeso;
 
@@ -122,65 +121,85 @@ public class ViewWeightHistoryController implements Initializable {
 
     @FXML
     void actionRegister(ActionEvent event) {
-        try{
+        try {
             Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
-            if(cattle.getId() != 0 && cattle.getId() != null)
-            {
+
+            if (cattle.getId() != 0 && cattle.getId() != null) {
                 ValidatorResults resultPeso = ValidatorFields.ValidateIsEmpty(txtPeso);
+
+                if (resultPeso.isIsValid()) {
+                    resultPeso = validatePeso(Double.parseDouble(txtPeso.getText()));
+                }
+
                 ValidatorResults resultDataPesagem = ValidatorFields.ValidateIsEmpty(txtDataPesagem);
 
-                lblAlertaDataPesagem.setText(resultPeso.getErrorMessage());
-                lblAlertaPeso.setText(resultDataPesagem.getErrorMessage());
+                if (resultDataPesagem.isIsValid()) {
+                    resultDataPesagem = validateDate(txtDataPesagem.getValue(), cattle.getDataNascimento());
+                }
 
-                if (resultPeso.isIsValid() && resultDataPesagem.isIsValid()){
+                lblAlertaDataPesagem.setText(resultDataPesagem.getErrorMessage());
+                lblAlertaPeso.setText(resultPeso.getErrorMessage());
+
+                if (resultPeso.isIsValid() && resultDataPesagem.isIsValid()) {
                     var dataPesagem = txtDataPesagem.getValue();
                     var peso = Double.parseDouble(txtPeso.getText());
                     HistoricoPesosGado pesoGado = new HistoricoPesosGado(dataPesagem, cattle.getId(), peso);
                     HistoricoPesosGadoDAO histPesosDao = new HistoricoPesosGadoDAO();
                     histPesosDao.insert(pesoGado);
-                }               
+                    refresh(cattle.getId());
+                }
+
+            } else {
+                ControllerHelper.alertWarningGeneric("Selecione um gado para adicionar o peso!");
             }
-            else{
-               ControllerHelper.alertWarningGeneric("Selecione um gado para adicionar o peso!"); 
-            }
-            
-        }catch(Exception error){
+
+        } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
     }
 
     @FXML
     void actionUpdate(ActionEvent event) {
-        try{
+        try {
             HistoricoPesosGado histSelected = tblWeightHistory.getSelectionModel().getSelectedItem();
-            
-            if(histSelected != null){
-                
+            Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
+            if (histSelected != null) {
+
                 ValidatorResults resultPeso = ValidatorFields.ValidateIsEmpty(txtPeso);
+
+                if (resultPeso.isIsValid()) {
+                    resultPeso = validatePeso(Double.parseDouble(txtPeso.getText()));
+                }
+
                 ValidatorResults resultDataPesagem = ValidatorFields.ValidateIsEmpty(txtDataPesagem);
 
-                lblAlertaDataPesagem.setText(resultPeso.getErrorMessage());
-                lblAlertaPeso.setText(resultDataPesagem.getErrorMessage());
+                if (resultDataPesagem.isIsValid()) {
+                    resultDataPesagem = validateDate(txtDataPesagem.getValue(), cattle.getDataNascimento());
+                }
 
-                if (resultPeso.isIsValid() && resultDataPesagem.isIsValid()){
+                lblAlertaDataPesagem.setText(resultDataPesagem.getErrorMessage());
+                lblAlertaPeso.setText(resultPeso.getErrorMessage());
+
+                if (resultPeso.isIsValid() && resultDataPesagem.isIsValid()) {
                     HistoricoPesosGadoDAO histPesosDao = new HistoricoPesosGadoDAO();
                     histSelected.setDataPesagem(txtDataPesagem.getValue());
                     histSelected.setPesoKg(Double.parseDouble(txtPeso.getText()));
                     histPesosDao.update(histSelected);
-                }               
+                }
+                
+                refresh(cattle.getId());
+
+            } else {
+                ControllerHelper.alertWarningGeneric("Selecione um peso para atualizar!");
             }
-            else{
-               ControllerHelper.alertWarningGeneric("Selecione um peso para atualizar!"); 
-            }
-            
-            
-        }catch(Exception error){
+
+        } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
-    }   
-    
+    }
+
     @FXML
-    void preencheCamposPeso(){
+    void preencheCamposPeso() {
         HistoricoPesosGado histSelected = tblWeightHistory.getSelectionModel().getSelectedItem();
         txtDataPesagem.setValue(histSelected.getDataPesagem());
         txtPeso.setText(String.valueOf(histSelected.getPesoKg()));
@@ -188,17 +207,19 @@ public class ViewWeightHistoryController implements Initializable {
 
     @FXML
     void actionDelete(ActionEvent event) {
-        try{
-        HistoricoPesosGado histSelected = tblWeightHistory.getSelectionModel().getSelectedItem();
-        
-        if(histSelected != null ){
-            HistoricoPesosGadoDAO histPesosDao = new HistoricoPesosGadoDAO();
-            histPesosDao.remove(histSelected);
-        }
-        else{
-               ControllerHelper.alertWarningGeneric("Selecione um peso para remover!");
-        }
-        }catch(Exception error){
+        try {
+            HistoricoPesosGado histSelected = tblWeightHistory.getSelectionModel().getSelectedItem();
+
+            if (histSelected != null) {
+                HistoricoPesosGadoDAO histPesosDao = new HistoricoPesosGadoDAO();
+                histPesosDao.remove(histSelected);
+            } else {
+                ControllerHelper.alertWarningGeneric("Selecione um peso para remover!");
+            }
+
+            refresh(histSelected.getIdGado());
+
+        } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
     }
@@ -207,7 +228,7 @@ public class ViewWeightHistoryController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         createTable();
     }
-    
+
     private void createTable() {
         try {
             colunaID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -217,10 +238,10 @@ public class ViewWeightHistoryController implements Initializable {
             colunaAplicacao.setCellValueFactory(new PropertyValueFactory<>("aplication"));
             colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
             colunaObservacao.setCellValueFactory(new PropertyValueFactory<>("observacao"));
-            
-            tblCattle.getColumns().clear(); 
+
+            tblCattle.getColumns().clear();
             tblCattle.getColumns().addAll(colunaID, colunaRaca, colunaSexo, colunaDataNascimento, colunaAplicacao, colunaDescricao, colunaObservacao);
-          
+
             CattleDAO dao = new CattleDAO();
             ObservableList<Cattle> cattle = FXCollections.observableArrayList(dao.list());
 
@@ -229,34 +250,65 @@ public class ViewWeightHistoryController implements Initializable {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
     }
-    
+
     @FXML
     private void loadTableHistory(MouseEvent event) {
-    try {
-        Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
-        HistoricoPesosGadoDAO histPesosDao = new HistoricoPesosGadoDAO();
-        
-        List<HistoricoPesosGado> listaHistorico = histPesosDao.listByIdGado(cattle.getId());
-        
-        // Limpa as colunas da tabela antes de adicionar novamente
-        tblWeightHistory.getColumns().clear();
-        
-        if(listaHistorico != null){
-            // Adiciona as colunas à tabela
-            tblID_Gado.setCellValueFactory(new PropertyValueFactory<>("idGado"));
-            colunaPeso.setCellValueFactory(new PropertyValueFactory<>("pesoKg"));
-            colunaDataPesagem.setCellValueFactory(new PropertyValueFactory<>("dataPesagem"));
-            colunaIDHist.setCellValueFactory(new PropertyValueFactory<>("id"));
-            
-            tblWeightHistory.getColumns().addAll(colunaIDHist, tblID_Gado, colunaPeso, colunaDataPesagem);
-            
-            // Adiciona os itens à tabela
-            ObservableList<HistoricoPesosGado> listaRetorno = FXCollections.observableArrayList(listaHistorico);
-            tblWeightHistory.setItems(listaRetorno);
+        try {
+            Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
+            HistoricoPesosGadoDAO histPesosDao = new HistoricoPesosGadoDAO();
+
+            List<HistoricoPesosGado> listaHistorico = histPesosDao.listByIdGado(cattle.getId());
+
+            // Limpa as colunas da tabela antes de adicionar novamente
+            tblWeightHistory.getColumns().clear();
+
+            if (listaHistorico != null) {
+                // Adiciona as colunas à tabela
+                tblID_Gado.setCellValueFactory(new PropertyValueFactory<>("idGado"));
+                colunaPeso.setCellValueFactory(new PropertyValueFactory<>("pesoKg"));
+                colunaDataPesagem.setCellValueFactory(new PropertyValueFactory<>("dataPesagem"));
+                colunaIDHist.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+                tblWeightHistory.getColumns().addAll(colunaIDHist, tblID_Gado, colunaPeso, colunaDataPesagem);
+
+                // Adiciona os itens à tabela
+                ObservableList<HistoricoPesosGado> listaRetorno = FXCollections.observableArrayList(listaHistorico);
+                tblWeightHistory.setItems(listaRetorno);
+            }
+        } catch (Exception error) {
+            ControllerHelper.alertWarningGeneric(error.toString());
         }
-    } catch (Exception error) {
-        ControllerHelper.alertWarningGeneric(error.toString());
     }
-}
+
+    public ValidatorResults validatePeso(Double peso) {
+        if (peso > 0) {
+            return new ValidatorResults(true, "");
+        }
+        return new ValidatorResults(false, "Peso precisa ser maior que zero");
+    }
+
+    public ValidatorResults validateDate(LocalDate date, LocalDate dateNascimento) {
+
+        if (date.isAfter(LocalDate.now())) {
+            return new ValidatorResults(false, "Data tem que ser anterior a data de " + LocalDate.now().toString());
+        }
+        if (date.isBefore(dateNascimento)) {
+            return new ValidatorResults(false, "Data não pode ser anterior a data de nascimento");
+        }
+
+        return new ValidatorResults(true, "");
+    }
+
+    public void refresh(Integer gado) {
+        try {
+            tblWeightHistory.getItems().clear();
+
+            HistoricoPesosGadoDAO pesosDAO = new HistoricoPesosGadoDAO();
+            ObservableList<HistoricoPesosGado> pesos = FXCollections.observableArrayList(pesosDAO.listByIdGado(gado));
+            tblWeightHistory.setItems(pesos);
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.getMessage());
+        }
+    }
 
 }

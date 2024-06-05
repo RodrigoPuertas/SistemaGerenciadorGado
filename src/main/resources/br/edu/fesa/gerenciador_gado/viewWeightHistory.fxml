@@ -57,9 +57,9 @@
       </Label>
       <TextField fx:id="txtPeso" layoutX="303.0" layoutY="293.0" maxWidth="227.0" minWidth="282.0" prefHeight="35.0" prefWidth="227.0" styleClass="textfield" />
       <Label layoutX="303.0" layoutY="267.0" styleClass="label_texto" text="Weight (Kg)" />
-      <DatePicker fx:id="txtDataPesagem" layoutX="305.0" layoutY="367.0" prefHeight="35.0" prefWidth="300.0" />
-      <Label layoutX="305.0" layoutY="345.0" styleClass="label_texto" text="Weighing date" />
-      <Button fx:id="btnRegister" layoutX="296.0" layoutY="442.0" mnemonicParsing="false" onAction="#actionRegister" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Register">
+      <DatePicker fx:id="txtDataPesagem" layoutX="305.0" layoutY="379.0" prefHeight="35.0" prefWidth="300.0" />
+      <Label layoutX="305.0" layoutY="357.0" styleClass="label_texto" text="Weighing date" />
+      <Button fx:id="btnRegister" layoutX="296.0" layoutY="477.0" mnemonicParsing="false" onAction="#actionRegister" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Register">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -78,7 +78,7 @@
             <TableColumn fx:id="colunaObservacao" prefWidth="142.0" text="Remarks" />
          </columns>
       </TableView>
-      <Button fx:id="btnUpdate" layoutX="410.0" layoutY="442.0" mnemonicParsing="false" onAction="#actionUpdate" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Update">
+      <Button fx:id="btnUpdate" layoutX="410.0" layoutY="477.0" mnemonicParsing="false" onAction="#actionUpdate" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Update">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -86,7 +86,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnDelete" layoutX="524.0" layoutY="442.0" mnemonicParsing="false" onAction="#actionDelete" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Delete">
+      <Button fx:id="btnDelete" layoutX="524.0" layoutY="477.0" mnemonicParsing="false" onAction="#actionDelete" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Delete">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -94,7 +94,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="lblAlertaPeso" layoutX="304.0" layoutY="335.0" styleClass="label_Alerta" />
-      <Label fx:id="lblAlertaDataPesagem" layoutX="311.0" layoutY="402.0" prefHeight="21.0" prefWidth="0.0" styleClass="label_Alerta" />
+      <Label fx:id="lblAlertaPeso" layoutX="304.0" layoutY="330.0" prefHeight="17.0" prefWidth="300.0" styleClass="label_AlertaEmail" text="Label" />
+      <Label fx:id="lblAlertaDataPesagem" layoutX="307.0" layoutY="411.0" prefHeight="21.0" prefWidth="300.0" styleClass="label_AlertaEmail" text="Label" />
    </children>
 </AnchorPane>

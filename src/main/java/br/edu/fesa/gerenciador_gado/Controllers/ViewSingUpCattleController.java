@@ -115,6 +115,7 @@ public class ViewSingUpCattleController implements Initializable {
             if (resultsAplicacao.isIsValid() && resultsDataNascimento.isIsValid() && resultsPeso.isIsValid()
                     && validatePeso().isIsValid() && resultsRaca.isIsValid() && resultsSexo.isIsValid()) {
                 List<Map<LocalDate, Double>> historicoPeso = new ArrayList<Map<LocalDate, Double>>();
+                
                 Map<LocalDate, Double> primeiroPeso = new HashMap<>();
                 primeiroPeso.put(LocalDate.now(), Double.parseDouble(txtPeso.getText()));
                 historicoPeso.add(primeiroPeso);
