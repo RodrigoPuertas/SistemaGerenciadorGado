@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../../styles/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewHomeController">
+   <children>
+      <Pane fx:id="paneADM" prefHeight="600.0" prefWidth="248.0" styleClass="pane_left">
+         <children>
+            <Button fx:id="btnUser" layoutX="9.0" layoutY="201.0" mnemonicParsing="false" onAction="#actionMoveToViewUser" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="User Management">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLogOut" layoutX="149.0" layoutY="555.0" mnemonicParsing="false" onAction="#actionLogOut" prefHeight="39.0" prefWidth="91.0" styleClass="button_orange" text="Log Out">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="79.0" layoutY="23.0" prefHeight="35.0" prefWidth="140.0" text="CattleMaster">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/cow.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnCadastrar" layoutX="9.0" layoutY="293.0" mnemonicParsing="false" onAction="#actionMoveToViewSignUp" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="User register">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="9.0" layoutY="578.0" text="ADM" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneFARMER" prefHeight="600.0" prefWidth="248.0" styleClass="pane_left">
+         <children>
+            <Button fx:id="btnLivestockManagement" layoutX="9.0" layoutY="200.0" mnemonicParsing="false" onAction="#actionMoveToViewCattleMan" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Livestock management">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLogOut2" layoutX="149.0" layoutY="555.0" mnemonicParsing="false" onAction="#actionLogOut" prefHeight="39.0" prefWidth="91.0" styleClass="button_orange" text="Log Out">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="79.0" layoutY="23.0" prefHeight="35.0" prefWidth="140.0" text="CattleMaster">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/cow.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="6.0" layoutY="581.0" text="FARMER" />
+            <Button fx:id="btnPatrimony" layoutX="9.0" layoutY="292.0" mnemonicParsing="false" onAction="#actionMoveToViewPatrimony" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Patrimony">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="paneRANCHER" prefHeight="600.0" prefWidth="248.0" styleClass="pane_left">
+         <children>
+            <Button fx:id="btnCattle" layoutX="9.0" layoutY="202.0" mnemonicParsing="false" onAction="#actionMoveToViewCattle" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Register Cattle ">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLogOut1" layoutX="149.0" layoutY="555.0" mnemonicParsing="false" onAction="#actionLogOut" prefHeight="39.0" prefWidth="91.0" styleClass="button_orange" text="Log Out">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="79.0" layoutY="23.0" prefHeight="35.0" prefWidth="140.0" text="CattleMaster">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/cow.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="9.0" layoutY="578.0" text="RANCHER" />
+            <Button fx:id="btnCattleManagement" layoutX="9.0" layoutY="280.0" mnemonicParsing="false" onAction="#actionMoveToViewCattleMan" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Livestock management">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnWeight" layoutX="9.0" layoutY="357.0" mnemonicParsing="false" onAction="#actionMoveToViewWeightHistory" prefHeight="40.0" prefWidth="230.0" styleClass="button_orange" text="Register Cattle Weighing">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="paneNews" layoutX="248.0" prefHeight="600.0" prefWidth="750.0">
+         <children>
+            <Label fx:id="lblPreco" layoutX="28.0" layoutY="556.0" prefHeight="26.0" prefWidth="634.0" text="The value of an arroba of beef is quoted today at R$">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imageNews1" fitHeight="202.0" fitWidth="682.0" layoutX="34.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/noticias1.png" />
+               </image>
+            </ImageView>
+            <Hyperlink fx:id="hyperlinkNews1" layoutX="34.0" layoutY="271.0" onAction="#actionNews1" prefHeight="23.0" prefWidth="352.0" text="Veja a reportagem cliclando no link." />
+            <ImageView fx:id="imageNews11" fitHeight="202.0" fitWidth="682.0" layoutX="34.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/noticias2.png" />
+               </image>
+            </ImageView>
+            <Hyperlink fx:id="hyperlinkNews2" layoutX="34.0" layoutY="470.0" onAction="#actionNews2" prefHeight="23.0" prefWidth="352.0" text="Veja a reportagem cliclando no link." />
+            <Line endX="608.0" layoutX="142.0" layoutY="76.0" startX="-142.0" />
+            <Label layoutX="331.0" layoutY="22.0" prefHeight="36.0" prefWidth="91.0" styleClass="label_titulo" text="NEWS" />
+            <Line endX="608.0" layoutX="143.0" layoutY="544.0" startX="-142.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

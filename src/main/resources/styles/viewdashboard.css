@@ -2,11 +2,6 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
-
-}
-
-
 .pane_left{
     -fx-background-color: #99d288;
 }
@@ -76,6 +71,25 @@
     -fx-border-color: #808080; /* Define a cor da borda como cinza */
 }
 
+.label-grande-laranja {
+    -fx-font-size: 36px;
+    -fx-text-fill: orangered;
+    -fx-font-weight: bold; /* Negrito */
+    -fx-alignment: center; /* Centralizado */
+}
 
+.painel-estilizado {
+    -fx-background-color: lightgrey; /* Cor de fundo cinza claro */
+    -fx-background-radius: 10px; /* Bordas arredondadas */
+    -fx-border-radius: 10px; /* Bordas arredondadas para o contorno */
+    -fx-border-color: black; /* Cor do contorno */
+    -fx-border-width: 1px; /* Largura do contorno */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 0); /* Sombra leve */
+}
 
-
+.titulo {
+    -fx-font-size: 18px; /* Ajuste o tamanho da fonte conforme necessário */
+    -fx-font-weight: bold; /* Negrito */
+    -fx-text-fill: black; /* Cor do texto */
+    -fx-alignment: center; /* Centralizado */
+}

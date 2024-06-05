@@ -10,9 +10,6 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
-    
-}
 
 
 .pane_login{
@@ -62,4 +59,13 @@
 
 .label_AlertaSenha{
     -fx-text-fill: red;
+}
+
+.button_orange{
+    -fx-font-family: 'Arial';
+    -fx-font-size: 12pt;
+    -fx-background-color: ea8953; /* Define a cor de fundo transparente */
+    -fx-border-radius: 5px; /* Define o raio de arredondamento das bordas */
+    -fx-border-color: black; /* Define a cor da borda */
+    -fx-border-width: 1px; /* Define a largura da borda */
 }

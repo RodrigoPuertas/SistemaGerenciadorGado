@@ -1,17 +1,22 @@
 /*
- * Empty Stylesheet file.
- */
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 5 de mai. de 2024, 14:51:57
+    Author     : Lohan
+*/
+
 
 .mainFxmlClass {
 
 }
 
-
 .pane_left{
     -fx-background-color: #99d288;
 }
 
-.label_cadastro{
+.label_titulo{
     -fx-text-fill: #202020;
     -fx-font-family: "Arial";
     -fx-font-size: 30px;
@@ -24,15 +29,6 @@
     -fx-font-size: 16px;
 }
 
-.button_cadastrar{
-    -fx-background-color: #99d288;
-    -fx-text-fill: white;
-    -fx-font-family: "Arial";
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 10;
-}
-
 .textfield {
     -fx-font-family: 'Arial';
     -fx-font-size: 12pt;
@@ -42,32 +38,8 @@
     -fx-min-width: 300px;/* Define a largura mínima */
     -fx-max-width: 300px;
     -fx-min-height: 35px; /* Define a altura mínima */
-
 }
 
-.label_AlertaEmail{
-    -fx-text-fill: red;
-}
-
-.label_AlertaSenha{
-    -fx-text-fill: red;
-}
-
-.label_AlertaNome{
-    -fx-text-fill: red;
-}
-
-.label_AlertaPerfil{
-    -fx-text-fill: red;
-}
-
-.comboBox_Perfil{
-    -fx-font-family: 'Arial';
-    -fx-font-size: 12pt;
-    -fx-border-radius: 5px; /* Define o raio de arredondamento das bordas */
-    -fx-border-color: #999999; /* Define a cor da borda */
-    -fx-border-width: 1px; /* Define a largura da borda */
-}
 .button_orange {
     -fx-font-family: 'Arial';
     -fx-font-size: 12pt;
@@ -77,5 +49,15 @@
 }
 
 
+.button_cadastrar{
+    -fx-background-color: #99d288;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
 
-
+.label_Alerta{
+    -fx-text-fill: red;
+}

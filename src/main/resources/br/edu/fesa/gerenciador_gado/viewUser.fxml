@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="label_AlertaPerfil" stylesheets="@../../../../styles/viewuser.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fesa.gerenciador_gado.Controllers.ViewUserController">
+   <children>
+      <TableView fx:id="tblUsers" layoutX="336.0" layoutY="14.0" onMouseClicked="#actionShowData" prefHeight="381.0" prefWidth="578.0">
+         <columns>
+            <TableColumn fx:id="colunaNome" prefWidth="182.0" text="Name" />
+            <TableColumn fx:id="colunaEmail" prefWidth="191.0" text="Email" />
+            <TableColumn fx:id="colunaProfileCode" prefWidth="204.0" text="Profile" />
+         </columns></TableView>
+      <Pane fx:id="paneLeft" prefHeight="600.0" prefWidth="248.0" styleClass="pane_left">
+         <children>
+            <Button fx:id="btnBack" layoutX="149.0" layoutY="540.0" mnemonicParsing="false" onAction="#actionBack" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Back">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="79.0" layoutY="23.0" prefHeight="35.0" prefWidth="140.0" text="CattleMaster">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/cow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <TextField fx:id="txtNome" layoutX="274.0" layoutY="427.0" maxWidth="227.0" minWidth="282.0" prefHeight="35.0" prefWidth="227.0" styleClass="textfield" />
+      <Label layoutX="274.0" layoutY="401.0" styleClass="label_texto" text="Name" />
+      <TextField fx:id="txtEmail" layoutX="274.0" layoutY="511.0" minWidth="199.0" prefHeight="35.0" prefWidth="199.0" styleClass="textfield" />
+      <Label layoutX="274.0" layoutY="485.0" styleClass="label_texto" text="Email" />
+      <ComboBox fx:id="cboPerfil" layoutX="632.0" layoutY="426.0" prefHeight="35.0" prefWidth="240.0" styleClass="comboBox_Perfil" />
+      <Label layoutX="632.0" layoutY="401.0" styleClass="label_texto" text="Profile" />
+      <Button fx:id="btnDelete" layoutX="894.0" layoutY="537.0" mnemonicParsing="false" onAction="#actionDelete" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Delete">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnUpdate" layoutX="781.0" layoutY="537.0" mnemonicParsing="false" onAction="#actionUpdate" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Update">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSingUp" layoutX="669.0" layoutY="537.0" mnemonicParsing="false" onAction="#actionMoveToSIngUp" prefHeight="40.0" prefWidth="91.0" styleClass="button_orange" text="Register">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblAlertaNome" layoutX="274.0" layoutY="463.0" styleClass="label_AlertaPerfil" />
+      <Label fx:id="lblAlertaEmail" layoutX="275.0" layoutY="549.0" styleClass="label_AlertaEmail" />
+      <Label fx:id="lblAlertaPerfil" layoutX="633.0" layoutY="463.0" styleClass="label_AlertaPerfil" />
+   </children>
+</AnchorPane>
