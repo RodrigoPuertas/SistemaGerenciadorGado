@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author USER
+ * @author Guilherme Garcia
  */
 public class PriceCattleDAO implements GenericDAO<PriceCattle> {
 

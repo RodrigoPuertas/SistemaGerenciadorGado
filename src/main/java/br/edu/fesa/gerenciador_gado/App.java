@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.scene.image.Image;
 
-
 /**
  * JavaFX App
  */
@@ -25,18 +24,17 @@ public class App extends Application {
         //Adiciona um icone no canto superior esquerdo da tela e na sua inicialização
         Image icon = new Image(getClass().getResourceAsStream("/br/edu/fesa/gerenciador_gado/images/cow.png"));
         stage.getIcons().add(icon);
-        
-        stage.setTitle("Login"); //Adiciona texto no canto superior esquerdo da tela
-        
-        
+
+        //stage.setTitle("Login"); //Adiciona texto no canto superior esquerdo da tela
+
         stage.setResizable(false); // Impede que a janela seja redimensionada        
-        
+
         stage.setScene(scene);
         stage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+        scene.setRoot(loadFXML(fxml));        
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

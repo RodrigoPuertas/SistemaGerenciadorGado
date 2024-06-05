@@ -31,7 +31,7 @@ import javafx.scene.control.Label;
 /**
  * FXML Controller class
  *
- * @author USER
+ * @author Guilherme Garcia
  */
 public class ViewDashboardController implements Initializable {
 

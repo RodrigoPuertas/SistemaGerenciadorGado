@@ -15,7 +15,7 @@
    <children>
       <Pane prefHeight="600.0" prefWidth="500.0" styleClass="pane_login">
          <children>
-            <Label alignment="CENTER" layoutX="33.0" layoutY="48.0" prefHeight="78.0" prefWidth="435.0" styleClass="label_apresentacaoLogin" text="Sistema de gerenciamento de gado" />
+            <Label alignment="CENTER" layoutX="33.0" layoutY="48.0" prefHeight="78.0" prefWidth="435.0" styleClass="label_apresentacaoLogin" text="Cattle Management System" />
             <ImageView fitHeight="347.0" fitWidth="530.0" focusTraversable="true" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/img_telaLogin.png" />
@@ -31,11 +31,11 @@
             </Label>
             <Label layoutX="101.0" layoutY="208.0" styleClass="label_texto" text="Email" />
             <TextField fx:id="txtEmail" layoutX="101.0" layoutY="232.0" prefHeight="35.0" prefWidth="300.0" promptText="\@mail.com" styleClass="textfield" />
-            <Button fx:id="btnEntrar" layoutX="102.0" layoutY="406.0" mnemonicParsing="false" onAction="#actionEntrar" prefHeight="36.0" prefWidth="297.0" styleClass="button_entrar" text="Entrar">
+            <Button fx:id="btnEntrar" layoutX="102.0" layoutY="406.0" mnemonicParsing="false" onAction="#actionEntrar" prefHeight="36.0" prefWidth="297.0" styleClass="button_entrar" text="Login">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Label layoutX="98.0" layoutY="290.0" styleClass="label_texto" text="Senha" />
+            <Label layoutX="98.0" layoutY="290.0" styleClass="label_texto" text="Password" />
             <Label fx:id="lblAlertaEmail" layoutX="102.0" layoutY="268.0" prefHeight="17.0" prefWidth="297.0" styleClass="label_AlertaEmail" />
             <Label fx:id="lblAlertaSenha" layoutX="102.0" layoutY="345.0" prefHeight="17.0" prefWidth="297.0" styleClass="label_AlertaSenha" />
             <PasswordField fx:id="txtSenha" layoutX="100.0" layoutY="310.0" prefHeight="35.0" prefWidth="300.0" styleClass="textfield" />

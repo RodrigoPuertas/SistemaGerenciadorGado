@@ -152,14 +152,18 @@ public class ViewCattleController implements Initializable {
 
     @FXML
     void actionMoveToSIngUp(ActionEvent event) {
-
+        try {
+            App.setRoot("viewSingUpCattle");
+        } catch (Exception error) {
+            ControllerHelper.alertErrorGeneric(error.getMessage());
+        }
     }
 
     @FXML
     void actionShowData(MouseEvent event) {
         try {
             Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
-            
+
             txtDataNascimento.setValue(cattle.getDataNascimento());
             cboSexo.setValue(cattle.getGender());
             cboAplicacao.setValue(cattle.getAplication());
@@ -186,9 +190,9 @@ public class ViewCattleController implements Initializable {
             lblAlertaAplicacao.setText(resultAplicacao.getErrorMessage());
             lblAlertaRaca.setText(resultRaca.getErrorMessage());
             lblAlertaPeso.setText(resultPeso.getErrorMessage());
-            
+
             Cattle cattle = tblCattle.getSelectionModel().getSelectedItem();
-            
+
             if (resultNascimento.isIsValid() && resultAplicacao.isIsValid() && resultPeso.isIsValid()
                     && validatePeso().isIsValid() && resultRaca.isIsValid() && resultSexo.isIsValid()) {
                 List<Map<LocalDate, Double>> historicoPeso = new ArrayList<Map<LocalDate, Double>>();
@@ -196,7 +200,7 @@ public class ViewCattleController implements Initializable {
                 primeiroPeso.put(LocalDate.now(), Double.parseDouble(txtPeso.getText()));
                 historicoPeso.add(primeiroPeso);
 
-                Cattle gado = new Cattle(cattle.getId(),cboAplicacao.getValue(), cboRaca.getValue(), cboSexo.getValue(), txtDataNascimento.getValue(),
+                Cattle gado = new Cattle(cattle.getId(), cboAplicacao.getValue(), cboRaca.getValue(), cboSexo.getValue(), txtDataNascimento.getValue(),
                         historicoPeso, txtDescricao.getText(), txtObservacoes.getText());
 
                 CattleDAO dao = new CattleDAO();

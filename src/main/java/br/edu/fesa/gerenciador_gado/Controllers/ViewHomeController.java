@@ -25,41 +25,35 @@ import javafx.scene.layout.Pane;
  */
 public class ViewHomeController implements Initializable {
 
-    @FXML
-    private Button btnPatrimony;
+   @FXML
+    private Button btnCadastrar;
 
     @FXML
-    private Label lblAlertaSenha;
+    private Button btnCattle;
 
     @FXML
-    private Label lblAlertaPerfil;
+    private Button btnCattleManagement;
+
+    @FXML
+    private Button btnLivestockManagement;
 
     @FXML
     private Button btnLogOut;
 
     @FXML
-    private Label lblAlertaEmail;
+    private Button btnLogOut1;
 
     @FXML
-    private Label lblAlertaNome;
+    private Button btnLogOut2;
 
     @FXML
-    private Button btnCadastrar;
-
-    @FXML
-    private Button btnCattle;
-    
-    @FXML
-    private Button btnWeight;
-
-    @FXML
-    private Label lblAlertaRegistro;
+    private Button btnPatrimony;
 
     @FXML
     private Button btnUser;
 
     @FXML
-    private Button btnTeste;
+    private Button btnWeight;
 
     @FXML
     private Pane paneADM;
@@ -69,9 +63,6 @@ public class ViewHomeController implements Initializable {
 
     @FXML
     private Pane paneRANCHER;
-
-    @FXML
-    private Button btnCattleManagement;
 
     @FXML
     void actionLogOut(ActionEvent event) {

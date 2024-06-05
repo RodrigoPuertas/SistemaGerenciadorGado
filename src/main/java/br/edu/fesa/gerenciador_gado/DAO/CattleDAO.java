@@ -99,4 +99,29 @@ public class CattleDAO implements GenericDAO<Cattle> {
         }
     }
 
+public Cattle lastCattle() throws PersistenceException {
+    try (Connection connection = ConnectionDAO.getConnectionDAO().getConnection();
+         PreparedStatement statement = connection.prepareStatement(
+                "SELECT * FROM gado ORDER BY id DESC LIMIT 1");
+         ResultSet resultSet = statement.executeQuery()) {
+
+        if (resultSet.next()) {
+            return new Cattle(
+                resultSet.getInt("ID"),
+                CattleAplicationEnum.fromValue(resultSet.getString("Aplicacao")),
+                RacaGadoEnum.fromValue(resultSet.getString("Raca")),
+                GenderEnum.fromString(resultSet.getString("Sexo")),
+                resultSet.getDate("Data_Nascimento").toLocalDate(),
+                resultSet.getString("Descricao"),
+                resultSet.getString("Observacoes")
+            );
+        } else {
+            throw new PersistenceException("No cattle found in the database.");
+        }
+    } catch (SQLException e) {
+        throw new PersistenceException("Error accessing the database.", e);
+    }
+}
+
+
 }

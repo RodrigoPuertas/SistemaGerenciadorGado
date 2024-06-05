@@ -6,13 +6,13 @@ package br.edu.fesa.gerenciador_gado.Controllers;
 
 import br.edu.fesa.gerenciador_gado.App;
 import br.edu.fesa.gerenciador_gado.DAO.CattleDAO;
+import br.edu.fesa.gerenciador_gado.DAO.HistoricoPesosGadoDAO;
 import br.edu.fesa.gerenciador_gado.Models.Entities.Cattle;
-import br.edu.fesa.gerenciador_gado.Models.Entities.User;
+import br.edu.fesa.gerenciador_gado.Models.Entities.HistoricoPesosGado;
 import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
 import br.edu.fesa.gerenciador_gado.Util.Enums.CattleAplicationEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.GenderEnum;
 import br.edu.fesa.gerenciador_gado.Util.Enums.RacaGadoEnum;
-import br.edu.fesa.gerenciador_gado.Util.Exceptions.PersistenceException;
 import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorFields;
 import br.edu.fesa.gerenciador_gado.Util.Validations.ValidatorResults;
 import java.net.URL;
@@ -22,10 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -124,12 +121,17 @@ public class ViewSingUpCattleController implements Initializable {
 
                 Cattle gado = new Cattle(cboAplicacao.getValue(), cboRaca.getValue(), cboSexo.getValue(), txtDataNascimento.getValue(),
                         historicoPeso, txtDescricao.getText(), txtObservacoes.getText());
-                
+
                 CattleDAO dao = new CattleDAO();
-                
                 dao.insert(gado);
-                
+
                 ControllerHelper.alertSucessGeneric("Gado inserido no banco de dados");
+                
+                Cattle gadoHistorico = dao.lastCattle();
+                HistoricoPesosGado peso = new HistoricoPesosGado(gadoHistorico.getDataNascimento(), gadoHistorico.getId(), Double.parseDouble(txtPeso.getText()));
+                
+                HistoricoPesosGadoDAO pesosDAO = new HistoricoPesosGadoDAO();
+                pesosDAO.insert(peso);
             }
         } catch (Exception error) {
             ControllerHelper.alertErrorGeneric(error.toString());
@@ -142,7 +144,7 @@ public class ViewSingUpCattleController implements Initializable {
         cboRaca.setItems(FXCollections.observableArrayList(RacaGadoEnum.values()));
         cboSexo.setItems(FXCollections.observableArrayList(GenderEnum.values()));
         txtPeso.setText("0.00");
-        
+
         CattleDAO gado = new CattleDAO();
 
     }
@@ -155,7 +157,7 @@ public class ViewSingUpCattleController implements Initializable {
                 results = new ValidatorResults(true, "");
                 return results;
             }
-        } catch(Exception e)  {
+        } catch (Exception e) {
             results = new ValidatorResults(false, "Não é um valor válido");
             return results;
         }

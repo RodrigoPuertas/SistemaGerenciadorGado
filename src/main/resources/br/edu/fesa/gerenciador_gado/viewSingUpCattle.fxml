@@ -21,31 +21,31 @@
                   <Image url="@images/img_telaLogin.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnBack" layoutX="29.0" layoutY="547.0" mnemonicParsing="false" onAction="#actionBack" prefHeight="36.0" prefWidth="96.0" styleClass="button_orange" text="Voltar" />
+            <Button fx:id="btnBack" layoutX="29.0" layoutY="547.0" mnemonicParsing="false" onAction="#actionBack" prefHeight="36.0" prefWidth="136.0" styleClass="button_orange" text="Home page" />
          </children>
       </Pane>
       <Pane layoutX="346.0" prefHeight="600.0" prefWidth="650.0">
          <children>
-            <Button fx:id="btnCadastrar" layoutX="186.0" layoutY="550.0" mnemonicParsing="false" onAction="#actionSingUpCattle" prefHeight="36.0" prefWidth="297.0" styleClass="button_cadastrar" text="Cadastrar">
+            <Button fx:id="btnCadastrar" layoutX="186.0" layoutY="541.0" mnemonicParsing="false" onAction="#actionSingUpCattle" prefHeight="36.0" prefWidth="297.0" styleClass="button_cadastrar" text="Register">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
             <ComboBox fx:id="cboAplicacao" layoutX="342.0" layoutY="198.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
-            <Label layoutX="342.0" layoutY="172.0" styleClass="label_texto" text="Aplicação" />
-            <Label alignment="CENTER" layoutX="-3.0" layoutY="32.0" prefHeight="36.0" prefWidth="656.0" styleClass="label_titulo" text="Cadastro de gado" textAlignment="CENTER" />
+            <Label layoutX="342.0" layoutY="172.0" styleClass="label_texto" text="Aplication" />
+            <Label alignment="CENTER" layoutX="-2.0" layoutY="32.0" prefHeight="36.0" prefWidth="665.0" styleClass="label_titulo" text="Cattle registration" textAlignment="CENTER" />
             <ComboBox fx:id="cboSexo" layoutX="23.0" layoutY="199.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
-            <Label layoutX="23.0" layoutY="173.0" styleClass="label_texto" text="Sexo" />
+            <Label layoutX="23.0" layoutY="173.0" styleClass="label_texto" text="Sex" />
             <DatePicker fx:id="txtDataNascimento" layoutX="22.0" layoutY="119.0" prefHeight="35.0" prefWidth="297.0" />
-            <Label layoutX="22.0" layoutY="98.0" styleClass="label_texto" text="Data de nascimento" />
-            <Label layoutX="29.0" layoutY="409.0" styleClass="label_texto" text="Descrição" />
+            <Label layoutX="22.0" layoutY="98.0" styleClass="label_texto" text="Date of birth" />
+            <Label layoutX="29.0" layoutY="409.0" styleClass="label_texto" text="Description" />
             <TextArea fx:id="txtDescricao" layoutX="29.0" layoutY="433.0" prefHeight="65.0" prefWidth="297.0" />
-            <Label layoutX="343.0" layoutY="409.0" styleClass="label_texto" text="Observações" />
+            <Label layoutX="343.0" layoutY="409.0" styleClass="label_texto" text="Remarks " />
             <TextArea fx:id="txtObservacoes" layoutX="343.0" layoutY="433.0" prefHeight="65.0" prefWidth="297.0" />
             <ComboBox fx:id="cboRaca" layoutX="23.0" layoutY="277.0" prefHeight="35.0" prefWidth="300.0" styleClass="comboBox_Perfil" />
-            <Label layoutX="23.0" layoutY="251.0" styleClass="label_texto" text="Raça" />
+            <Label layoutX="23.0" layoutY="251.0" styleClass="label_texto" text="Breed" />
             <TextField fx:id="txtPeso" layoutX="342.0" layoutY="277.0" promptText="0000,00" styleClass="textfield" />
-            <Label layoutX="343.0" layoutY="251.0" styleClass="label_texto" text="Peso atual" />
+            <Label layoutX="343.0" layoutY="251.0" styleClass="label_texto" text="Birth weight" />
             <Label fx:id="lblAlertaNascimento" layoutX="22.0" layoutY="154.0" styleClass="label_Alerta" />
             <Label fx:id="lblAlertaSexo" layoutX="22.0" layoutY="233.0" styleClass="label_Alerta" />
             <Label fx:id="lblAlertaAplicacao" layoutX="343.0" layoutY="233.0" styleClass="label_Alerta" />
