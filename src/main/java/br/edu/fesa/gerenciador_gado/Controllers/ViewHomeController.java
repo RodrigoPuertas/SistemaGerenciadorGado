@@ -5,6 +5,7 @@
 package br.edu.fesa.gerenciador_gado.Controllers;
 
 import br.edu.fesa.gerenciador_gado.App;
+import br.edu.fesa.gerenciador_gado.Models.BLL.DashboardBll;
 import br.edu.fesa.gerenciador_gado.Models.Entities.User;
 import br.edu.fesa.gerenciador_gado.Util.ControllerHelper;
 import br.edu.fesa.gerenciador_gado.Util.Enums.ProfileEnum;
@@ -15,8 +16,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-
 
 /**
  * FXML Controller class
@@ -25,7 +26,7 @@ import javafx.scene.layout.Pane;
  */
 public class ViewHomeController implements Initializable {
 
-   @FXML
+    @FXML
     private Button btnCadastrar;
 
     @FXML
@@ -63,10 +64,12 @@ public class ViewHomeController implements Initializable {
 
     @FXML
     private Pane paneRANCHER;
-    
+
     @FXML
     private Pane paneNews;
     
+    @FXML
+    private Label lblPreco;
 
     @FXML
     void actionLogOut(ActionEvent event) {
@@ -127,7 +130,7 @@ public class ViewHomeController implements Initializable {
             ControllerHelper.alertErrorGeneric(error.getMessage());
         }
     }
-    
+
     @FXML
     void actionMoveToViewWeightHistory(ActionEvent event) {
         try {
@@ -159,6 +162,12 @@ public class ViewHomeController implements Initializable {
             paneFARMER.setVisible(false);
             paneRANCHER.setVisible(true);
         }
+        
+        
+        DashboardBll valor = new DashboardBll();
+        
+        lblPreco.setText(lblPreco.getText() + valor.valorArroba()); 
+        
     }
 
 }

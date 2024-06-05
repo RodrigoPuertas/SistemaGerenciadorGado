@@ -136,6 +136,15 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="paneNews" layoutX="248.0" prefHeight="600.0" prefWidth="750.0" />
+      <Pane fx:id="paneNews" layoutX="248.0" prefHeight="600.0" prefWidth="750.0">
+         <children>
+            <Label layoutX="330.0" layoutY="28.0" prefHeight="36.0" prefWidth="91.0" styleClass="label_titulo" text="NEWS" />
+            <Label fx:id="lblPreco" layoutX="25.0" layoutY="78.0" prefHeight="26.0" prefWidth="634.0" text="O valor da arroba do boi está cotado hoje em R$">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
